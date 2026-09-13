@@ -42,7 +42,6 @@ export interface BrandPillar {
 export interface BlueprintStep {
   id: number;
   title: string;
-  code: string;
   tag: string;
   desc: string;
   detail: string;

@@ -153,10 +153,6 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
                             {step.tag}
                           </span>
                         </div>
-                        {/* Código monoespaciado técnico */}
-                        <div className="text-[10px] font-mono text-steel/80 mt-0.5 tracking-wider">
-                          {step.code}
-                        </div>
                         <p className="text-xs text-steel mt-1 line-clamp-2 leading-relaxed">
                           {step.desc}
                         </p>
