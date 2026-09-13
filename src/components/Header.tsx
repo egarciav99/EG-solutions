@@ -40,7 +40,7 @@ export function Header({ onNavigate, onOpenConsultation }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-steel/40 bg-near-white/95 backdrop-blur-sm">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-24 flex items-center justify-between">
         {/* Brand */}
         <a
           href="#top"
@@ -52,7 +52,7 @@ export function Header({ onNavigate, onOpenConsultation }: HeaderProps) {
           id="brand-header-link"
           aria-label={BRAND_NAME}
         >
-          <Logo size="md" showTagline={true} />
+          <Logo size="lg" showTagline={false} />
         </a>
 
         {/* Desktop Navigation */}

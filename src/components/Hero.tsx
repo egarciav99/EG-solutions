@@ -20,7 +20,7 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
       <CircuitBackground layout={heroCircuitLayout} />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-start">
           {/* Columna de texto principal */}
           <div className="lg:col-span-7 flex flex-col">
             {/* Pilares de marca desglosados */}
