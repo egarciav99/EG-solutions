@@ -32,7 +32,7 @@ export function Logo({
       >
         <img
           src="/logo-eg.png"
-          alt="EG Solutions — Web Intelligence & Automation"
+          alt="EG Solutions"
           className={`${imageHeights[size]} w-auto object-contain select-none`}
           style={{ aspectRatio: '1580 / 938' }}
           loading="eager"
@@ -42,9 +42,6 @@ export function Logo({
       {showTagline && (
         <div className="hidden lg:flex flex-col border-l border-[#A9B7C4]/50 pl-3">
           <span className={`text-xs font-semibold tracking-tight ${isDark ? 'text-white' : 'text-[#2B3242]'}`}>
-            Web Intelligence & Automation
-          </span>
-          <span className={`text-[11px] ${isDark ? 'text-[#A9B7C4]' : 'text-[#7A828C]'}`}>
             Plataformas Web · Automatizaciones · Agentes IA
           </span>
         </div>

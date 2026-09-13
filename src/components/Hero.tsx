@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { BRAND_PILLARS, FOUNDER_NAME, ACTIVE_REGIONS, LANGUAGES } from '../data/constants';
+import { BRAND_PILLARS, ACTIVE_REGIONS, LANGUAGES } from '../data/constants';
 import { BLUEPRINT_STEPS } from '../data/blueprintSteps';
 import { heroCircuitLayout } from '../data/circuitLayouts';
 import { CircuitBackground } from './CircuitBackground';
@@ -35,19 +35,15 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-navy leading-[1.18] mb-6">
-              Web Intelligence & Automation con{' '}
-              <span className="relative whitespace-nowrap">
-                rigor de ingeniería
-                <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-copper rounded" />
-              </span>
+              Código sólido. <span className="text-copper">Operaciones inteligentes.</span>
             </h1>
 
             <p className="text-base sm:text-lg text-mid-gray leading-relaxed max-w-2xl mb-8">
-              Estudio unipersonal liderado por <strong className="text-navy font-semibold">{FOUNDER_NAME}</strong>. Combino formación en ingeniería eléctrica y supervisión técnica con desarrollo full-stack moderno. Construyo plataformas a medida, orquestación de procesos con n8n e integraciones de IA aplicada para empresas en {ACTIVE_REGIONS}, con código tipado, arquitecturas auditadas y trato directo sin intermediarios.
+              Plataformas web, automatización de procesos y agentes de IA para negocios en {ACTIVE_REGIONS}. Código propio, sin agencias de por medio.
             </p>
 
             {/* Acciones principales - Botón primario cobre y secundario borde pizarra */}
-            <div className="flex flex-wrap items-center gap-4 mb-10">
+            <div className="flex flex-wrap items-center gap-4">
               <button
                 onClick={onConsultationClick}
                 className="bg-copper hover:opacity-90 text-white text-base font-medium px-6 py-3 rounded transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper shadow-xs cursor-pointer"
@@ -60,36 +56,8 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
                 className="border border-slate bg-transparent hover:bg-slate/5 text-navy text-base font-medium px-6 py-3 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
                 id="hero-ver-proyectos-btn"
               >
-                Ver casos de éxito reales
+                Ver proyectos y propuestas
               </button>
-            </div>
-
-            {/* Principios de entrega directa */}
-            <div className="pt-8 border-t border-steel/40 grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <div>
-                <div className="text-sm font-semibold text-navy mb-1">
-                  Pragmatismo técnico
-                </div>
-                <div className="text-xs text-mid-gray leading-normal">
-                  La solución más simple y sostenible para el problema real, sin inflar tecnologías ni costos recurrentes.
-                </div>
-              </div>
-              <div>
-                <div className="text-sm font-semibold text-navy mb-1">
-                  Trato directo
-                </div>
-                <div className="text-xs text-mid-gray leading-normal">
-                  Planificas y trabajas directamente con quien programa la solución. Sin intermediarios ni traspasos.
-                </div>
-              </div>
-              <div>
-                <div className="text-sm font-semibold text-navy mb-1">
-                  Presupuesto cerrado
-                </div>
-                <div className="text-xs text-mid-gray leading-normal">
-                  Fases documentadas y separación nítida entre alcance pactado y requerimientos adicionales.
-                </div>
-              </div>
             </div>
           </div>
 

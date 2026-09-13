@@ -14,7 +14,7 @@ export function Differential() {
             Criterio de ingeniería aplicado al software
           </h2>
           <p className="text-base text-mid-gray leading-relaxed">
-            El software defectuoso rara vez falla por falta de librerías, sino por definición imprecisa. Mi formación en ingeniería eléctrica y supervisión técnica aporta un rigor poco común en agencias convencionales.
+            El software defectuoso rara vez falla por falta de librerías, sino por definición imprecisa. La formación en ingeniería eléctrica y supervisión técnica de {FOUNDER_NAME} aporta un rigor poco común en agencias convencionales.
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export function Differential() {
                 En supervisión técnica no existen atajos: un cálculo erróneo invalida la instalación. Ese principio de <strong className="text-navy font-semibold">tolerancia cero a la fragilidad</strong> rige cada base de datos, flujo de automatización y regla de seguridad.
               </p>
               <p>
-                <strong className="text-navy font-semibold">Estudio unipersonal</strong>: sin intermediarios ni traspaso a perfiles júnior. Planificación, arquitectura, código y soporte directo en una sola mano responsable.
+                <strong className="text-navy font-semibold">Práctica independiente</strong>: sin intermediarios ni traspaso a perfiles júnior. Planificación, arquitectura, código y soporte directo en una sola mano responsable.
               </p>
             </div>
 
@@ -99,7 +99,7 @@ export function Differential() {
         {/* Comparativa analítica honesta: Agencia vs Freelance Junior vs EG Solutions */}
         <div className="bg-navy text-white rounded-lg p-6 sm:p-8 border border-slate shadow-xs">
           <h3 className="text-lg font-bold text-white mb-2">
-            La diferencia operativa al trabajar con un estudio de ingeniería unipersonal
+            La diferencia operativa al trabajar con una práctica de ingeniería independiente
           </h3>
           <p className="text-xs sm:text-sm text-steel mb-6 max-w-2xl">
             Una comparativa objetiva de dinámicas de trabajo para ayudarte a determinar si {BRAND_NAME} es el encaje correcto para tu organización:

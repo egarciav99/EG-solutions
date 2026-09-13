@@ -20,7 +20,7 @@ export const BLUEPRINT_STEPS: BlueprintStep[] = [
     title: 'Agentes IA y validación humana',
     tag: 'Human-in-the-loop',
     desc: 'LLMs restringidos a esquemas JSON con punto de cotejo humano antes de impactar datos reales.',
-    detail: 'El nodo de cobre representa la supervisión técnica que previene fallos y alucinaciones.',
+    detail: 'La supervisión humana en puntos críticos previene fallos y alucinaciones antes de impactar datos reales.',
     isCritical: true,
   },
   {

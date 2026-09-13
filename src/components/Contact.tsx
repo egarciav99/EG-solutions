@@ -51,7 +51,7 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
             Iniciar conversación de proyecto
           </h2>
           <p className="text-base text-mid-gray leading-relaxed">
-            Sin intermediarios ni llamadas comerciales. Cuéntame tu problema operativo y recibirás una respuesta técnica fundamentada en menos de 24 horas laborables.
+            Sin intermediarios ni llamadas comerciales. Describe el problema operativo y recibirás una respuesta técnica fundamentada en menos de 24 horas laborables.
           </p>
         </div>
 
@@ -222,7 +222,7 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
                 </h4>
               </div>
               <p className="text-xs text-near-white/85 leading-relaxed">
-                Desglose explícito de hitos, pagos vinculados a entregables tangibles y delimitación estricta del alcance contratado. Cero sorpresas de facturación.
+                Alcance, pagos y entregables definidos por escrito antes de empezar.
               </p>
             </div>
           </div>

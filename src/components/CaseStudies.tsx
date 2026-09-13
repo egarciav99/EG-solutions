@@ -51,10 +51,10 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         <div className="max-w-3xl mb-14">
           <h2 className="text-2xl sm:text-3xl font-bold text-navy tracking-tight mb-4">
-            Casos de éxito reales
+            Proyectos y propuestas técnicas
           </h2>
           <p className="text-base text-mid-gray leading-relaxed">
-            Proyectos en producción que demuestran versatilidad técnica: activación masiva de alcance nacional, sistema operativo para eventos y extracción documental con IA.
+            Un vistazo al proceso de trabajo en distintas etapas: desde propuestas técnicas en evaluación hasta proyectos contratados en fase de especificación y arquitectura.
           </p>
         </div>
 
@@ -129,7 +129,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
                   <div className="p-3 bg-slate/40 rounded border border-slate text-xs">
                     <div className="text-steel font-semibold mb-1">Sin descarga de App (Web Omnicanal):</div>
                     <div className="text-near-white/85">
-                      Acceso instantáneo vía QR en empaques; retención del 98% sin fricción de instalación en tiendas.
+                      Acceso instantáneo vía QR en empaques; eliminación total de la fricción de instalación en tiendas.
                     </div>
                   </div>
 

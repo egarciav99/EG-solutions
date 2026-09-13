@@ -5,8 +5,6 @@ export const BRAND_NAME = 'EG Solutions';
 /** Fallback de compatibilidad: SEO, meta tags, alt text. No usar en UI nueva. */
 export const BRAND_TAGLINE = 'Plataformas Web · Automatizaciones · Agentes IA';
 
-export const BRAND_SUBTITLE = 'Web Intelligence & Automation';
-
 /** Versión estructurada del tagline para renderizado visual (Hero, Footer). */
 export const BRAND_PILLARS: BrandPillar[] = [
   { id: 'web', label: 'Plataformas Web', icon: 'web' },
@@ -17,7 +15,7 @@ export const BRAND_PILLARS: BrandPillar[] = [
 export const FOUNDER_NAME = 'Elier Garcia';
 export const FOUNDER_ROLE = 'Fundador e Ingeniero Principal';
 
-export const CONTACT_EMAIL = 'eliergv.99@gmail.com';
+export const CONTACT_EMAIL = 'elier.garcia@egsolutions.tech';
 export const ACTIVE_REGIONS = 'España y México';
 export const LANGUAGES = 'Bilingüe (ES / EN)';
 export const RESPONSE_TIME = 'Menos de 24 horas en días laborables';
