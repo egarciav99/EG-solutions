@@ -1,4 +1,5 @@
 import { Logo } from './Logo';
+import { CONTACT_EMAIL } from '../data/constants';
 
 interface FooterProps {
   onNavigate: (sectionId: string) => void;
@@ -8,58 +9,67 @@ export function Footer({ onNavigate }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[#A9B7C4]/40 bg-[#2B3242] text-[#A9B7C4] py-14">
+    <footer className="border-t border-[#A9B7C4]/30 bg-[#3B4B5C] text-[#A9B7C4] py-14">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-[#3B4B5C]">
-          <div className="md:col-span-6 space-y-3">
-            <div className="brightness-125">
-              <Logo size="md" />
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-[#A9B7C4]/20">
+          <div className="md:col-span-6 space-y-4">
+            <div>
+              <Logo size="md" variant="on-dark" showTagline={true} />
             </div>
             <p className="text-xs text-[#A9B7C4] max-w-md leading-relaxed">
-              Estudio técnico unipersonal de software e inteligencia artificial liderado por Elier Garcia. Soluciones pragmáticas, código tipado y arquitecturas documentadas para pequeños negocios y marcas en España y México.
+              Estudio boutique de Web Intelligence & Automation liderado por Elier Garcia. Plataformas web a medida, orquestación de procesos con n8n e integraciones de agentes de IA con rigor de ingeniería y supervisión humana.
             </p>
           </div>
 
           <div className="md:col-span-3 space-y-2 text-xs">
-            <div className="font-semibold text-white mb-2">Secciones</div>
-            <div>
-              <button
-                onClick={() => onNavigate('servicios')}
-                className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline"
-              >
-                Líneas de servicio
-              </button>
-            </div>
-            <div>
-              <button
-                onClick={() => onNavigate('proyectos')}
-                className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline"
-              >
-                Casos de éxito reales
-              </button>
-            </div>
-            <div>
-              <button
-                onClick={() => onNavigate('diferencial')}
-                className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline"
-              >
-                Perfil y rigor de ingeniería
-              </button>
-            </div>
-            <div>
-              <button
-                onClick={() => onNavigate('contacto')}
-                className="hover:text-white transition-colors focus-visible:outline-none focus-visible:underline"
-              >
-                Iniciar consulta
-              </button>
-            </div>
+            <div className="font-semibold text-white mb-2 tracking-wide">Navegación</div>
+            <nav aria-label="Navegación del pie de página">
+              <ul className="space-y-2 list-none p-0 m-0">
+                <li>
+                  <button
+                    onClick={() => onNavigate('servicios')}
+                    className="text-[#A9B7C4] hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
+                  >
+                    Líneas de servicio
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onNavigate('proyectos')}
+                    className="text-[#A9B7C4] hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
+                  >
+                    Casos de éxito reales
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onNavigate('diferencial')}
+                    className="text-[#A9B7C4] hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
+                  >
+                    Cómo trabajo (Rigor técnico)
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => onNavigate('contacto')}
+                    className="text-[#A9B7C4] hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
+                  >
+                    Iniciar consulta directa
+                  </button>
+                </li>
+              </ul>
+            </nav>
           </div>
 
           <div className="md:col-span-3 space-y-2 text-xs">
-            <div className="font-semibold text-white mb-2">Contacto directo</div>
-            <div className="text-white/90">eliergv.99@gmail.com</div>
-            <div className="text-[#A9B7C4]">Soporte técnico y desarrollo activo</div>
+            <div className="font-semibold text-white mb-2 tracking-wide">Contacto directo</div>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="text-white font-medium block hover:text-[#C77B4B] transition-colors focus-visible:outline-none focus-visible:underline"
+            >
+              {CONTACT_EMAIL}
+            </a>
+            <div className="text-[#A9B7C4]">Estudio unipersonal · Sin intermediarios</div>
             <div className="text-[#A9B7C4] flex items-center gap-1.5 pt-1">
               <span className="w-2 h-2 rounded-full bg-[#C77B4B]" />
               <span>Clientes en España y México</span>
@@ -67,12 +77,12 @@ export function Footer({ onNavigate }: FooterProps) {
           </div>
         </div>
 
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#7A828C]">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#A9B7C4]/80">
           <div>
-            © {currentYear} EG Solutions. Todos los derechos reservados.
+            © {currentYear} EG Solutions. Plataformas Web · Automatizaciones · Agentes IA.
           </div>
           <div>
-            Ingeniería eléctrica aplicada al desarrollo de software y agentes de IA.
+            Web Intelligence & Automation · Elier Garcia
           </div>
         </div>
       </div>

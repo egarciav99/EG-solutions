@@ -57,7 +57,7 @@ export default function App() {
         {/* 2. Servicios: Tres líneas con jerarquía real y lenguaje concreto */}
         <Services onSelectServiceForInquiry={handleSelectService} />
 
-        {/* 3. Casos de éxito reales: Acumula Yardas (Michelob Ultra x NFL), DuoVarietta, CoreIT */}
+        {/* 3. Casos de éxito reales: Activación de Marca Nacional, DuoVarietta, CoreIT */}
         <CaseStudies onSelectProjectForDiscussion={handleSelectProjectForDiscussion} />
 
         {/* 4. Cómo trabajo / Perfil diferencial: ingeniería eléctrica + software + IA */}

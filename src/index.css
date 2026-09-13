@@ -1,9 +1,41 @@
 @import "tailwindcss";
 
+/* 
+ * Design Tokens — EG Solutions
+ * Paleta oficial de 6 tonos. Fuente única de verdad para color en todo el proyecto.
+ * Los componentes existentes con bg-[#2B3242] siguen funcionando: esto es aditivo,
+ * no reemplaza nada todavía.
+ */
+@theme {
+  --color-navy: #2B3242;      /* Fondo oscuro, texto principal */
+  --color-slate: #3B4B5C;     /* Secundario oscuro */
+  --color-copper: #C77B4B;    /* Acento único — CTAs y alertas críticas */
+  --color-steel: #A9B7C4;     /* Bordes técnicos, líneas de esquema */
+  --color-mid-gray: #7A828C;  /* Texto secundario */
+  --color-near-white: #F6F7F8; /* Fondo base */
+}
+
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #F6F7F8;
-    color: #2B3242;
+    background-color: var(--color-near-white);
+    color: var(--color-navy);
+  }
+}
+
+@layer utilities {
+  /* Patrón de cuadrícula técnica reutilizable — Hero, Services, CaseStudies */
+  .bg-blueprint-grid {
+    background-image:
+      linear-gradient(var(--color-steel) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-steel) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-color: transparent;
+    opacity: 0.06;
+  }
+
+  /* Borde técnico estándar para tarjetas tipo "blueprint" */
+  .border-technical {
+    border: 1px solid var(--color-steel);
   }
 }

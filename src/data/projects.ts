@@ -2,23 +2,23 @@ import { ProjectCase } from '../types';
 
 export const CASE_STUDIES: ProjectCase[] = [
   {
-    id: 'acumula-yardas',
-    name: 'Acumula Yardas — Michelob Ultra × NFL',
+    id: 'activacion-nacional',
+    name: 'Plataforma de Fidelización — Activación de Marca Nacional',
     category: 'Plataforma Web & Fidelización',
     scaleType: 'brand-campaign',
     scaleLabel: 'Campaña masiva de marca',
-    clientContext: 'Desarrollado vía Grupo Bahlcasa para la activación nacional de Michelob Ultra en temporada NFL.',
+    clientContext: 'Desarrollado como freelance para la activación nacional de una marca de bebidas durante una temporada deportiva de alto perfil.',
     summary:
-      'Ecosistema web omnicanal sin fricción de descarga de app nativa. Los usuarios participan directamente desde el navegador móvil, acumulan yardas mediante dinámicas de partido y guardan sus pases de recompensas en Apple Wallet y Google Wallet.',
+      'Ecosistema web omnicanal sin fricción de descarga de app nativa. Los usuarios participan directamente desde el navegador móvil, acumulan puntos mediante dinámicas ligadas al evento deportivo y guardan sus pases de recompensas en Apple Wallet y Google Wallet.',
     problem:
       'Las aplicaciones tradicionales de descarga en campañas masivas sufren una caída drástica en el embudo de conversión (>70% de abandono). Además, el canje presencial en sucursales requería evitar canjes duplicados o capturas de pantalla fraudulentas sin complejizar la operación de los cajeros.',
     solution:
       'Arquitectura web ligera y de carga instantánea con generación dinámica de pases criptográficos para Apple Wallet y Google Wallet. Incorporación de un protocolo antifraude de validación en dos pasos mediante códigos QR de un solo uso con ventana temporal de expiración y verificación de geocerca en sucursal.',
     keyHighlights: [
-      'Pases nativos en Apple Wallet y Google Wallet con actualización push en vivo según marcador',
+      'Pases nativos en Apple Wallet y Google Wallet con actualización push en vivo según el estado del evento',
       'Protocolo de validación antifraude en dos pasos para canjes en punto de venta',
       'Panel de control administrativo con analítica de redención y afluencia por sucursal en tiempo real',
-      'Cero descargas requeridas: conversión récord desde códigos en envase y material POP'
+      'Cero descargas requeridas: conversión récord desde códigos en empaque y material POP'
     ],
     techStack: [
       'TypeScript',
@@ -76,13 +76,13 @@ export const CASE_STUDIES: ProjectCase[] = [
     scaleLabel: 'Herramienta interna empresarial',
     clientContext: 'Empresa de servicios técnicos y consultoría que procesaba manualmente cientos de facturas y reportes operativos por semana.',
     summary:
-      'Hub operativo interno con estética y ergonomía de terminal táctil de un toque (POS) para disparar flujos de trabajo críticos de la empresa. Integra un pipeline de extracción de documentos PDF a hojas Excel combinando OCR avanzado con Google Gemini y validación humana en el circuito.',
+      'Hub operativo interno con interfaz operativa de un solo toque para disparar flujos de trabajo críticos de la empresa. Integra un pipeline de extracción de documentos PDF a hojas Excel combinando OCR avanzado con Google Gemini y validación humana en el circuito.',
     problem:
       'La transcripción manual de comprobantes, facturas de compras e informes técnicos a hojas de cálculo consumía más de 20 horas de personal calificado a la semana, con una tasa de error tipográfico del 4-6% en números de serie y montos contables.',
     solution:
-      'Pipeline de procesamiento por lotes orquestado con n8n y Python. Los documentos se digitalizan mediante OCR y se estructuran en esquemas JSON estrictos usando Google Gemini. Antes de escribir en la base contable, la terminal POS presenta una vista de cotejo donde el operador valida con un solo clic los campos con margen de duda.',
+      'Pipeline de procesamiento por lotes orquestado con n8n y Python. Los documentos se digitalizan mediante OCR y se estructuran en esquemas JSON estrictos usando Google Gemini. Antes de escribir en la base contable, la interfaz operativa presenta una vista de cotejo donde el operador valida con un solo clic los campos con margen de duda.',
     keyHighlights: [
-      'Interfaz estilo terminal táctil para que cualquier miembro del equipo ejecute flujos sin formación técnica',
+      'Interfaz operativa simplificada para que cualquier miembro del equipo ejecute flujos sin formación técnica',
       'Pipeline OCR + Google Gemini con salida tipada y control estricto de estructura de datos',
       'Mecanismo human-in-the-loop que resalta valores dudosos para revisión rápida antes del volcado definitivo',
       'Reducción del 85% en tiempo de procesamiento administrativo semanal con trazabilidad total de auditoría'
@@ -92,7 +92,7 @@ export const CASE_STUDIES: ProjectCase[] = [
       'Google Gemini API',
       'n8n Workflow Engine',
       'Tesseract / Document OCR',
-      'TypeScript & React (Terminal POS UI)',
+      'TypeScript & React (UI Operativa)',
       'Exportación estructurada a Excel / Sheets'
     ],
     architecturePoints: [

@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { ShieldCheck, Cpu, Sliders, CheckCircle2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { BRAND_PILLARS, FOUNDER_NAME, ACTIVE_REGIONS, LANGUAGES } from '../data/constants';
+import { BLUEPRINT_STEPS } from '../data/blueprintSteps';
+import { heroCircuitLayout } from '../data/circuitLayouts';
+import { CircuitBackground } from './CircuitBackground';
 
 interface HeroProps {
   onConsultationClick: () => void;
@@ -9,82 +13,51 @@ interface HeroProps {
 export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps) {
   const [activeBlueprintNode, setActiveBlueprintNode] = useState<number>(2);
 
-  const blueprintSteps = [
-    {
-      id: 0,
-      title: 'Levantamiento y alcance técnico',
-      code: 'ESTRUCTURA_01',
-      tag: 'Ingeniería previa',
-      desc: 'Definición exacta de requerimientos, modelo de datos y riesgos. Sin ambigüedad: presupuesto cerrado y separación estricta entre alcance pactado y adiciones.',
-      detail: 'Formación en supervisión de obra aplicada a la estimación técnica: plazos reales, no optimistas.'
-    },
-    {
-      id: 1,
-      title: 'Desarrollo web y orquestación',
-      code: 'DESARROLLO_02',
-      tag: 'TypeScript & n8n',
-      desc: 'Plataformas reactivas, APIs limpias y flujos de integración automáticos. Código estructurado y tipado de extremo a extremo.',
-      detail: 'Manejo estricto de excepciones, idempotencia en transacciones y cero dependencias superfluas.'
-    },
-    {
-      id: 2,
-      title: 'Agentes IA y validación humana',
-      code: 'SUPERVISIÓN_03',
-      tag: 'Human-in-the-loop',
-      desc: 'Modelos de lenguaje restringidos a esquemas JSON con punto de cotejo humano antes de cualquier impacto en bases de datos o cuentas contables.',
-      detail: 'Punto crítico: el nodo de cobre representa la supervisión técnica que previene fallos y alucinaciones.'
-    },
-    {
-      id: 3,
-      title: 'Despliegue, seguridad y auditoría',
-      code: 'DESPLIEGUE_04',
-      tag: 'Producción real',
-      desc: 'Infraestructura documentada, protección contra fraude y monitorización. El proyecto queda en manos del cliente con trazabilidad completa.',
-      detail: 'Entrega llave en mano con propiedad total del código y canales directos de soporte.'
-    }
-  ];
-
   return (
-    <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 border-b border-[#A9B7C4]/30 overflow-hidden bg-[#F6F7F8]" id="top">
-      {/* Sutil fondo de cuadrícula milimetrada técnica tipo blueprint */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.35]"
-        style={{
-          backgroundImage: `linear-gradient(#A9B7C4 1px, transparent 1px), linear-gradient(90deg, #A9B7C4 1px, transparent 1px)`,
-          backgroundSize: '40px 40px',
-        }}
-        aria-hidden="true"
-      />
+    <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 border-b border-steel/30 overflow-hidden bg-near-white" id="top">
+      {/* Fondo de cuadrícula técnica y circuito impreso animado */}
+      <div className="absolute inset-0 pointer-events-none bg-blueprint-grid" aria-hidden="true" />
+      <CircuitBackground layout={heroCircuitLayout} />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           {/* Columna de texto principal */}
           <div className="lg:col-span-7 flex flex-col">
-            <div className="flex items-center gap-2 mb-4 text-sm font-medium text-[#3B4B5C]">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#3B4B5C] inline-block" />
-              <span>Estudio unipersonal liderado por Elier Garcia</span>
+            {/* Pilares de marca desglosados */}
+            <div className="inline-flex flex-wrap items-center gap-2 mb-5 px-3 py-1.5 rounded border border-steel/60 bg-white/80 w-fit text-xs font-medium text-slate shadow-xs">
+              {BRAND_PILLARS.map((pillar, idx) => (
+                <div key={pillar.id} className="flex items-center gap-2">
+                  {idx === 0 && <span className="w-2 h-2 rounded-full bg-copper inline-block shrink-0" />}
+                  {idx > 0 && <span className="w-1 h-1 rounded-full bg-steel inline-block shrink-0" />}
+                  <span>{pillar.label}</span>
+                </div>
+              ))}
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#2B3242] leading-[1.18] mb-6">
-              Desarrollo web, automatización de procesos y agentes de IA con rigor de ingeniería
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-navy leading-[1.18] mb-6">
+              Web Intelligence & Automation con{' '}
+              <span className="relative whitespace-nowrap">
+                rigor de ingeniería
+                <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-copper rounded" />
+              </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-[#2B3242]/90 leading-relaxed max-w-2xl mb-8">
-              Combino formación en ingeniería eléctrica y supervisión técnica con desarrollo full-stack moderno. Construyo plataformas a medida, flujos con n8n e integraciones de IA para pequeños negocios y marcas de gran escala en España y México, con código tipado, arquitecturas auditadas y trato directo sin intermediarios.
+            <p className="text-base sm:text-lg text-mid-gray leading-relaxed max-w-2xl mb-8">
+              Estudio unipersonal liderado por <strong className="text-navy font-semibold">{FOUNDER_NAME}</strong>. Combino formación en ingeniería eléctrica y supervisión técnica con desarrollo full-stack moderno. Construyo plataformas a medida, orquestación de procesos con n8n e integraciones de IA aplicada para empresas en {ACTIVE_REGIONS}, con código tipado, arquitecturas auditadas y trato directo sin intermediarios.
             </p>
 
-            {/* Acciones principales */}
+            {/* Acciones principales - Botón primario cobre y secundario borde pizarra */}
             <div className="flex flex-wrap items-center gap-4 mb-10">
               <button
                 onClick={onConsultationClick}
-                className="bg-[#3B4B5C] hover:bg-[#2B3242] text-white text-base font-semibold px-6 py-3 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C77B4B] shadow-sm"
+                className="bg-copper hover:opacity-90 text-white text-base font-medium px-6 py-3 rounded transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper shadow-xs cursor-pointer"
                 id="hero-iniciar-consulta-btn"
               >
                 Iniciar consulta de proyecto
               </button>
               <button
                 onClick={onExploreProjectsClick}
-                className="border border-[#3B4B5C] hover:bg-[#3B4B5C]/10 text-[#2B3242] text-base font-semibold px-6 py-3 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3B4B5C]"
+                className="border border-slate bg-transparent hover:bg-slate/5 text-navy text-base font-medium px-6 py-3 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
                 id="hero-ver-proyectos-btn"
               >
                 Ver casos de éxito reales
@@ -92,29 +65,29 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
             </div>
 
             {/* Principios de entrega directa */}
-            <div className="pt-8 border-t border-[#A9B7C4]/50 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="pt-8 border-t border-steel/40 grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div>
-                <div className="text-sm font-semibold text-[#2B3242] mb-1">
+                <div className="text-sm font-semibold text-navy mb-1">
                   Pragmatismo técnico
                 </div>
-                <div className="text-xs text-[#7A828C] leading-normal">
+                <div className="text-xs text-mid-gray leading-normal">
                   La solución más simple y sostenible para el problema real, sin inflar tecnologías ni costos recurrentes.
                 </div>
               </div>
               <div>
-                <div className="text-sm font-semibold text-[#2B3242] mb-1">
+                <div className="text-sm font-semibold text-navy mb-1">
                   Trato directo
                 </div>
-                <div className="text-xs text-[#7A828C] leading-normal">
-                  Planificas y trabajas con quien escribe el código. Sin directores de cuenta ni traspasos con fricción.
+                <div className="text-xs text-mid-gray leading-normal">
+                  Planificas y trabajas directamente con quien programa la solución. Sin intermediarios ni traspasos.
                 </div>
               </div>
               <div>
-                <div className="text-sm font-semibold text-[#2B3242] mb-1">
+                <div className="text-sm font-semibold text-navy mb-1">
                   Presupuesto cerrado
                 </div>
-                <div className="text-xs text-[#7A828C] leading-normal">
-                  Fases de entrega documentadas y separación nítida entre alcance pactado y requerimientos adicionales.
+                <div className="text-xs text-mid-gray leading-normal">
+                  Fases documentadas y separación nítida entre alcance pactado y requerimientos adicionales.
                 </div>
               </div>
             </div>
@@ -122,35 +95,35 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
 
           {/* Columna interactiva: Blueprint esquemático de ingeniería */}
           <div className="lg:col-span-5 lg:pl-4">
-            <div className="bg-[#2B3242] text-white rounded-lg p-5 sm:p-6 border border-[#3B4B5C] shadow-sm">
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#3B4B5C]">
+            <div className="bg-navy text-white rounded-lg p-5 sm:p-6 border border-slate shadow-sm">
+              <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate">
                 <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#C77B4B]" />
-                  <span className="text-xs font-semibold tracking-wide text-[#A9B7C4]">
+                  <div className="w-2.5 h-2.5 rounded-full bg-copper" />
+                  <span className="text-xs font-semibold tracking-wide text-steel">
                     ESQUEMA DE ARQUITECTURA TÉCNICA
                   </span>
                 </div>
-                <span className="text-xs text-[#A9B7C4]/80">
+                <span className="text-xs text-steel/80">
                   Control de flujo
                 </span>
               </div>
 
               {/* Trazas de circuito interactivas */}
               <div className="space-y-3 mb-6">
-                {blueprintSteps.map((step) => {
+                {BLUEPRINT_STEPS.map((step) => {
                   const isActive = activeBlueprintNode === step.id;
-                  const isCopper = step.id === 2; // Nodo crítico de supervisión
+                  const isCopper = Boolean(step.isCritical);
 
                   return (
                     <button
                       key={step.id}
                       onClick={() => setActiveBlueprintNode(step.id)}
-                      className={`w-full text-left p-3 rounded transition-all flex items-start gap-3 border ${
+                      className={`w-full text-left p-3 rounded transition-all flex items-start gap-3 border cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-steel ${
                         isActive
                           ? isCopper
-                            ? 'bg-[#3B4B5C]/70 border-[#C77B4B]'
-                            : 'bg-[#3B4B5C]/70 border-[#A9B7C4]'
-                          : 'bg-[#2B3242] hover:bg-[#3B4B5C]/30 border-[#3B4B5C]/80'
+                            ? 'bg-slate/70 border-copper'
+                            : 'bg-slate/70 border-steel'
+                          : 'bg-navy hover:bg-slate/30 border-slate/80'
                       }`}
                       id={`blueprint-node-${step.id}`}
                       aria-pressed={isActive}
@@ -159,10 +132,10 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
                         <div
                           className={`w-4 h-4 rounded-full flex items-center justify-center ${
                             isCopper
-                              ? 'bg-[#C77B4B] text-white'
+                              ? 'bg-copper text-white'
                               : isActive
-                              ? 'bg-[#A9B7C4] text-[#2B3242]'
-                              : 'bg-[#3B4B5C] text-[#A9B7C4]'
+                              ? 'bg-steel text-navy'
+                              : 'bg-slate text-steel'
                           }`}
                         >
                           <div className="w-1.5 h-1.5 rounded-full bg-current" />
@@ -175,12 +148,16 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
                             {step.title}
                           </span>
                           <span className={`text-[11px] px-1.5 py-0.5 rounded font-medium shrink-0 ${
-                            isCopper ? 'bg-[#C77B4B]/20 text-[#C77B4B]' : 'bg-[#3B4B5C] text-[#A9B7C4]'
+                            isCopper ? 'bg-copper/20 text-copper' : 'bg-slate text-steel'
                           }`}>
                             {step.tag}
                           </span>
                         </div>
-                        <p className="text-xs text-[#A9B7C4] mt-1 line-clamp-2 leading-relaxed">
+                        {/* Código monoespaciado técnico */}
+                        <div className="text-[10px] font-mono text-steel/80 mt-0.5 tracking-wider">
+                          {step.code}
+                        </div>
+                        <p className="text-xs text-steel mt-1 line-clamp-2 leading-relaxed">
                           {step.desc}
                         </p>
                       </div>
@@ -189,27 +166,36 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
                 })}
               </div>
 
-              {/* Detalle del nodo seleccionado */}
-              <div className="bg-[#1E2430] p-3.5 rounded border border-[#3B4B5C]/60 text-xs">
-                <div className="text-[#A9B7C4] font-medium mb-1 flex items-center gap-1.5">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#C77B4B]" />
+              {/* Detalle del nodo seleccionado con animación AnimatePresence */}
+              <div className="bg-navy p-3.5 rounded border border-slate text-xs min-h-[76px]">
+                <div className="text-steel font-medium mb-1.5 flex items-center gap-1.5">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-copper" />
                   <span>Principio de ingeniería aplicado:</span>
                 </div>
-                <div className="text-white/90 leading-relaxed">
-                  {blueprintSteps[activeBlueprintNode].detail}
-                </div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeBlueprintNode}
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.18, ease: 'easeInOut' }}
+                    className="text-white/90 leading-relaxed"
+                  >
+                    {BLUEPRINT_STEPS[activeBlueprintNode].detail}
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
 
             {/* Ficha técnica compacta */}
-            <div className="mt-4 p-4 rounded bg-[#EAECEF] border border-[#A9B7C4]/50 flex items-center justify-between text-xs text-[#2B3242]">
+            <div className="mt-4 p-4 rounded bg-white border border-steel/50 flex items-center justify-between text-xs text-navy shadow-xs">
               <div>
-                <span className="font-semibold block text-[#2B3242]">Perfil profesional:</span>
-                <span className="text-[#7A828C]">Ingeniería Eléctrica + Full-Stack</span>
+                <span className="font-semibold block text-navy">Perfil diferencial:</span>
+                <span className="text-mid-gray">Ingeniería Eléctrica + Full-Stack</span>
               </div>
               <div className="text-right">
-                <span className="font-semibold block text-[#2B3242]">Idiomas:</span>
-                <span className="text-[#7A828C]">Español e Inglés nativo/profesional</span>
+                <span className="font-semibold block text-navy">Mercados & Idiomas:</span>
+                <span className="text-mid-gray">{ACTIVE_REGIONS} · {LANGUAGES}</span>
               </div>
             </div>
           </div>
