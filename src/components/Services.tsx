@@ -1,5 +1,5 @@
 import { SERVICE_LINES } from '../data/services';
-import { Check, Layers, Cpu, Workflow } from 'lucide-react';
+import { Layers, Cpu, Workflow, Clock, ShieldCheck, FileCheck } from 'lucide-react';
 import { secondaryCircuitLayout } from '../data/circuitLayouts';
 import { CircuitBackground } from './CircuitBackground';
 
@@ -41,17 +41,19 @@ export function Services({ onSelectServiceForInquiry }: ServicesProps) {
                     </div>
                     <span>Desarrollo de software a medida</span>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-navy mb-3">
+                  <h3 className="text-xl sm:text-2xl font-bold text-navy mb-5 border-l border-l-transparent pl-0">
                     Plataformas Web y Aplicaciones Operativas
                   </h3>
-                  <p className="text-mid-gray text-sm sm:text-base leading-relaxed mb-6">
-                    Aplicaciones en TypeScript, React y Node.js adaptadas al flujo comercial de tu empresa: cotizadores en tiempo real, reservas con inventario dinámico y paneles de gestión seguros.
-                  </p>
                 </div>
 
-                <div className="bg-near-white p-4 rounded border border-steel/50 text-xs text-slate mb-6">
-                  <span className="font-semibold block mb-1 text-navy">Garantía técnica de entrega:</span>
-                  Código tipado, carga inferior a 1s, sin plantillas genéricas y propiedad total del repositorio.
+                <div className="bg-near-white p-4 rounded border border-steel/50 mb-6 flex items-center gap-3">
+                  <div className="p-2 rounded bg-white border border-steel/40 text-copper shrink-0">
+                    <Clock className="w-4 h-4" />
+                  </div>
+                  <div className="text-xs">
+                    <span className="font-bold text-navy block mb-0.5">Carga inferior a 1 segundo</span>
+                    <span className="text-mid-gray">Código tipado, sin plantillas y propiedad total.</span>
+                  </div>
                 </div>
 
                 <div>
@@ -66,19 +68,19 @@ export function Services({ onSelectServiceForInquiry }: ServicesProps) {
               </div>
 
               <div className="lg:col-span-6 bg-near-white p-6 rounded border border-steel/50">
-                <h4 className="text-sm font-bold text-navy mb-4">
+                <h4 className="text-sm font-bold text-navy mb-4 border-l border-l-transparent pl-0">
                   Entregables habituales en esta línea:
                 </h4>
-                <ul className="space-y-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {webPlatforms.deliverables.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-sm text-navy">
-                      <span className="mt-1 w-4 h-4 rounded-full bg-slate text-white flex items-center justify-center shrink-0">
-                        <Check className="w-2.5 h-2.5" />
-                      </span>
-                      <span>{item}</span>
-                    </li>
+                    <div
+                      key={idx}
+                      className="p-3 bg-white rounded border border-steel/40 text-xs text-navy font-medium leading-snug flex items-center"
+                    >
+                      {item}
+                    </div>
                   ))}
-                </ul>
+                </div>
 
                 <div className="mt-6 pt-4 border-t border-steel/40 text-xs text-mid-gray">
                   <span className="font-semibold text-navy block mb-1">Para quién es idóneo:</span>
@@ -99,28 +101,33 @@ export function Services({ onSelectServiceForInquiry }: ServicesProps) {
                   </div>
                   <span>Integración de sistemas y n8n</span>
                 </div>
-                <h3 className="text-xl font-bold text-navy mb-3">
+                <h3 className="text-xl font-bold text-navy mb-5 border-l border-l-transparent pl-0">
                   Automatización de Procesos Empresariales
                 </h3>
-                <p className="text-mid-gray text-sm leading-relaxed mb-5">
-                  Orquestación de flujos entre plataformas con n8n, webhooks y APIs. Extracción estructurada de documentos (PDF, facturas, contratos) y sincronización bidireccional de datos.
-                </p>
 
-                <div className="space-y-2.5 mb-6">
-                  <div className="text-xs font-bold text-navy">Casos de automatización directa:</div>
-                  {automations.deliverables.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs text-navy">
-                      <span className="mt-0.5 w-1.5 h-1.5 rounded-full bg-slate shrink-0" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
+                <div className="mb-6">
+                  <div className="text-xs font-bold text-navy mb-3">Casos de automatización directa:</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {automations.deliverables.map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="p-3 bg-near-white rounded border border-steel/40 text-xs text-navy font-medium leading-snug flex items-center"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               <div>
-                <div className="p-3 bg-near-white rounded border border-steel/40 text-xs text-mid-gray mb-4">
-                  <span className="font-semibold text-navy block mb-0.5">Control y tolerancia a fallos:</span>
-                  {automations.technicalDetails}
+                <div className="p-3.5 bg-near-white rounded border border-steel/40 flex items-center gap-3 mb-4">
+                  <div className="p-1.5 rounded bg-white border border-steel/40 text-slate shrink-0">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <div className="text-xs font-medium text-navy">
+                    Trazabilidad completa con reintentos exponenciales
+                  </div>
                 </div>
 
                 <button
@@ -142,28 +149,33 @@ export function Services({ onSelectServiceForInquiry }: ServicesProps) {
                   </div>
                   <span>IA aplicada y esquemas estructurados</span>
                 </div>
-                <h3 className="text-xl font-bold text-navy mb-3">
+                <h3 className="text-xl font-bold text-navy mb-5 border-l border-l-transparent pl-0">
                   Agentes de IA e Integración LLM
                 </h3>
-                <p className="text-mid-gray text-sm leading-relaxed mb-5">
-                  Modelos de lenguaje sujetos a reglas operativas: RAG sobre bases de conocimiento, extracción estructurada con esquemas JSON y validación humana obligatoria.
-                </p>
 
-                <div className="space-y-2.5 mb-6">
-                  <div className="text-xs font-bold text-navy">Capacidades implementadas:</div>
-                  {aiAgents.deliverables.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs text-navy">
-                      <span className="mt-0.5 w-1.5 h-1.5 rounded-full bg-copper shrink-0" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
+                <div className="mb-6">
+                  <div className="text-xs font-bold text-navy mb-3">Capacidades implementadas:</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {aiAgents.deliverables.map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="p-3 bg-near-white rounded border border-steel/40 text-xs text-navy font-medium leading-snug flex items-center"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               <div>
-                <div className="p-3 bg-near-white rounded border border-steel/40 text-xs text-mid-gray mb-4">
-                  <span className="font-semibold text-navy block mb-0.5">Cero alucinaciones sin supervisión:</span>
-                  {aiAgents.technicalDetails}
+                <div className="p-3.5 bg-near-white rounded border border-steel/40 flex items-center gap-3 mb-4">
+                  <div className="p-1.5 rounded bg-white border border-steel/40 text-copper shrink-0">
+                    <FileCheck className="w-4 h-4" />
+                  </div>
+                  <div className="text-xs font-medium text-navy">
+                    Validación humana con esquemas JSON
+                  </div>
                 </div>
 
                 <button
