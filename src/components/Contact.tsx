@@ -4,6 +4,7 @@ import { ContactFormData } from '../types';
 import { CONTACT_EMAIL, FOUNDER_NAME, RESPONSE_TIME, TIMEZONES } from '../data/constants';
 import { secondaryCircuitLayout } from '../data/circuitLayouts';
 import { CircuitBackground } from './CircuitBackground';
+import { PrivacyPolicyModal } from './PrivacyPolicyModal';
 
 interface ContactProps {
   initialService?: string;
@@ -21,6 +22,7 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(CONTACT_EMAIL);
@@ -151,6 +153,25 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
                   />
                 </div>
 
+                <div className="flex items-start gap-2.5">
+                  <input
+                    type="checkbox"
+                    id="contact-consent"
+                    required
+                    className="mt-1 w-4 h-4 accent-copper cursor-pointer"
+                  />
+                  <label htmlFor="contact-consent" className="text-xs text-mid-gray leading-relaxed">
+                    Acepto que mis datos se usen para responder a esta consulta, según la{' '}
+                    <button
+                      type="button"
+                      onClick={() => setShowPrivacyModal(true)}
+                      className="text-slate underline underline-offset-2 hover:text-navy focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate rounded cursor-pointer"
+                    >
+                      política de privacidad
+                    </button>.
+                  </label>
+                </div>
+
                 <div className="pt-2">
                   <button
                     type="submit"
@@ -228,6 +249,8 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
           </div>
         </div>
       </div>
+
+      <PrivacyPolicyModal isOpen={showPrivacyModal} onClose={() => setShowPrivacyModal(false)} />
     </section>
   );
 }

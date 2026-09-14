@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import { Logo } from './Logo';
 import { CONTACT_EMAIL } from '../data/constants';
+import { PrivacyPolicyModal } from './PrivacyPolicyModal';
 
 interface FooterProps {
   onNavigate: (sectionId: string) => void;
 }
 
 export function Footer({ onNavigate }: FooterProps) {
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   const currentYear = new Date().getFullYear();
 
   return (
@@ -57,6 +60,14 @@ export function Footer({ onNavigate }: FooterProps) {
                     Iniciar consulta directa
                   </button>
                 </li>
+                <li>
+                  <button
+                    onClick={() => setShowPrivacyModal(true)}
+                    className="text-steel hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
+                  >
+                    Política de privacidad
+                  </button>
+                </li>
               </ul>
             </nav>
           </div>
@@ -86,6 +97,8 @@ export function Footer({ onNavigate }: FooterProps) {
           </div>
         </div>
       </div>
+
+      <PrivacyPolicyModal isOpen={showPrivacyModal} onClose={() => setShowPrivacyModal(false)} />
     </footer>
   );
 }
