@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { Mail, Check, Copy, Clock, Globe } from 'lucide-react';
+import { Mail, Check, Copy, Clock, Globe, AlertCircle } from 'lucide-react';
 import { ContactFormData } from '../types';
 import { CONTACT_EMAIL, FOUNDER_NAME, RESPONSE_TIME, TIMEZONES } from '../data/constants';
 import { secondaryCircuitLayout } from '../data/circuitLayouts';
@@ -21,8 +21,10 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(CONTACT_EMAIL);
@@ -30,16 +32,27 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
     setTimeout(() => setCopiedEmail(false), 2500);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.details) return;
 
     setIsSubmitting(true);
-    // Simular procesamiento y confirmación transparente
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setIsError(false);
+
+    try {
+      const response = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, website: honeypot }),
+      });
+      if (!response.ok) throw new Error('Error en el envío');
       setIsSuccess(true);
-    }, 600);
+    } catch (error) {
+      console.error('[Contact] Error al enviar consulta:', error);
+      setIsError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -90,6 +103,19 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5" id="direct-contact-form">
+                <div className="absolute opacity-0 pointer-events-none -z-10" aria-hidden="true">
+                  <label htmlFor="contact-website">No llenar este campo</label>
+                  <input
+                    type="text"
+                    id="contact-website"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
+
                 <div>
                   <label htmlFor="contact-name" className="block text-xs font-bold text-navy mb-1.5">
                     Tu nombre o el de tu empresa
@@ -171,6 +197,24 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
                     </button>.
                   </label>
                 </div>
+
+                {isError && (
+                  <div className="p-3.5 rounded bg-red-50 border border-red-200 text-xs text-red-800 flex items-start gap-2.5">
+                    <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold">Hubo un problema al enviar tu consulta.</p>
+                      <p className="mt-0.5 text-red-700">
+                        Por favor intenta de nuevo en unos momentos o escribe directamente a{' '}
+                        <a
+                          href={`mailto:${CONTACT_EMAIL}`}
+                          className="underline font-semibold hover:text-red-950"
+                        >
+                          {CONTACT_EMAIL}
+                        </a>.
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 <div className="pt-2">
                   <button
