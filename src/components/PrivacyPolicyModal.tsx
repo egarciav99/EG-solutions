@@ -134,7 +134,16 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
 
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-mid-gray mb-1.5">
-              6. Cuánto tiempo se conservan
+              6. Analítica web
+            </h4>
+            <p className="text-xs sm:text-sm text-navy leading-relaxed">
+              Este sitio utiliza Vercel Analytics para entender el tráfico agregado (páginas más visitadas, procedencia geográfica aproximada, tipo de dispositivo). Esta herramienta no usa cookies ni recopila información que identifique a personas concretas.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-mid-gray mb-1.5">
+              7. Cuánto tiempo se conservan
             </h4>
             <p className="text-xs sm:text-sm text-navy leading-relaxed">
               Hasta 24 meses desde el último contacto, o hasta que se solicite su eliminación.
@@ -143,7 +152,7 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
 
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-mid-gray mb-1.5">
-              7. Tus derechos
+              8. Tus derechos
             </h4>
             <p className="text-xs sm:text-sm text-navy leading-relaxed">
               Puedes solicitar en cualquier momento acceder, rectificar o eliminar tus datos, así como oponerte a su tratamiento, escribiendo a{' '}
