@@ -88,24 +88,29 @@ export function Footer({ onNavigate }: FooterProps) {
           </div>
         </div>
 
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-steel/80">
+        <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-steel/80">
           <div>
             © {currentYear} EG Solutions. Plataformas Web · Automatizaciones · Agentes IA.
           </div>
-          <a
-            href="https://mentorday.es/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded"
-            aria-label="Beca aprobada por mentorDay — visitar mentorday.es"
-          >
-            <img
-              src="/sello-mentorday.png"
-              alt="Sello de beca aprobada por mentorDay"
-              className="h-16 w-auto"
-              loading="lazy"
-            />
-          </a>
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-steel">
+              Programa de aceleración respaldado por mentorDay
+            </span>
+            <a
+              href="https://mentorday.es/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded"
+              aria-label="Beca aprobada por mentorDay — visitar mentorday.es"
+            >
+              <img
+                src="/sello-mentorday.png"
+                alt="Sello de beca aprobada por mentorDay"
+                className="h-16 w-auto"
+                loading="lazy"
+              />
+            </a>
+          </div>
         </div>
       </div>
 
