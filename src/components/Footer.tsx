@@ -92,9 +92,20 @@ export function Footer({ onNavigate }: FooterProps) {
           <div>
             © {currentYear} EG Solutions. Plataformas Web · Automatizaciones · Agentes IA.
           </div>
-          <div>
-            Elier Garcia
-          </div>
+          <a
+            href="https://mentorday.es/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded"
+            aria-label="Beca aprobada por mentorDay — visitar mentorday.es"
+          >
+            <img
+              src="/sello-mentorday.png"
+              alt="Sello de beca aprobada por mentorDay"
+              className="h-16 w-auto"
+              loading="lazy"
+            />
+          </a>
         </div>
       </div>
 
