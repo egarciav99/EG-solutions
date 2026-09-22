@@ -106,8 +106,11 @@ export function Footer({ onNavigate }: FooterProps) {
               <img
                 src="/sello-mentorday.png"
                 alt="Sello de beca aprobada por mentorDay"
+                width="64"
+                height="64"
                 className="h-16 w-auto"
                 loading="lazy"
+                decoding="async"
               />
             </a>
           </div>

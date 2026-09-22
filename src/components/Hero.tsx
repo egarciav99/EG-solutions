@@ -15,9 +15,9 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
 
   return (
     <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 border-b border-steel/30 overflow-hidden bg-near-white" id="top">
-      {/* Fondo de cuadrícula técnica y circuito impreso animado */}
+      {/* Fondo de cuadrícula técnica y circuito impreso inmediato para evitar retrasos en LCP */}
       <div className="absolute inset-0 pointer-events-none bg-blueprint-grid" aria-hidden="true" />
-      <CircuitBackground layout={heroCircuitLayout} />
+      <CircuitBackground layout={heroCircuitLayout} priority={true} />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-start">

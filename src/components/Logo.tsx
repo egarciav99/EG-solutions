@@ -33,9 +33,12 @@ export function Logo({
         <img
           src="/logo-eg.png"
           alt="EG Solutions"
+          width="108"
+          height="64"
           className={`${imageHeights[size]} w-auto object-contain select-none`}
           style={{ aspectRatio: '1580 / 938' }}
           loading="eager"
+          decoding="async"
         />
       </div>
 

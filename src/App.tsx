@@ -3,14 +3,26 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { Services } from './components/Services';
-import { CaseStudies } from './components/CaseStudies';
-import { Differential } from './components/Differential';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
+
+// Code splitting: Secciones inferiores cargadas asíncronamente para despejar el hilo principal en el primer pintado
+const Services = lazy(() => import('./components/Services').then((m) => ({ default: m.Services })));
+const CaseStudies = lazy(() => import('./components/CaseStudies').then((m) => ({ default: m.CaseStudies })));
+const Differential = lazy(() => import('./components/Differential').then((m) => ({ default: m.Differential })));
+const Contact = lazy(() => import('./components/Contact').then((m) => ({ default: m.Contact })));
+const Footer = lazy(() => import('./components/Footer').then((m) => ({ default: m.Footer })));
+
+// Marcador de posición liviano sin saltos de layout (CLS guard)
+function SectionFallback({ minHeightClass = 'min-h-[400px]' }: { minHeightClass?: string }) {
+  return (
+    <div
+      className={`w-full ${minHeightClass} bg-near-white border-b border-steel/20 flex items-center justify-center`}
+      aria-hidden="true"
+    />
+  );
+}
 
 export default function App() {
   const [inquiryService, setInquiryService] = useState<string>('Plataformas Web');
@@ -40,7 +52,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F6F7F8] text-[#2B3242]">
-      {/* Barra de navegación técnica */}
+      {/* Barra de navegación técnica (Bundle inicial) */}
       <Header
         onNavigate={scrollToSection}
         onOpenConsultation={handleOpenConsultation}
@@ -48,30 +60,41 @@ export default function App() {
 
       {/* Contenido principal */}
       <main className="flex-1">
-        {/* 1. Hero con esquemático de arquitectura e identidad de ingeniería */}
+        {/* 1. Hero con esquemático de arquitectura e identidad de ingeniería (Bundle inicial, visible en 1er frame) */}
         <Hero
           onConsultationClick={handleOpenConsultation}
           onExploreProjectsClick={() => scrollToSection('proyectos')}
         />
 
-        {/* 2. Servicios: Tres líneas con jerarquía real y lenguaje concreto */}
-        <Services onSelectServiceForInquiry={handleSelectService} />
+        {/* Secciones debajo del primer pantallazo cargadas en segundo plano con Suspense */}
+        <Suspense fallback={<SectionFallback minHeightClass="min-h-[600px]" />}>
+          {/* 2. Servicios: Tres líneas con jerarquía real y lenguaje concreto */}
+          <Services onSelectServiceForInquiry={handleSelectService} />
+        </Suspense>
 
-        {/* 3. Casos de éxito reales: Activación de Marca Nacional, DuoVarietta, CoreIT */}
-        <CaseStudies onSelectProjectForDiscussion={handleSelectProjectForDiscussion} />
+        <Suspense fallback={<SectionFallback minHeightClass="min-h-[700px]" />}>
+          {/* 3. Casos de éxito y propuestas técnicas */}
+          <CaseStudies onSelectProjectForDiscussion={handleSelectProjectForDiscussion} />
+        </Suspense>
 
-        {/* 4. Cómo trabajo / Perfil diferencial: ingeniería eléctrica + software + IA */}
-        <Differential />
+        <Suspense fallback={<SectionFallback minHeightClass="min-h-[500px]" />}>
+          {/* 4. Cómo trabajo / Perfil diferencial */}
+          <Differential />
+        </Suspense>
 
-        {/* 5. Contacto: Simple, directo y sin campos innecesarios */}
-        <Contact
-          initialService={inquiryService}
-          initialProjectContext={inquiryContext}
-        />
+        <Suspense fallback={<SectionFallback minHeightClass="min-h-[600px]" />}>
+          {/* 5. Contacto: Simple y directo */}
+          <Contact
+            initialService={inquiryService}
+            initialProjectContext={inquiryContext}
+          />
+        </Suspense>
       </main>
 
-      {/* Pie de página con colofón técnico */}
-      <Footer onNavigate={scrollToSection} />
+      {/* Pie de página */}
+      <Suspense fallback={<SectionFallback minHeightClass="min-h-[250px]" />}>
+        <Footer onNavigate={scrollToSection} />
+      </Suspense>
     </div>
   );
 }

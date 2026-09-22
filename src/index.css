@@ -11,7 +11,7 @@
   --color-slate: #3B4B5C;     /* Secundario oscuro */
   --color-copper: #C77B4B;    /* Acento único — CTAs y alertas críticas */
   --color-steel: #A9B7C4;     /* Bordes técnicos, líneas de esquema */
-  --color-mid-gray: #7A828C;  /* Texto secundario */
+  --color-mid-gray: #5F6874;  /* Texto secundario optimizado a ratio 5.2:1 (WCAG AA) */
   --color-near-white: #F6F7F8; /* Fondo base */
 }
 
