@@ -1,0 +1,235 @@
+[
+  {
+    "id": "coreit",
+    "featured": true,
+    "name": "CoreIT — Hub de automatizaciones",
+    "category": "Automatización & Extracción IA",
+    "scaleType": "own-product",
+    "scaleLabel": "Producto propio · Prototipo presentado",
+    "clientContext": "Producto propio de EG Solutions: un hub donde cada empresa lanza sus automatizaciones con un toque. El primer caso se construyó para un laboratorio de control de calidad farmacéutico, junto a una persona que conoce el proceso.",
+    "summary": "Interfaz tipo punto de venta que agrupa las automatizaciones de una empresa en botones. El primer flujo convierte el procedimiento analítico de un PDF en una hoja de trabajo Excel lista para capturar resultados.",
+    "problem": "Pasar a mano los pasos, reactivos y mediciones de un procedimiento técnico en PDF a una hoja de captura en Excel es lento y propenso a omisiones, y cada hoja tiene que respetar un formato fijo.",
+    "solution": "Un pipeline en n8n extrae los pasos de dos formas en paralelo (reglas deterministas con expresiones regulares y un modelo de lenguaje) y un segundo modelo audita ambas extracciones contra el texto original. La persona elige la sección, revisa y corrige los pasos y campos extraídos, y el sistema genera un Excel protegido, con las celdas de captura desbloqueadas y un control automático de completitud.",
+    "keyHighlights": [
+      "Interfaz de un toque para que cualquier persona del equipo lance un flujo sin conocimientos técnicos",
+      "Extracción doble (reglas + IA) auditada por un segundo modelo contra el texto original",
+      "Revisión humana de los pasos y campos extraídos antes de generar el Excel",
+      "Excel con hoja protegida, celdas de captura desbloqueadas e indicador automático de formulario completo"
+    ],
+    "techStack": [
+      "React & TypeScript (hub)",
+      "n8n",
+      "Google Gemini",
+      "ExcelJS",
+      "JavaScript (reglas de extracción)"
+    ],
+    "architecturePoints": [
+      "Flujo en dos pasos por webhook: análisis del documento → elección de sección y revisión humana → generación del Excel",
+      "Contrato JSON único entre el hub y n8n (estado \"requiere selección\", secciones detectadas, bloques)",
+      "Fórmulas de completitud en una hoja auxiliar oculta, enlazadas a un indicador con formato condicional"
+    ],
+    "ctaLabel": "Ver pipeline de extracción",
+    "specPanel": {
+      "title": "PIPELINE DE EXTRACCIÓN",
+      "badge": "Revisión humana",
+      "items": [
+        {
+          "title": "Extracción doble:",
+          "text": "Reglas deterministas (regex) y un modelo de lenguaje extraen los pasos del PDF en paralelo."
+        },
+        {
+          "title": "Auditoría con IA:",
+          "text": "Un segundo modelo contrasta ambas extracciones con el texto original y consolida el resultado."
+        },
+        {
+          "title": "Excel listo para capturar:",
+          "text": "La persona revisa los campos; se genera una hoja protegida con control automático de completitud."
+        }
+      ]
+    }
+  },
+  {
+    "id": "covercraft",
+    "name": "CoverCraft — Cartas de presentación con IA",
+    "category": "SaaS propio · IA generativa",
+    "scaleType": "own-product",
+    "scaleLabel": "Producto propio · En uso real",
+    "clientContext": "Producto propio de EG Solutions, en uso real y en camino a un modelo freemium.",
+    "summary": "Aplicación web que genera una carta de presentación adaptada a cada oferta a partir del CV, editable y exportable a PDF.",
+    "problem": "Adaptar el CV y la carta a cada oferta lleva tiempo, y una carta genérica no pasa los filtros ATS ni convence a quien la lee.",
+    "solution": "La aplicación guarda los CV del usuario y envía cada solicitud a un pipeline asíncrono en n8n: extrae el texto del CV, detecta sus secciones, genera la carta con Gemini siguiendo reglas de tono y de palabras clave, y devuelve el resultado a la app mediante un callback protegido.",
+    "keyHighlights": [
+      "Parser de CV que detecta secciones en español, inglés, francés y neerlandés",
+      "Generación asíncrona en n8n con modelo de respaldo y callback protegido con secreto",
+      "Editor de texto enriquecido y exportación a PDF con foto y firma",
+      "Datos aislados por usuario con Row Level Security en Supabase"
+    ],
+    "techStack": [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Supabase (Auth, Storage, RLS)",
+      "n8n",
+      "Google Gemini",
+      "next-intl",
+      "TipTap"
+    ],
+    "architecturePoints": [
+      "Petición → registro pendiente en Supabase → webhook de n8n → callback que guarda la carta y marca el estado como completado",
+      "La URL de callback sale de la configuración del servidor, nunca de la petición del cliente",
+      "Limpieza posterior del texto generado para eliminar marcas típicas de la IA"
+    ],
+    "ctaLabel": "Ver arquitectura"
+  },
+  {
+    "id": "pdf-assistant",
+    "name": "PDF Technical Assistant — Consulta tus documentos con IA",
+    "category": "Agentes IA · RAG",
+    "scaleType": "own-product",
+    "scaleLabel": "Producto propio · En desarrollo activo",
+    "clientContext": "Producto propio de EG Solutions: un asistente que responde preguntas usando solo la documentación técnica que sube cada usuario.",
+    "summary": "Subes un PDF técnico, obtienes un resumen y conversas con él. Cada respuesta se apoya en fragmentos del propio documento.",
+    "problem": "La documentación técnica está repartida en PDFs largos y buscar un dato concreto (una especificación, un límite, un procedimiento) lleva tiempo y genera errores.",
+    "solution": "Cada documento se anonimiza, se trocea por secciones y se indexa con embeddings en una base vectorial. Un agente con Gemini busca en el documento mediante function calling y responde solo con lo que encuentra; si no hay evidencia, lo dice.",
+    "keyHighlights": [
+      "Anonimización de datos personales antes de indexar el documento",
+      "Búsqueda vectorial con pgvector y aislamiento de datos por usuario (RLS)",
+      "Agente que responde solo con evidencia del documento, con memoria de la conversación",
+      "Evolución de un workflow de n8n multiproveedor a Supabase Edge Functions"
+    ],
+    "techStack": [
+      "React",
+      "TypeScript",
+      "Supabase Edge Functions",
+      "pgvector",
+      "Gemini (embeddings y chat)",
+      "Vitest"
+    ],
+    "architecturePoints": [
+      "Ingesta: PDF → texto → redacción de datos personales → fragmentos por sección → embeddings → pgvector",
+      "Consulta: el agente llama a una herramienta de búsqueda filtrada por documento y usuario",
+      "Políticas RLS en todas las tablas; las claves de servicio solo viven en las Edge Functions"
+    ],
+    "ctaLabel": "Ver arquitectura RAG"
+  },
+  {
+    "id": "fidelizacion",
+    "name": "Plataforma de fidelización — Activación de marca",
+    "category": "Plataforma Web & Fidelización",
+    "scaleType": "brand-campaign",
+    "scaleLabel": "Demo presentada · Pendiente de aprobación",
+    "clientContext": "Demo funcional y propuesta técnica para la activación de una marca de bebidas durante una temporada deportiva, presentada a través de una agencia.",
+    "summary": "Demo web navegable de los tres roles de la campaña y arquitectura propuesta para la versión en producción, sin descarga de app.",
+    "problem": "Las campañas que obligan a descargar una app pierden a gran parte del público, y el canje presencial tiene que evitar tickets duplicados o capturas de pantalla fraudulentas sin complicar el trabajo del personal.",
+    "solution": "La demo recorre el flujo completo: registro, envío del ticket, validación en dos pasos por el personal del punto de venta, catálogo de recompensas y pases de wallet (simulados en la demo). La propuesta técnica define la arquitectura de producción: pases firmados en servidor, antifraude y canjes atómicos.",
+    "keyHighlights": [
+      "Demo navegable de los tres roles: cliente, personal del punto de venta y administración",
+      "Validación del ticket en dos pasos: envío del cliente y aprobación del personal",
+      "Catálogo de recompensas con stock y canje",
+      "Propuesta de producción: pases de Apple y Google Wallet firmados en servidor y QR de un solo uso"
+    ],
+    "techStack": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS"
+    ],
+    "architecturePoints": [
+      "Implementado en la demo: SPA con los tres roles y el estado del flujo completo",
+      "Propuesto para producción: generación de pases .pkpass y tokens de Google Wallet firmados en servidor",
+      "Propuesto para producción: QR de un solo uso con expiración y transacciones atómicas para impedir el doble canje"
+    ],
+    "ctaLabel": "Ver demo y arquitectura propuesta"
+  },
+  {
+    "id": "linkedin-engine",
+    "name": "Publicación en LinkedIn con aprobación humana",
+    "category": "Automatización & IA generativa",
+    "scaleType": "internal-tool",
+    "scaleLabel": "Automatización propia · En uso",
+    "clientContext": "Automatización interna de EG Solutions para mantener una presencia constante en LinkedIn sin perder el control de lo que se publica.",
+    "summary": "Un sistema que propone temas a partir de las noticias de la semana, redacta el post con la voz de la marca y lo publica solo cuando alguien lo aprueba.",
+    "problem": "Publicar con constancia exige tiempo, y automatizarlo sin control arriesga publicar contenido genérico o incorrecto.",
+    "solution": "Un calendario de contenidos en Google Sheets alimenta un workflow de n8n que redacta cada post con Gemini y envía el borrador por correo. Solo al pulsar \"Aprobar y publicar\" se publica mediante la API de LinkedIn y se marca en el calendario.",
+    "keyHighlights": [
+      "Tres propuestas de tema cada viernes a partir de las noticias de la semana",
+      "Borradores en la voz del autor con reglas de estructura y longitud",
+      "Dos puntos de aprobación humana antes de publicar",
+      "Calendario de contenidos en Google Sheets como fuente de verdad"
+    ],
+    "techStack": [
+      "n8n",
+      "Google Gemini",
+      "Google Sheets",
+      "Gmail",
+      "LinkedIn API (OAuth2)"
+    ],
+    "architecturePoints": [
+      "Ejecución pausada con enlaces de reanudación firmados hasta que la persona decide",
+      "Un workflow de noticias lanza el de publicación con el tema elegido",
+      "El estado de cada post (pendiente / publicado) se actualiza en el calendario"
+    ],
+    "ctaLabel": "Ver flujo de aprobación"
+  },
+  {
+    "id": "radar-sectorial",
+    "name": "Radar de vigilancia sectorial",
+    "category": "Automatización & Agentes IA",
+    "scaleType": "internal-tool",
+    "scaleLabel": "Automatización propia · En uso",
+    "clientContext": "Automatización interna, aplicable a cualquier empresa que necesite seguir noticias de su sector o cambios regulatorios.",
+    "summary": "Varias veces por semana reúne noticias de distintas fuentes, filtra las relevantes y envía un informe ejecutivo resumido con IA.",
+    "problem": "Seguir a mano varias fuentes de noticias consume tiempo y es fácil perderse lo importante entre el ruido.",
+    "solution": "Un workflow de n8n lee varias fuentes RSS, descarta lo que no encaja con palabras clave del sector y elimina duplicados. Un agente con Gemini selecciona las novedades clave (una por fuente única) y el sistema envía un boletín HTML con enlace a cada noticia.",
+    "keyHighlights": [
+      "Varias fuentes en paralelo, tolerante a que alguna falle",
+      "Filtro determinista por palabras clave antes de usar IA",
+      "Informe ejecutivo con las novedades clave y su fuente",
+      "Archivo semanal de novedades reutilizable para crear contenido"
+    ],
+    "techStack": [
+      "n8n",
+      "RSS",
+      "Google Gemini",
+      "Google Sheets",
+      "Gmail"
+    ],
+    "architecturePoints": [
+      "Agregación → filtro por palabras completas y deduplicación por URL → síntesis con IA → boletín",
+      "Si un día no hay novedades relevantes, el sistema lo indica en lugar de fallar en silencio",
+      "Las novedades se guardan en una hoja para análisis y propuestas semanales"
+    ],
+    "ctaLabel": "Ver arquitectura"
+  },
+  {
+    "id": "cotizador-eventos",
+    "name": "Cotizador y reservas — Catering para eventos",
+    "category": "Sistema de Cotización y Reservas",
+    "scaleType": "small-business",
+    "scaleLabel": "Proyecto contratado — en especificación",
+    "clientContext": "Negocio de carritos de snacks y catering temático para bodas, cumpleaños y eventos corporativos. Proyecto contratado, en fase de recopilación de requerimientos (catálogo, precios, identidad visual) antes de iniciar el desarrollo.",
+    "summary": "Plataforma planificada de pedidos, cotizador dinámico por número de invitados y sistema de reservas con control de disponibilidad de equipos y fechas.",
+    "problem": "La gestión manual por mensajería provoca retrasos de horas en enviar presupuestos, riesgo de reservar dos veces el mismo carrito para la misma fecha y falta de visibilidad del material por evento.",
+    "solution": "Un cotizador interactivo donde el cliente elegirá tipo de estación, número de personas, horas de servicio y complementos, y recibirá el presupuesto desglosado al instante. Al confirmar, el sistema bloqueará la disponibilidad del material y avisará a ambas partes.",
+    "keyHighlights": [
+      "Cotización automática diseñada para reemplazar el ciclo manual de presupuestos por mensajería",
+      "Motor de disponibilidad planeado para evitar solapamientos de fechas y equipos",
+      "Panel de administración para confirmar depósitos, fechas y logística de montaje",
+      "Arquitectura sin costes recurrentes inflados, ajustada a la escala del negocio"
+    ],
+    "techStack": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Firebase Firestore & Storage",
+      "Cloud Functions",
+      "WhatsApp Business API (prevista)"
+    ],
+    "architecturePoints": [
+      "Bloqueo temporal de fechas con expiración para evitar reservas fantasma",
+      "Reglas de seguridad en la base de datos para aislar pedidos y proteger los datos de contacto",
+      "Generación automática de contratos y resúmenes de preparación en PDF"
+    ],
+    "ctaLabel": "Ver arquitectura del cotizador"
+  }
+]
