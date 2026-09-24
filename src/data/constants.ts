@@ -16,6 +16,9 @@ export const FOUNDER_NAME = 'Elier Garcia';
 export const FOUNDER_ROLE = 'Fundador e Ingeniero Principal';
 
 export const CONTACT_EMAIL = 'elier.garcia@egsolutions.tech';
+/** Número de WhatsApp Business de EG Solutions. */
+export const WHATSAPP_DISPLAY = '+34 604 280 860';
+export const WHATSAPP_URL = 'https://wa.me/34604280860';
 export const ACTIVE_REGIONS = 'España y México';
 export const LANGUAGES = 'Bilingüe (ES / EN)';
 export const RESPONSE_TIME = 'Menos de 24 horas en días laborables';

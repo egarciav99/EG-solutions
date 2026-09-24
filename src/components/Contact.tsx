@@ -1,7 +1,7 @@
 import { useState, FormEvent } from 'react';
-import { Mail, Check, Copy, Clock, Globe, AlertCircle } from 'lucide-react';
+import { Mail, Check, Copy, Clock, Globe, AlertCircle, MessageCircle } from 'lucide-react';
 import { ContactFormData } from '../types';
-import { CONTACT_EMAIL, FOUNDER_NAME, RESPONSE_TIME, TIMEZONES } from '../data/constants';
+import { CONTACT_EMAIL, FOUNDER_NAME, RESPONSE_TIME, TIMEZONES, WHATSAPP_DISPLAY, WHATSAPP_URL } from '../data/constants';
 import { secondaryCircuitLayout } from '../data/circuitLayouts';
 import { CircuitBackground } from './CircuitBackground';
 import { PrivacyPolicyModal } from './PrivacyPolicyModal';
@@ -259,6 +259,17 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
                     {copiedEmail ? <Check className="w-4 h-4 text-slate" /> : <Copy className="w-4 h-4" />}
                   </button>
                 </div>
+
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-near-white rounded border border-steel/50 flex items-center gap-2.5 hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-slate"
+                  aria-label={`Escribir por WhatsApp al ${WHATSAPP_DISPLAY}`}
+                >
+                  <MessageCircle className="w-4 h-4 text-slate shrink-0" />
+                  <span className="font-medium text-navy">WhatsApp · {WHATSAPP_DISPLAY}</span>
+                </a>
 
                 <div className="flex items-start gap-2.5 text-mid-gray">
                   <Clock className="w-4 h-4 text-slate shrink-0 mt-0.5" />
