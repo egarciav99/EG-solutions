@@ -6,9 +6,11 @@ import { BRAND_NAME, ACTIVE_REGIONS } from '../data/constants';
 interface HeaderProps {
   onNavigate: (sectionId: string) => void;
   onOpenConsultation: () => void;
+  /** Página actual, para marcar el enlace activo. */
+  activePage?: string;
 }
 
-export function Header({ onNavigate, onOpenConsultation }: HeaderProps) {
+export function Header({ onNavigate, onOpenConsultation, activePage }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -43,7 +45,7 @@ export function Header({ onNavigate, onOpenConsultation }: HeaderProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-24 flex items-center justify-between">
         {/* Brand */}
         <a
-          href="#top"
+          href="/"
           onClick={(e) => {
             e.preventDefault();
             handleNavClick('top');
@@ -61,7 +63,8 @@ export function Header({ onNavigate, onOpenConsultation }: HeaderProps) {
             <li>
               <button
                 onClick={() => handleNavClick('servicios')}
-                className="text-sm font-medium text-slate hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer"
+                aria-current={activePage === 'servicios' ? 'page' : undefined}
+                className={`text-sm font-medium ${activePage === 'servicios' ? 'text-navy underline underline-offset-8 decoration-copper decoration-2' : 'text-slate'} hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer`}
                 id="nav-link-servicios"
               >
                 Servicios
@@ -70,7 +73,8 @@ export function Header({ onNavigate, onOpenConsultation }: HeaderProps) {
             <li>
               <button
                 onClick={() => handleNavClick('proyectos')}
-                className="text-sm font-medium text-slate hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer"
+                aria-current={activePage === 'proyectos' ? 'page' : undefined}
+                className={`text-sm font-medium ${activePage === 'proyectos' ? 'text-navy underline underline-offset-8 decoration-copper decoration-2' : 'text-slate'} hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer`}
                 id="nav-link-proyectos"
               >
                 Proyectos
@@ -79,7 +83,8 @@ export function Header({ onNavigate, onOpenConsultation }: HeaderProps) {
             <li>
               <button
                 onClick={() => handleNavClick('diferencial')}
-                className="text-sm font-medium text-slate hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer"
+                aria-current={activePage === 'diferencial' ? 'page' : undefined}
+                className={`text-sm font-medium ${activePage === 'diferencial' ? 'text-navy underline underline-offset-8 decoration-copper decoration-2' : 'text-slate'} hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer`}
                 id="nav-link-diferencial"
               >
                 Cómo trabajo
@@ -88,7 +93,8 @@ export function Header({ onNavigate, onOpenConsultation }: HeaderProps) {
             <li>
               <button
                 onClick={() => handleNavClick('contacto')}
-                className="text-sm font-medium text-slate hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer"
+                aria-current={activePage === 'contacto' ? 'page' : undefined}
+                className={`text-sm font-medium ${activePage === 'contacto' ? 'text-navy underline underline-offset-8 decoration-copper decoration-2' : 'text-slate'} hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer`}
                 id="nav-link-contacto"
               >
                 Contacto

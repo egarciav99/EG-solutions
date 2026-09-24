@@ -2,7 +2,7 @@ export interface ProjectCase {
   id: string;
   name: string;
   category: string;
-  scaleType: 'brand-campaign' | 'small-business' | 'internal-tool';
+  scaleType: 'brand-campaign' | 'small-business' | 'internal-tool' | 'own-product';
   scaleLabel: string;
   clientContext: string;
   summary: string;
@@ -11,6 +11,16 @@ export interface ProjectCase {
   keyHighlights: string[];
   techStack: string[];
   architecturePoints: string[];
+  /** Caso que se muestra grande al inicio de la sección. */
+  featured?: boolean;
+  /** Texto del botón que abre el detalle técnico. */
+  ctaLabel?: string;
+  /** Panel lateral del caso destacado. */
+  specPanel?: {
+    title: string;
+    badge: string;
+    items: { title: string; text: string }[];
+  };
 }
 
 export interface ServiceLine {

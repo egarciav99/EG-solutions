@@ -6,8 +6,10 @@
 import { useState, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { usePage } from './router';
 
 // Code splitting: Secciones inferiores cargadas asíncronamente para despejar el hilo principal en el primer pintado
+const HomePreviews = lazy(() => import('./components/HomePreviews').then((m) => ({ default: m.HomePreviews })));
 const Services = lazy(() => import('./components/Services').then((m) => ({ default: m.Services })));
 const CaseStudies = lazy(() => import('./components/CaseStudies').then((m) => ({ default: m.CaseStudies })));
 const Differential = lazy(() => import('./components/Differential').then((m) => ({ default: m.Differential })));
@@ -25,75 +27,75 @@ function SectionFallback({ minHeightClass = 'min-h-[400px]' }: { minHeightClass?
 }
 
 export default function App() {
+  const [page, navigate] = usePage();
   const [inquiryService, setInquiryService] = useState<string>('Plataformas Web');
   const [inquiryContext, setInquiryContext] = useState<string>('');
-
-  const scrollToSection = (sectionId: string) => {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const handleSelectService = (serviceName: string) => {
     setInquiryService(serviceName);
     setInquiryContext('');
-    scrollToSection('contacto');
+    navigate('contacto');
   };
 
   const handleSelectProjectForDiscussion = (projectName: string) => {
     setInquiryContext(projectName);
-    scrollToSection('contacto');
+    navigate('contacto');
   };
 
   const handleOpenConsultation = () => {
-    scrollToSection('contacto');
+    navigate('contacto');
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#F6F7F8] text-[#2B3242]">
-      {/* Barra de navegación técnica (Bundle inicial) */}
-      <Header
-        onNavigate={scrollToSection}
-        onOpenConsultation={handleOpenConsultation}
-      />
+      {/* Barra de navegación (Bundle inicial) */}
+      <Header onNavigate={navigate} onOpenConsultation={handleOpenConsultation} activePage={page} />
 
-      {/* Contenido principal */}
+      {/* Contenido de la página actual */}
       <main className="flex-1">
-        {/* 1. Hero con esquemático de arquitectura e identidad de ingeniería (Bundle inicial, visible en 1er frame) */}
-        <Hero
-          onConsultationClick={handleOpenConsultation}
-          onExploreProjectsClick={() => scrollToSection('proyectos')}
-        />
+        {page === 'top' && (
+          <>
+            {/* Portada: hero + resumen de cada página, con enlace al detalle */}
+            <Hero onConsultationClick={handleOpenConsultation} onExploreProjectsClick={() => navigate('proyectos')} />
+            <Suspense fallback={<SectionFallback minHeightClass="min-h-[900px]" />}>
+              <HomePreviews onNavigate={navigate} />
+            </Suspense>
+          </>
+        )}
 
-        {/* Secciones debajo del primer pantallazo cargadas en segundo plano con Suspense */}
-        <Suspense fallback={<SectionFallback minHeightClass="min-h-[600px]" />}>
-          {/* 2. Servicios: Tres líneas con jerarquía real y lenguaje concreto */}
-          <Services onSelectServiceForInquiry={handleSelectService} />
-        </Suspense>
+        {page === 'servicios' && (
+          <Suspense fallback={<SectionFallback minHeightClass="min-h-[600px]" />}>
+            <Services onSelectServiceForInquiry={handleSelectService} />
+          </Suspense>
+        )}
 
-        <Suspense fallback={<SectionFallback minHeightClass="min-h-[700px]" />}>
-          {/* 3. Casos de éxito y propuestas técnicas */}
-          <CaseStudies onSelectProjectForDiscussion={handleSelectProjectForDiscussion} />
-        </Suspense>
+        {page === 'proyectos' && (
+          <Suspense fallback={<SectionFallback minHeightClass="min-h-[700px]" />}>
+            <CaseStudies onSelectProjectForDiscussion={handleSelectProjectForDiscussion} />
+          </Suspense>
+        )}
 
-        <Suspense fallback={<SectionFallback minHeightClass="min-h-[500px]" />}>
-          {/* 4. Cómo trabajo / Perfil diferencial */}
-          <Differential />
-        </Suspense>
+        {page === 'diferencial' && (
+          <Suspense fallback={<SectionFallback minHeightClass="min-h-[500px]" />}>
+            <Differential />
+          </Suspense>
+        )}
 
-        <Suspense fallback={<SectionFallback minHeightClass="min-h-[600px]" />}>
-          {/* 5. Contacto: Simple y directo */}
-          <Contact
-            initialService={inquiryService}
-            initialProjectContext={inquiryContext}
-          />
-        </Suspense>
+        {page === 'contacto' && (
+          <Suspense fallback={<SectionFallback minHeightClass="min-h-[600px]" />}>
+            {/* La key vuelve a montar el formulario con el servicio o proyecto elegido */}
+            <Contact
+              key={`${inquiryService}|${inquiryContext}`}
+              initialService={inquiryService}
+              initialProjectContext={inquiryContext}
+            />
+          </Suspense>
+        )}
       </main>
 
       {/* Pie de página */}
       <Suspense fallback={<SectionFallback minHeightClass="min-h-[250px]" />}>
-        <Footer onNavigate={scrollToSection} />
+        <Footer onNavigate={navigate} />
       </Suspense>
     </div>
   );
