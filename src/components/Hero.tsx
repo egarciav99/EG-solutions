@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { ArrowRight } from 'lucide-react';
 import { BRAND_PILLARS, ACTIVE_REGIONS, LANGUAGES } from '../data/constants';
-import { BLUEPRINT_STEPS } from '../data/blueprintSteps';
+import { CASE_STUDIES } from '../data/projects';
 import { heroCircuitLayout } from '../data/circuitLayouts';
 import { CircuitBackground } from './CircuitBackground';
 
@@ -10,8 +9,16 @@ interface HeroProps {
   onExploreProjectsClick: () => void;
 }
 
+/** Flujo real del caso destacado (CoreIT), en cuatro pasos. */
+const HERO_FLOW = [
+  { title: 'Subes el PDF técnico', desc: 'El procedimiento tal como lo tienes hoy.' },
+  { title: 'La IA extrae secciones, pasos y campos', desc: 'Dos extracciones en paralelo y un modelo que las audita.' },
+  { title: 'Revisión humana antes de generar', desc: 'Corriges textos, campos y límites. Nada sale sin tu visto bueno.', isCritical: true },
+  { title: 'Excel listo para capturar', desc: 'Hoja protegida con las celdas de captura desbloqueadas.' },
+];
+
 export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps) {
-  const [activeBlueprintNode, setActiveBlueprintNode] = useState<number>(2);
+  const featured = CASE_STUDIES.find((c) => c.featured) ?? CASE_STUDIES[0];
 
   return (
     <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 border-b border-steel/30 overflow-hidden bg-near-white" id="top">
@@ -61,94 +68,54 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
             </div>
           </div>
 
-          {/* Columna interactiva: Blueprint esquemático de ingeniería */}
+          {/* Columna derecha: producto propio destacado */}
           <div className="lg:col-span-5 lg:pl-4">
             <div className="bg-navy text-white rounded-lg p-5 sm:p-6 border border-slate shadow-sm">
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-copper" />
-                  <span className="text-xs font-semibold tracking-wide text-steel">
-                    ESQUEMA DE ARQUITECTURA TÉCNICA
+              <div className="flex items-center justify-between gap-3 pb-4 mb-4 border-b border-slate">
+                <div className="flex items-center gap-2 min-w-0">
+                  <div className="w-2.5 h-2.5 rounded-full bg-copper shrink-0" />
+                  <span className="text-xs font-semibold tracking-wide text-steel truncate">
+                    PRODUCTO PROPIO · {featured.name.split(' — ')[0]}
                   </span>
                 </div>
-                <span className="text-xs text-steel/80">
-                  Control de flujo
-                </span>
+                <span className="text-xs text-steel/80 shrink-0">PDF → Excel</span>
               </div>
 
-              {/* Trazas de circuito interactivas */}
-              <div className="space-y-3 mb-6">
-                {BLUEPRINT_STEPS.map((step) => {
-                  const isActive = activeBlueprintNode === step.id;
-                  const isCopper = Boolean(step.isCritical);
+              <p className="text-sm text-near-white/85 leading-relaxed mb-4">
+                Un procedimiento técnico en PDF convertido en una hoja de trabajo Excel, con una persona revisando antes de generar.
+              </p>
 
-                  return (
-                    <button
-                      key={step.id}
-                      onClick={() => setActiveBlueprintNode(step.id)}
-                      className={`w-full text-left p-3 rounded transition-all flex items-start gap-3 border cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-steel ${
-                        isActive
-                          ? isCopper
-                            ? 'bg-slate/70 border-copper'
-                            : 'bg-slate/70 border-steel'
-                          : 'bg-navy hover:bg-slate/30 border-slate/80'
-                      }`}
-                      id={`blueprint-node-${step.id}`}
-                      aria-pressed={isActive}
-                    >
-                      <div className="pt-0.5 shrink-0">
-                        <div
-                          className={`w-4 h-4 rounded-full flex items-center justify-center ${
-                            isCopper
-                              ? 'bg-copper text-white'
-                              : isActive
-                              ? 'bg-steel text-navy'
-                              : 'bg-slate text-steel'
-                          }`}
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full bg-current" />
-                        </div>
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="text-xs font-bold text-white truncate">
-                            {step.title}
-                          </span>
-                          <span className={`text-[11px] px-1.5 py-0.5 rounded font-medium shrink-0 ${
-                            isCopper ? 'bg-copper/20 text-copper' : 'bg-slate text-steel'
-                          }`}>
-                            {step.tag}
-                          </span>
-                        </div>
-                        <p className="text-xs text-steel mt-1 line-clamp-2 leading-relaxed">
-                          {step.desc}
-                        </p>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Detalle del nodo seleccionado con animación AnimatePresence */}
-              <div className="bg-navy p-3.5 rounded border border-slate text-xs min-h-[76px]">
-                <div className="text-steel font-medium mb-1.5 flex items-center gap-1.5">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-copper" />
-                  <span>Principio de ingeniería aplicado:</span>
-                </div>
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeBlueprintNode}
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -4 }}
-                    transition={{ duration: 0.18, ease: 'easeInOut' }}
-                    className="text-white/90 leading-relaxed"
+              <ol className="space-y-3 mb-5 list-none p-0 m-0">
+                {HERO_FLOW.map((step, idx) => (
+                  <li
+                    key={step.title}
+                    className={`p-3 rounded flex items-start gap-3 border ${
+                      step.isCritical ? 'bg-slate/70 border-copper' : 'bg-navy border-slate/80'
+                    }`}
                   >
-                    {BLUEPRINT_STEPS[activeBlueprintNode].detail}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+                    <span
+                      className={`w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 ${
+                        step.isCritical ? 'bg-copper text-white' : 'bg-slate text-steel'
+                      }`}
+                    >
+                      {idx + 1}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs font-bold text-white block">{step.title}</span>
+                      <span className="text-xs text-steel leading-relaxed">{step.desc}</span>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+
+              <button
+                onClick={onExploreProjectsClick}
+                className="w-full inline-flex items-center justify-center gap-1.5 text-sm font-medium text-copper hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded cursor-pointer"
+                id="hero-ver-caso-destacado-btn"
+              >
+                Ver el caso completo
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
 
             {/* Ficha técnica compacta */}
