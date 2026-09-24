@@ -1,7 +1,36 @@
-import { BRAND_NAME, FOUNDER_NAME, FOUNDER_ROLE, ACTIVE_REGIONS, LANGUAGES } from '../data/constants';
+import { BRAND_NAME, FOUNDER_NAME, FOUNDER_ROLE, ACTIVE_REGIONS } from '../data/constants';
 import { secondaryCircuitLayout } from '../data/circuitLayouts';
 import { CircuitBackground } from './CircuitBackground';
-import { Zap, Shield, UserCheck, Compass, ShieldAlert, FileText } from 'lucide-react';
+import { BLUEPRINT_STEPS } from '../data/blueprintSteps';
+import { Compass, ShieldAlert, FileText } from 'lucide-react';
+
+const TRAYECTORIA = [
+  { when: '2026', title: 'Máster en Business Analytics & IA', detail: 'INESDI (UNIE). Mejor expediente de la promoción.' },
+  { when: '2024 – 2025', title: 'Residente de obra eléctrica', detail: 'Data center de Microsoft (Querétaro) y nave de BMW Group (San Luis Potosí). Hasta 60 personas a cargo.' },
+  { when: '2023 – 2024', title: 'Analista de presupuestos', detail: 'Ofertas técnicas para proyectos industriales, incluida una para Terex ganada y presentada en inglés.' },
+  { when: 'Formación', title: 'Grado en Ingeniería Eléctrica', detail: 'TecNM Chihuahua.' },
+];
+
+const PRINCIPIOS = [
+  {
+    title: 'Pragmatismo técnico',
+    text: 'La solución más simple y sostenible para el problema real, nunca la más compleja por lucimiento técnico.',
+    Icon: Compass,
+    copper: false,
+  },
+  {
+    title: 'Supervisión humana en puntos críticos',
+    text: 'IA acotada por esquemas tipados y respaldada por criterio humano antes de tocar datos reales.',
+    Icon: ShieldAlert,
+    copper: true,
+  },
+  {
+    title: 'Alcance documentado y responsabilidad',
+    text: 'Transparencia contractual y relaciones de largo plazo basadas en confianza técnica demostrada.',
+    Icon: FileText,
+    copper: false,
+  },
+];
 
 export function Differential() {
   return (
@@ -19,99 +48,109 @@ export function Differential() {
           </p>
         </div>
 
-        {/* Bloque editorial estructurado de Elier */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
-          {/* Perfil y formación técnica */}
-          <div className="lg:col-span-5 bg-white border border-steel/70 rounded-lg p-6 sm:p-8 shadow-xs">
-            <div className="flex items-center gap-3 pb-4 mb-5 border-b border-steel/40">
-              <div className="w-11 h-11 rounded bg-navy border border-slate flex items-center justify-center text-steel font-bold text-sm">
+        {/* Sobre mí */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16" id="sobre-mi">
+          <div className="lg:col-span-7 bg-white border border-steel/70 rounded-lg p-6 sm:p-8 shadow-xs">
+            <h3 className="text-xl font-bold text-navy mb-4">Sobre mí</h3>
+            <div className="space-y-4 text-sm sm:text-base text-mid-gray leading-relaxed">
+              <p>
+                Soy {FOUNDER_NAME}, ingeniero eléctrico. Antes de dedicarme al software dirigí obra eléctrica: en un data center de Microsoft en Querétaro pasé en seis meses de recién llegado a responsable del frente, coordinando hasta 60 personas, y en una nave de BMW Group en San Luis Potosí monté un sistema propio para seguir el material de obra.
+              </p>
+              <p>
+                Antes fui analista de presupuestos, donde preparé y presenté en inglés la oferta de un proyecto industrial para Terex que acabamos ganando. En 2026 terminé el Máster en Business Analytics &amp; IA en INESDI con el mejor expediente de la promoción, y hoy desarrollo software desde Madrid con {BRAND_NAME}.
+              </p>
+              <p>
+                De la obra me traje la forma de trabajar: alcance claro antes de empezar, plazos realistas y puntos de control donde un error sale caro. En software, esos puntos de control son la revisión humana en los flujos con IA.
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 bg-navy text-white border border-slate rounded-lg p-6 sm:p-8 shadow-xs">
+            <div className="flex items-center gap-3 pb-4 mb-5 border-b border-slate">
+              <div className="w-11 h-11 rounded bg-slate border border-steel/40 flex items-center justify-center text-steel font-bold text-sm">
                 EG
               </div>
               <div>
-                <h3 className="text-base font-bold text-navy">{FOUNDER_NAME}</h3>
-                <p className="text-xs text-mid-gray">{FOUNDER_ROLE}</p>
+                <h3 className="text-base font-bold text-white">{FOUNDER_NAME}</h3>
+                <p className="text-xs text-steel">{FOUNDER_ROLE}</p>
               </div>
             </div>
 
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 p-3 rounded bg-near-white border border-steel/40 text-xs font-semibold text-navy">
-                <div className="p-1.5 rounded bg-white text-slate border border-steel/40 shrink-0">
-                  <Zap className="w-4 h-4" />
-                </div>
-                <span>Ingeniería eléctrica → Full-stack</span>
-              </div>
+            <ol className="space-y-4 list-none p-0 m-0 text-sm">
+              {TRAYECTORIA.map((item) => (
+                <li key={item.title} className="flex gap-3">
+                  <span className="w-2 h-2 rounded-full bg-copper mt-1.5 shrink-0" />
+                  <div>
+                    <span className="block text-xs text-steel">{item.when}</span>
+                    <span className="block font-semibold text-white">{item.title}</span>
+                    <span className="block text-xs text-near-white/75 leading-relaxed">{item.detail}</span>
+                  </div>
+                </li>
+              ))}
+            </ol>
 
-              <div className="flex items-center gap-3 p-3 rounded bg-near-white border border-steel/40 text-xs font-semibold text-navy">
-                <div className="p-1.5 rounded bg-white text-copper border border-steel/40 shrink-0">
-                  <Shield className="w-4 h-4" />
-                </div>
-                <span>Tolerancia cero a la fragilidad</span>
-              </div>
-
-              <div className="flex items-center gap-3 p-3 rounded bg-near-white border border-steel/40 text-xs font-semibold text-navy">
-                <div className="p-1.5 rounded bg-white text-slate border border-steel/40 shrink-0">
-                  <UserCheck className="w-4 h-4" />
-                </div>
-                <span>Práctica independiente, sin intermediarios</span>
-              </div>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-steel/40 grid grid-cols-2 gap-3 text-xs">
+            <div className="mt-6 pt-4 border-t border-slate grid grid-cols-2 gap-3 text-xs">
               <div>
-                <span className="font-semibold text-navy block">Localización activa:</span>
-                <span className="text-mid-gray">{ACTIVE_REGIONS}</span>
+                <span className="font-semibold text-white block">Localización:</span>
+                <span className="text-steel">Madrid · clientes en {ACTIVE_REGIONS}</span>
               </div>
               <div>
-                <span className="font-semibold text-navy block">Comunicación:</span>
-                <span className="text-mid-gray">{LANGUAGES}</span>
+                <span className="font-semibold text-white block">Idiomas:</span>
+                <span className="text-steel">Español nativo · Inglés B2</span>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Cómo se traduce en la ejecución de tus proyectos */}
-          <div className="lg:col-span-7 space-y-4">
-            <div className="bg-white border border-steel/70 rounded-lg p-5 sm:p-6 shadow-xs">
-              <h3 className="text-base sm:text-lg font-bold text-navy mb-3 border-l border-l-transparent pl-0">
-                Pragmatismo técnico y proporcionalidad
-              </h3>
-              <div className="flex items-center gap-3 p-3 bg-near-white rounded border border-steel/40">
-                <div className="p-1.5 rounded bg-white text-slate border border-steel/40 shrink-0">
-                  <Compass className="w-4 h-4" />
-                </div>
-                <div className="text-xs sm:text-sm text-slate font-medium leading-relaxed">
-                  <strong className="text-navy font-semibold">Principio:</strong> La solución más simple y sostenible para el problema real, nunca la más compleja por lucimiento técnico.
-                </div>
+        {/* Principios */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16">
+          {PRINCIPIOS.map(({ title, text, Icon, copper }) => (
+            <div key={title} className="bg-white border border-steel/70 rounded-lg p-5 sm:p-6 shadow-xs">
+              <div className={`w-9 h-9 rounded bg-near-white border border-steel/40 flex items-center justify-center mb-3 ${copper ? 'text-copper' : 'text-slate'}`}>
+                <Icon className="w-4 h-4" />
               </div>
+              <h3 className="text-base font-bold text-navy mb-2">{title}</h3>
+              <p className="text-sm text-mid-gray leading-relaxed">{text}</p>
             </div>
+          ))}
+        </div>
 
-            <div className="bg-white border border-steel/70 rounded-lg p-5 sm:p-6 shadow-xs">
-              <h3 className="text-base sm:text-lg font-bold text-navy mb-3 border-l border-l-transparent pl-0">
-                Supervisión humana en puntos críticos (Human-in-the-loop)
-              </h3>
-              <div className="flex items-center gap-3 p-3 bg-near-white rounded border border-steel/40">
-                <div className="p-1.5 rounded bg-white text-copper border border-steel/40 shrink-0">
-                  <ShieldAlert className="w-4 h-4" />
-                </div>
-                <div className="text-xs sm:text-sm text-slate font-medium leading-relaxed">
-                  <strong className="text-navy font-semibold">Principio:</strong> Inteligencia artificial acotada por esquemas tipados y respaldada por criterio humano.
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white border border-steel/70 rounded-lg p-5 sm:p-6 shadow-xs">
-              <h3 className="text-base sm:text-lg font-bold text-navy mb-3 border-l border-l-transparent pl-0">
-                Alcance documentado, precio cerrado y responsabilidad
-              </h3>
-              <div className="flex items-center gap-3 p-3 bg-near-white rounded border border-steel/40">
-                <div className="p-1.5 rounded bg-white text-slate border border-steel/40 shrink-0">
-                  <FileText className="w-4 h-4" />
-                </div>
-                <div className="text-xs sm:text-sm text-slate font-medium leading-relaxed">
-                  <strong className="text-navy font-semibold">Principio:</strong> Transparencia contractual y relaciones de largo plazo basadas en confianza técnica demostrada.
-                </div>
-              </div>
-            </div>
+        {/* El método, paso a paso */}
+        <div className="mb-16" id="metodo">
+          <div className="max-w-3xl mb-8">
+            <h3 className="text-xl sm:text-2xl font-bold text-navy tracking-tight mb-2">El método, paso a paso</h3>
+            <p className="text-base text-mid-gray leading-relaxed">
+              Cuatro fases en cada proyecto. La revisión humana está marcada porque es donde la IA puede equivocarse.
+            </p>
           </div>
+          <ol className="grid grid-cols-1 md:grid-cols-2 gap-5 list-none p-0 m-0">
+            {BLUEPRINT_STEPS.map((step) => (
+              <li
+                key={step.id}
+                className={`rounded-lg p-5 sm:p-6 shadow-xs border ${
+                  step.isCritical ? 'bg-navy text-white border-copper' : 'bg-white border-steel/70'
+                }`}
+              >
+                <div className="flex items-center justify-between gap-3 mb-2">
+                  <span className="text-xs font-semibold text-copper">
+                    Paso {step.id + 1}
+                  </span>
+                  <span
+                    className={`text-[11px] px-2 py-0.5 rounded font-medium ${
+                      step.isCritical ? 'bg-copper/20 text-copper' : 'bg-near-white border border-steel/40 text-slate'
+                    }`}
+                  >
+                    {step.tag}
+                  </span>
+                </div>
+                <h4 className={`text-base font-bold mb-2 ${step.isCritical ? 'text-white' : 'text-navy'}`}>{step.title}</h4>
+                <p className={`text-sm leading-relaxed mb-3 ${step.isCritical ? 'text-near-white/85' : 'text-mid-gray'}`}>{step.desc}</p>
+                <p className={`text-xs leading-relaxed pt-3 border-t ${step.isCritical ? 'text-steel border-slate' : 'text-slate border-steel/40'}`}>
+                  {step.detail}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
 
         {/* Comparativa analítica honesta: Agencia vs Freelance Junior vs EG Solutions */}
