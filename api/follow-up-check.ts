@@ -32,16 +32,28 @@ export default async function handler(req: ExtendedRequest, res: ExtendedRespons
     return res.status(405).json({ error: 'Método no permitido. Utilizar GET o POST.' });
   }
 
+  // Vercel Cron envía "Authorization: Bearer <CRON_SECRET>" cuando la variable está definida.
+  // Sin ella, cualquiera podría invocar este endpoint y disparar correos.
+  const cronSecret = process.env.CRON_SECRET;
+  if (!cronSecret) {
+    console.error('[api/follow-up-check] CRON_SECRET no está configurado.');
+    return res.status(500).json({ error: 'CRON_SECRET no configurado.' });
+  }
+  if (req.headers.authorization !== `Bearer ${cronSecret}`) {
+    return res.status(401).json({ error: 'No autorizado.' });
+  }
+
   try {
     const db = getDb();
     const twoDaysAgo = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000);
 
-    // Consultar leads con status 'nuevo', followUpReminderSent == false y creados hace más de 2 días
+    // Consultar leads con status 'nuevo' y followUpReminderSent == false.
+    // La antigüedad (> 2 días) se filtra en código: los leads que llegan por correo (n8n)
+    // pueden guardar createdAt como texto ISO en vez de Timestamp.
     const snapshot = await db
       .collection('leads')
       .where('status', '==', 'nuevo')
       .where('followUpReminderSent', '==', false)
-      .where('createdAt', '<=', twoDaysAgo)
       .get();
 
     const pendingLeads: PendingLeadReminder[] = [];
@@ -51,6 +63,7 @@ export default async function handler(req: ExtendedRequest, res: ExtendedRespons
     for (const doc of snapshot.docs) {
       const data = doc.data();
       const createdAtDate = data.createdAt?.toDate ? data.createdAt.toDate() : new Date(data.createdAt || now);
+      if (Number.isNaN(createdAtDate.getTime()) || createdAtDate > twoDaysAgo) continue;
       const daysPending = Math.max(2, Math.floor((now - createdAtDate.getTime()) / (24 * 60 * 60 * 1000)));
 
       pendingLeads.push({
