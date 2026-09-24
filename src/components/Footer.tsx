@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Logo } from './Logo';
-import { CONTACT_EMAIL } from '../data/constants';
+import { CONTACT_EMAIL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '../data/constants';
 import { PrivacyPolicyModal } from './PrivacyPolicyModal';
 
 interface FooterProps {
@@ -79,6 +79,14 @@ export function Footer({ onNavigate }: FooterProps) {
               className="text-white font-medium block hover:text-copper transition-colors focus-visible:outline-none focus-visible:underline"
             >
               {CONTACT_EMAIL}
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white font-medium block hover:text-copper transition-colors focus-visible:outline-none focus-visible:underline"
+            >
+              WhatsApp · {WHATSAPP_DISPLAY}
             </a>
             <div className="text-steel">Práctica independiente · Sin intermediarios</div>
             <div className="text-steel flex items-center gap-1.5 pt-1">
