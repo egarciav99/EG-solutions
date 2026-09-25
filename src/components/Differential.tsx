@@ -85,6 +85,7 @@ export function Differential() {
               </p>
             </div>
           </div>
+        </div>
 
           <div className="lg:col-span-5 bg-navy text-white border border-slate rounded-lg p-6 sm:p-8 shadow-xs">
             <div className="flex items-center gap-3 pb-4 mb-5 border-b border-slate">
@@ -95,7 +96,11 @@ export function Differential() {
                 <h3 className="text-base font-bold text-white">{FOUNDER_NAME}</h3>
                 <p className="text-xs text-steel">{FOUNDER_ROLE}</p>
               </div>
+              <h3 className="text-base font-bold text-navy mb-2">{title}</h3>
+              <p className="text-sm text-mid-gray leading-relaxed">{text}</p>
             </div>
+          ))}
+        </div>
 
             <ol className="space-y-4 list-none p-0 m-0 text-sm">
               {TRAYECTORIA.map((item) => (
@@ -121,6 +126,34 @@ export function Differential() {
               </div>
             </div>
           </div>
+          <ol className="grid grid-cols-1 md:grid-cols-2 gap-5 list-none p-0 m-0">
+            {BLUEPRINT_STEPS.map((step) => (
+              <li
+                key={step.id}
+                className={`rounded-lg p-5 sm:p-6 shadow-xs border ${
+                  step.isCritical ? 'bg-navy text-white border-copper' : 'bg-white border-steel/70'
+                }`}
+              >
+                <div className="flex items-center justify-between gap-3 mb-2">
+                  <span className="text-xs font-semibold text-copper">
+                    Paso {step.id + 1}
+                  </span>
+                  <span
+                    className={`text-[11px] px-2 py-0.5 rounded font-medium ${
+                      step.isCritical ? 'bg-copper/20 text-copper' : 'bg-near-white border border-steel/40 text-slate'
+                    }`}
+                  >
+                    {step.tag}
+                  </span>
+                </div>
+                <h4 className={`text-base font-bold mb-2 ${step.isCritical ? 'text-white' : 'text-navy'}`}>{step.title}</h4>
+                <p className={`text-sm leading-relaxed mb-3 ${step.isCritical ? 'text-near-white/85' : 'text-mid-gray'}`}>{step.desc}</p>
+                <p className={`text-xs leading-relaxed pt-3 border-t ${step.isCritical ? 'text-steel border-slate' : 'text-slate border-steel/40'}`}>
+                  {step.detail}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
 
         {/* Principios */}
