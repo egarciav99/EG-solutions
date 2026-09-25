@@ -5,7 +5,7 @@ export const BLUEPRINT_STEPS: BlueprintStep[] = [
     id: 0,
     title: 'Levantamiento y alcance técnico',
     tag: 'Ingeniería previa',
-    desc: 'Definición exacta de requerimientos, modelo de datos y riesgos. Presupuesto cerrado.',
+    desc: 'Definición exacta de requerimientos, modelo de datos y riesgos. Presupuesto por escrito antes de empezar.',
     detail: 'Formación en supervisión de obra aplicada a la estimación técnica: plazos reales, no optimistas.',
   },
   {

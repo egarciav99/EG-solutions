@@ -32,6 +32,27 @@ const PRINCIPIOS = [
   },
 ];
 
+const COMPARATIVA = [
+  {
+    title: 'Agencia',
+    points: ['Equipo amplio y varios perfiles', 'Capacidad para proyectos grandes', 'Más capas entre tú y quien programa'],
+    fit: 'Encaja si necesitas muchas manos a la vez o un servicio integral de marketing y desarrollo.',
+    highlight: false,
+  },
+  {
+    title: 'Freelance generalista',
+    points: ['Rápido para encargos concretos', 'Precio ajustado', 'Menos foco en procesos y datos del negocio'],
+    fit: 'Encaja para webs sencillas o cambios puntuales.',
+    highlight: false,
+  },
+  {
+    title: BRAND_NAME,
+    points: [`Hablas directamente con ${FOUNDER_NAME}`, 'Presupuesto por escrito antes de empezar', 'Código tipado, documentado y tuyo'],
+    fit: 'Encaja si quieres automatizar procesos o unir web, datos e IA con alguien que entienda la operación.',
+    highlight: true,
+  },
+];
+
 export function Differential() {
   return (
     <section className="relative py-20 border-b border-steel/30 bg-near-white overflow-hidden" id="diferencial">
@@ -153,78 +174,42 @@ export function Differential() {
           </ol>
         </div>
 
-        {/* Comparativa analítica honesta: Agencia vs Freelance Junior vs EG Solutions */}
+        {/* Comparativa: cuándo encaja cada forma de trabajar */}
         <div className="bg-navy text-white rounded-lg p-6 sm:p-8 border border-slate shadow-xs">
           <h3 className="text-lg font-bold text-white mb-2">
-            La diferencia operativa al trabajar con una práctica de ingeniería independiente
+            ¿Con quién te conviene trabajar?
           </h3>
           <p className="text-xs sm:text-sm text-steel mb-6 max-w-2xl">
-            Una comparativa objetiva de dinámicas de trabajo para ayudarte a determinar si {BRAND_NAME} es el encaje correcto para tu organización:
+            Cada opción tiene su sitio. Esta comparativa sirve para ver si {BRAND_NAME} encaja con lo que necesitas:
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-            <div className="bg-slate/30 p-4 rounded border border-slate flex flex-col justify-between">
-              <div>
-                <div className="text-steel font-semibold mb-3">Agencia tradicional</div>
-                <div className="flex flex-col gap-2 mb-4">
-                  <span className="px-2.5 py-1.5 rounded bg-slate/40 border border-slate/60 text-near-white/90 font-medium">
-                    Múltiples intermediarios comerciales
-                  </span>
-                  <span className="px-2.5 py-1.5 rounded bg-slate/40 border border-slate/60 text-near-white/90 font-medium">
-                    Desarrolladores ajenos al negocio
-                  </span>
-                  <span className="px-2.5 py-1.5 rounded bg-slate/40 border border-slate/60 text-near-white/90 font-medium">
-                    Costes de estructura inflados
-                  </span>
+            {COMPARATIVA.map(({ title, points, fit, highlight }) => (
+              <div
+                key={title}
+                className={`p-4 rounded border flex flex-col justify-between ${highlight ? 'bg-slate/50 border-copper' : 'bg-slate/30 border-slate'}`}
+              >
+                <div>
+                  <div className={`mb-3 flex items-center justify-between ${highlight ? 'text-white font-bold' : 'text-steel font-semibold'}`}>
+                    <span>{title}</span>
+                    {highlight && <span className="w-2 h-2 rounded-full bg-copper" />}
+                  </div>
+                  <div className="flex flex-col gap-2 mb-4">
+                    {points.map((point) => (
+                      <span
+                        key={point}
+                        className={`px-2.5 py-1.5 rounded border font-medium ${highlight ? 'bg-slate/60 border-copper/40 text-white' : 'bg-slate/40 border-slate/60 text-near-white/90'}`}
+                      >
+                        {point}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className={`pt-2 border-t border-slate ${highlight ? 'text-copper font-semibold' : 'text-steel/80'}`}>
+                  {fit}
                 </div>
               </div>
-              <div className="text-steel/70 pt-2 border-t border-slate">
-                Resultado: Poca agilidad y riesgo de desalineación técnica.
-              </div>
-            </div>
-
-            <div className="bg-slate/30 p-4 rounded border border-slate flex flex-col justify-between">
-              <div>
-                <div className="text-steel font-semibold mb-3">Desarrollador júnior o generalista</div>
-                <div className="flex flex-col gap-2 mb-4">
-                  <span className="px-2.5 py-1.5 rounded bg-slate/40 border border-slate/60 text-near-white/90 font-medium">
-                    Sin experiencia en escalabilidad
-                  </span>
-                  <span className="px-2.5 py-1.5 rounded bg-slate/40 border border-slate/60 text-near-white/90 font-medium">
-                    Código frágil sin tipado
-                  </span>
-                  <span className="px-2.5 py-1.5 rounded bg-slate/40 border border-slate/60 text-near-white/90 font-medium">
-                    Sin documentación arquitectónica
-                  </span>
-                </div>
-              </div>
-              <div className="text-steel/70 pt-2 border-t border-slate">
-                Resultado: Deuda técnica y reescrituras costosas a corto plazo.
-              </div>
-            </div>
-
-            <div className="bg-slate/50 p-4 rounded border border-copper flex flex-col justify-between">
-              <div>
-                <div className="text-white font-bold mb-3 flex items-center justify-between">
-                  <span>{BRAND_NAME}</span>
-                  <span className="w-2 h-2 rounded-full bg-copper" />
-                </div>
-                <div className="flex flex-col gap-2 mb-4">
-                  <span className="px-2.5 py-1.5 rounded bg-slate/60 border border-copper/40 text-white font-medium">
-                    Interlocución directa con {FOUNDER_NAME}
-                  </span>
-                  <span className="px-2.5 py-1.5 rounded bg-slate/60 border border-copper/40 text-white font-medium">
-                    Presupuestos cerrados sin sobrecostes
-                  </span>
-                  <span className="px-2.5 py-1.5 rounded bg-slate/60 border border-copper/40 text-white font-medium">
-                    Arquitecturas sostenibles y tipadas
-                  </span>
-                </div>
-              </div>
-              <div className="text-copper pt-2 border-t border-slate font-semibold">
-                Resultado: Software en producción, sin intermediarios ni sobrecostes.
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
