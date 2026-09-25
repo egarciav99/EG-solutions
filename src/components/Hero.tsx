@@ -1,3 +1,4 @@
+import { PageLink } from './PageLink';
 import { ArrowRight } from 'lucide-react';
 import { BRAND_PILLARS, ACTIVE_REGIONS, LANGUAGES } from '../data/constants';
 import { CASE_STUDIES } from '../data/projects';
@@ -51,20 +52,22 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
 
             {/* Acciones principales - Botón primario cobre y secundario borde pizarra */}
             <div className="flex flex-wrap items-center gap-4">
-              <button
-                onClick={onConsultationClick}
+              <PageLink
+                to="contacto"
+                onNavigate={() => onConsultationClick()}
                 className="bg-copper hover:opacity-90 text-white text-base font-medium px-6 py-3 rounded transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper shadow-xs cursor-pointer"
                 id="hero-iniciar-consulta-btn"
               >
                 Iniciar consulta de proyecto
-              </button>
-              <button
-                onClick={onExploreProjectsClick}
+              </PageLink>
+              <PageLink
+                to="proyectos"
+                onNavigate={() => onExploreProjectsClick()}
                 className="border border-slate bg-transparent hover:bg-slate/5 text-navy text-base font-medium px-6 py-3 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
                 id="hero-ver-proyectos-btn"
               >
                 Ver proyectos y propuestas
-              </button>
+              </PageLink>
             </div>
           </div>
 
@@ -108,14 +111,15 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
                 ))}
               </ol>
 
-              <button
-                onClick={onExploreProjectsClick}
+              <PageLink
+                to="proyectos"
+                onNavigate={() => onExploreProjectsClick()}
                 className="w-full inline-flex items-center justify-center gap-1.5 text-sm font-medium text-copper hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded cursor-pointer"
                 id="hero-ver-caso-destacado-btn"
               >
                 Ver el caso completo
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </PageLink>
             </div>
 
             {/* Ficha técnica compacta */}
