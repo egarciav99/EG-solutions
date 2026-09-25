@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Logo } from './Logo';
+import { PageLink } from './PageLink';
 import { CONTACT_EMAIL, WHATSAPP_DISPLAY, WHATSAPP_URL } from '../data/constants';
 import { PrivacyPolicyModal } from './PrivacyPolicyModal';
 
@@ -29,36 +30,40 @@ export function Footer({ onNavigate }: FooterProps) {
             <nav aria-label="Navegación del pie de página">
               <ul className="space-y-2 list-none p-0 m-0">
                 <li>
-                  <button
-                    onClick={() => onNavigate('servicios')}
+                  <PageLink
+                    to="servicios"
+                    onNavigate={onNavigate}
                     className="text-steel hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
                   >
                     Líneas de servicio
-                  </button>
+                  </PageLink>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onNavigate('proyectos')}
+                  <PageLink
+                    to="proyectos"
+                    onNavigate={onNavigate}
                     className="text-steel hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
                   >
                     Proyectos y propuestas
-                  </button>
+                  </PageLink>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onNavigate('diferencial')}
+                  <PageLink
+                    to="diferencial"
+                    onNavigate={onNavigate}
                     className="text-steel hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
                   >
                     Cómo trabajo (Rigor técnico)
-                  </button>
+                  </PageLink>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onNavigate('contacto')}
+                  <PageLink
+                    to="contacto"
+                    onNavigate={onNavigate}
                     className="text-steel hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
                   >
                     Iniciar consulta directa
-                  </button>
+                  </PageLink>
                 </li>
                 <li>
                   <button

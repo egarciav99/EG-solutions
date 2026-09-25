@@ -14,6 +14,7 @@ const Services = lazy(() => import('./components/Services').then((m) => ({ defau
 const CaseStudies = lazy(() => import('./components/CaseStudies').then((m) => ({ default: m.CaseStudies })));
 const Differential = lazy(() => import('./components/Differential').then((m) => ({ default: m.Differential })));
 const Contact = lazy(() => import('./components/Contact').then((m) => ({ default: m.Contact })));
+const NotFound = lazy(() => import('./components/NotFound').then((m) => ({ default: m.NotFound })));
 const Footer = lazy(() => import('./components/Footer').then((m) => ({ default: m.Footer })));
 
 // Marcador de posición liviano sin saltos de layout (CLS guard)
@@ -89,6 +90,12 @@ export default function App() {
               initialService={inquiryService}
               initialProjectContext={inquiryContext}
             />
+          </Suspense>
+        )}
+
+        {page === 'notfound' && (
+          <Suspense fallback={<SectionFallback minHeightClass="min-h-[500px]" />}>
+            <NotFound onNavigate={navigate} />
           </Suspense>
         )}
       </main>

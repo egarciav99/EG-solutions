@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Logo } from './Logo';
+import { PageLink } from './PageLink';
 import { Menu, X } from 'lucide-react';
 import { BRAND_NAME, ACTIVE_REGIONS } from '../data/constants';
+import type { PageId } from '../router';
 
 interface HeaderProps {
   onNavigate: (sectionId: string) => void;
@@ -14,7 +16,7 @@ export function Header({ onNavigate, onOpenConsultation, activePage }: HeaderPro
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  const handleNavClick = (id: string) => {
+  const handleNavClick = (id: PageId) => {
     onNavigate(id);
     setMobileMenuOpen(false);
   };
@@ -44,61 +46,62 @@ export function Header({ onNavigate, onOpenConsultation, activePage }: HeaderPro
     <header className="sticky top-0 z-40 w-full border-b border-steel/40 bg-near-white/95 backdrop-blur-sm">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-24 flex items-center justify-between">
         {/* Brand */}
-        <a
-          href="/"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick('top');
-          }}
+        <PageLink
+          to="top"
+          onNavigate={handleNavClick}
           className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate rounded transition-opacity hover:opacity-95"
           id="brand-header-link"
           aria-label={BRAND_NAME}
         >
           <Logo size="lg" showTagline={false} />
-        </a>
+        </PageLink>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:block" aria-label="Navegación principal">
           <ul className="flex items-center gap-7 lg:gap-8 list-none p-0 m-0">
             <li>
-              <button
-                onClick={() => handleNavClick('servicios')}
+              <PageLink
+                to="servicios"
+                onNavigate={handleNavClick}
                 aria-current={activePage === 'servicios' ? 'page' : undefined}
                 className={`text-sm font-medium ${activePage === 'servicios' ? 'text-navy underline underline-offset-8 decoration-copper decoration-2' : 'text-slate'} hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer`}
                 id="nav-link-servicios"
               >
                 Servicios
-              </button>
+              </PageLink>
             </li>
             <li>
-              <button
-                onClick={() => handleNavClick('proyectos')}
+              <PageLink
+                to="proyectos"
+                onNavigate={handleNavClick}
                 aria-current={activePage === 'proyectos' ? 'page' : undefined}
                 className={`text-sm font-medium ${activePage === 'proyectos' ? 'text-navy underline underline-offset-8 decoration-copper decoration-2' : 'text-slate'} hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer`}
                 id="nav-link-proyectos"
               >
                 Proyectos
-              </button>
+              </PageLink>
             </li>
             <li>
-              <button
-                onClick={() => handleNavClick('diferencial')}
+              <PageLink
+                to="diferencial"
+                onNavigate={handleNavClick}
                 aria-current={activePage === 'diferencial' ? 'page' : undefined}
                 className={`text-sm font-medium ${activePage === 'diferencial' ? 'text-navy underline underline-offset-8 decoration-copper decoration-2' : 'text-slate'} hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer`}
                 id="nav-link-diferencial"
               >
                 Cómo trabajo
-              </button>
+              </PageLink>
             </li>
             <li>
-              <button
-                onClick={() => handleNavClick('contacto')}
+              <PageLink
+                to="contacto"
+                onNavigate={handleNavClick}
                 aria-current={activePage === 'contacto' ? 'page' : undefined}
                 className={`text-sm font-medium ${activePage === 'contacto' ? 'text-navy underline underline-offset-8 decoration-copper decoration-2' : 'text-slate'} hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer`}
                 id="nav-link-contacto"
               >
                 Contacto
-              </button>
+              </PageLink>
             </li>
           </ul>
         </nav>
@@ -110,13 +113,14 @@ export function Header({ onNavigate, onOpenConsultation, activePage }: HeaderPro
             <span>{ACTIVE_REGIONS}</span>
           </div>
 
-          <button
-            onClick={onOpenConsultation}
+          <PageLink
+            to="contacto"
+            onNavigate={() => onOpenConsultation()}
             className="text-sm font-medium bg-copper hover:opacity-90 text-white px-4 py-2 rounded transition-opacity shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper cursor-pointer"
             id="header-consultation-btn"
           >
             Consultar proyecto
-          </button>
+          </PageLink>
         </div>
 
         {/* Mobile menu trigger */}
@@ -142,40 +146,44 @@ export function Header({ onNavigate, onOpenConsultation, activePage }: HeaderPro
           <nav aria-label="Navegación móvil">
             <ul className="flex flex-col gap-2 list-none p-0 m-0">
               <li>
-                <button
-                  onClick={() => handleNavClick('servicios')}
-                  className="w-full text-left text-base font-medium text-slate hover:text-navy py-1.5 cursor-pointer"
+                <PageLink
+                  to="servicios"
+                  onNavigate={handleNavClick}
+                  className="block w-full text-left text-base font-medium text-slate hover:text-navy py-1.5 cursor-pointer"
                   id="mobile-nav-servicios"
                 >
                   Servicios
-                </button>
+                </PageLink>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavClick('proyectos')}
-                  className="w-full text-left text-base font-medium text-slate hover:text-navy py-1.5 cursor-pointer"
+                <PageLink
+                  to="proyectos"
+                  onNavigate={handleNavClick}
+                  className="block w-full text-left text-base font-medium text-slate hover:text-navy py-1.5 cursor-pointer"
                   id="mobile-nav-proyectos"
                 >
                   Proyectos
-                </button>
+                </PageLink>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavClick('diferencial')}
-                  className="w-full text-left text-base font-medium text-slate hover:text-navy py-1.5 cursor-pointer"
+                <PageLink
+                  to="diferencial"
+                  onNavigate={handleNavClick}
+                  className="block w-full text-left text-base font-medium text-slate hover:text-navy py-1.5 cursor-pointer"
                   id="mobile-nav-diferencial"
                 >
                   Cómo trabajo
-                </button>
+                </PageLink>
               </li>
               <li>
-                <button
-                  onClick={() => handleNavClick('contacto')}
-                  className="w-full text-left text-base font-medium text-slate hover:text-navy py-1.5 cursor-pointer"
+                <PageLink
+                  to="contacto"
+                  onNavigate={handleNavClick}
+                  className="block w-full text-left text-base font-medium text-slate hover:text-navy py-1.5 cursor-pointer"
                   id="mobile-nav-contacto"
                 >
                   Contacto
-                </button>
+                </PageLink>
               </li>
             </ul>
           </nav>
@@ -185,16 +193,17 @@ export function Header({ onNavigate, onOpenConsultation, activePage }: HeaderPro
               <span className="w-2 h-2 rounded-full bg-copper inline-block" />
               <span>Clientes en {ACTIVE_REGIONS}</span>
             </div>
-            <button
-              onClick={() => {
+            <PageLink
+              to="contacto"
+              onNavigate={() => {
                 setMobileMenuOpen(false);
                 onOpenConsultation();
               }}
-              className="w-full text-center text-sm font-medium bg-copper text-white py-2.5 rounded hover:opacity-90 transition-opacity cursor-pointer"
+              className="block w-full text-center text-sm font-medium bg-copper text-white py-2.5 rounded hover:opacity-90 transition-opacity cursor-pointer"
               id="mobile-nav-consultation-btn"
             >
               Consultar proyecto
-            </button>
+            </PageLink>
           </div>
         </div>
       )}

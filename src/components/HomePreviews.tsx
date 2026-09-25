@@ -2,21 +2,24 @@ import { ArrowRight } from 'lucide-react';
 import { SERVICE_LINES } from '../data/services';
 import { CASE_STUDIES } from '../data/projects';
 import { BLUEPRINT_STEPS } from '../data/blueprintSteps';
+import { PageLink } from './PageLink';
+import type { PageId } from '../router';
 
 interface HomePreviewsProps {
-  onNavigate: (pageId: string) => void;
+  onNavigate: (pageId: PageId) => void;
 }
 
-function SeeMore({ label, onClick, id }: { label: string; onClick: () => void; id: string }) {
+function SeeMore({ label, to, onNavigate, id }: { label: string; to: PageId; onNavigate: (id: PageId) => void; id: string }) {
   return (
-    <button
-      onClick={onClick}
+    <PageLink
+      to={to}
+      onNavigate={onNavigate}
       id={id}
       className="inline-flex items-center gap-1.5 text-sm font-medium text-copper hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded cursor-pointer"
     >
       {label}
       <ArrowRight className="w-4 h-4" />
-    </button>
+    </PageLink>
   );
 }
 
@@ -37,18 +40,19 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
                 Tres líneas de trabajo, pensadas para negocios que necesitan resultados concretos, no herramientas genéricas.
               </p>
             </div>
-            <SeeMore label="Ver servicios en detalle" onClick={() => onNavigate('servicios')} id="home-ver-servicios" />
+            <SeeMore label="Ver servicios en detalle" to="servicios" onNavigate={onNavigate} id="home-ver-servicios" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {SERVICE_LINES.map((s) => (
-              <button
+              <PageLink
                 key={s.id}
-                onClick={() => onNavigate('servicios')}
-                className="text-left bg-white border border-steel/60 rounded-lg p-6 shadow-xs hover:border-slate transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
+                to="servicios"
+                onNavigate={onNavigate}
+                className="block text-left bg-white border border-steel/60 rounded-lg p-6 shadow-xs hover:border-slate transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
               >
                 <h3 className="text-lg font-bold text-navy mb-2">{s.title}</h3>
                 <p className="text-sm text-mid-gray leading-relaxed">{s.summary}</p>
-              </button>
+              </PageLink>
             ))}
           </div>
         </div>
@@ -64,14 +68,15 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
                 Productos propios, automatizaciones en uso y proyectos para clientes, cada uno con su estado real.
               </p>
             </div>
-            <SeeMore label={`Ver los ${CASE_STUDIES.length} proyectos`} onClick={() => onNavigate('proyectos')} id="home-ver-proyectos" />
+            <SeeMore label={`Ver los ${CASE_STUDIES.length} proyectos`} to="proyectos" onNavigate={onNavigate} id="home-ver-proyectos" />
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
             {[featured, ...others].map((c, idx) => (
-              <button
+              <PageLink
                 key={c.id}
-                onClick={() => onNavigate('proyectos')}
-                className={`text-left rounded-lg p-6 shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer ${
+                to="proyectos"
+                onNavigate={onNavigate}
+                className={`block text-left rounded-lg p-6 shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer ${
                   idx === 0 ? 'bg-navy text-white border border-slate hover:border-copper' : 'bg-white border border-steel/60 hover:border-slate'
                 }`}
               >
@@ -84,7 +89,7 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
                 </span>
                 <h3 className={`text-lg font-bold mb-2 ${idx === 0 ? 'text-white' : 'text-navy'}`}>{c.name}</h3>
                 <p className={`text-sm leading-relaxed ${idx === 0 ? 'text-near-white/85' : 'text-mid-gray'}`}>{c.summary}</p>
-              </button>
+              </PageLink>
             ))}
           </div>
         </div>
@@ -100,7 +105,7 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
                 Un método de cuatro pasos, con revisión humana donde la IA puede equivocarse.
               </p>
             </div>
-            <SeeMore label="Ver el método completo" onClick={() => onNavigate('diferencial')} id="home-ver-metodo" />
+            <SeeMore label="Ver el método completo" to="diferencial" onNavigate={onNavigate} id="home-ver-metodo" />
           </div>
           <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 list-none p-0 m-0">
             {BLUEPRINT_STEPS.map((step) => (
@@ -123,13 +128,14 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
               Cuéntamelo en unas líneas y te respondo en menos de 24 horas laborables con una primera propuesta.
             </p>
           </div>
-          <button
-            onClick={() => onNavigate('contacto')}
+          <PageLink
+            to="contacto"
+            onNavigate={onNavigate}
             id="home-cta-contacto"
             className="shrink-0 bg-copper hover:opacity-90 text-white text-base font-medium px-6 py-3 rounded transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper cursor-pointer"
           >
             Consultar proyecto
-          </button>
+          </PageLink>
         </div>
       </section>
     </>
