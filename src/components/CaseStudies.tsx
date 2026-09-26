@@ -13,12 +13,25 @@ function LiveLink({ url, className = '' }: { url?: string; className?: string })
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-1 text-xs font-medium text-copper hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded ${className}`}
+      className={`inline-flex items-center gap-1 text-sm font-medium text-copper hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded ${className}`}
     >
       Ver en vivo
       <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
       <span className="sr-only">(se abre en otra pestaña)</span>
     </a>
+  );
+}
+
+/** Estado del proyecto ("Producto propio · En uso real"…). */
+function StatusBadge({ label, strong = false }: { label: string; strong?: boolean }) {
+  return (
+    <span
+      className={`self-start text-xs font-semibold px-2.5 py-1 rounded-full ${
+        strong ? 'bg-navy text-white' : 'bg-copper/10 text-copper'
+      }`}
+    >
+      {label}
+    </span>
   );
 }
 
@@ -32,7 +45,8 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
   const lastActiveElementRef = useRef<HTMLElement | null>(null);
 
   const featured = CASE_STUDIES.find((c) => c.featured) ?? CASE_STUDIES[0];
-  const otherCases = CASE_STUDIES.filter((c) => c.id !== featured.id);
+  const mainCases = CASE_STUDIES.filter((c) => c.id !== featured.id && c.scaleType !== 'internal-tool');
+  const internalTools = CASE_STUDIES.filter((c) => c.id !== featured.id && c.scaleType === 'internal-tool');
 
   // Manejo accesible del modal: tecla Escape, retorno de foco y bloqueo de scroll
   useEffect(() => {
@@ -60,175 +74,105 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
   }, [selectedCase]);
 
   return (
-    <section className="relative py-20 border-b border-steel/30 bg-near-white overflow-hidden" id="proyectos">
-      {/* Fondo de circuito impreso decorativo sin invertir */}
-      <CircuitBackground layout={secondaryCircuitLayout} flip={false} opacity={0.10} />
+    <section className="relative py-20 sm:py-24 bg-near-white overflow-hidden" id="proyectos">
+      <CircuitBackground layout={secondaryCircuitLayout} flip={false} opacity={0.08} />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="max-w-3xl mb-14">
-          <h2 className="text-2xl sm:text-3xl font-bold text-navy tracking-tight mb-4">
-            Productos, proyectos y propuestas técnicas
-          </h2>
-          <p className="text-base text-mid-gray leading-relaxed">
-            Productos propios, automatizaciones en uso y proyectos para clientes, cada uno con su estado real: desde prototipos presentados hasta herramientas en producción.
+        <div className="max-w-2xl mb-14">
+          <h1 className="text-3xl sm:text-4xl font-bold text-navy tracking-tight mb-4">Proyectos</h1>
+          <p className="text-lg text-mid-gray leading-relaxed">
+            Productos propios y trabajos para clientes, cada uno con su estado real. Abre cualquier caso para ver cómo está construido.
           </p>
         </div>
 
-        {/* 1. CASO PRINCIPAL DESTACADO */}
-        <div className="mb-12 border-2 border-slate bg-white rounded-lg p-6 sm:p-10 shadow-xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-7">
-              <div className="flex flex-wrap items-center gap-3 mb-3">
-                <span className="text-xs font-semibold px-2.5 py-1 rounded bg-navy text-white">
-                  {featured.scaleLabel}
-                </span>
-                <span className="text-xs font-medium text-mid-gray">
-                  {featured.category}
-                </span>
-              </div>
-
-              <h3 className="text-2xl sm:text-3xl font-bold text-navy mb-3">
-                {featured.name}
-              </h3>
-
-              <div className="text-xs text-slate font-medium mb-4">
-                {featured.clientContext} <LiveLink url={featured.liveUrl} className="ml-1" />
-              </div>
-
-              <p className="text-navy/90 text-base leading-relaxed mb-6">
-                {featured.summary}
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-                {featured.keyHighlights.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-navy">
-                    <span className="mt-1 w-3.5 h-3.5 rounded-full bg-slate text-white flex items-center justify-center shrink-0">
-                      <span className="w-1.5 h-1.5 rounded-full bg-white" />
-                    </span>
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-steel/40">
+        {/* Caso destacado */}
+        <article className="mb-8 bg-white rounded-xl shadow-xs ring-1 ring-steel/40 overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            <div className="lg:col-span-7 p-7 sm:p-10 flex flex-col">
+              <StatusBadge label={featured.scaleLabel} strong />
+              <h2 className="text-2xl sm:text-3xl font-bold text-navy mt-4 mb-4">{featured.name}</h2>
+              <p className="text-lg text-mid-gray leading-relaxed mb-8">{featured.summary}</p>
+              <div className="mt-auto flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => setSelectedCase(featured)}
-                  className="bg-copper hover:opacity-90 text-white text-sm font-medium px-4 py-2.5 rounded transition-opacity shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper cursor-pointer"
+                  className="bg-copper hover:opacity-90 text-white text-sm font-medium px-5 py-3 rounded-lg transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper cursor-pointer"
                   id={`inspect-case-${featured.id}`}
                 >
-                  {featured.ctaLabel ?? 'Ver arquitectura y solución'}
+                  Ver el caso
                 </button>
-                <button
-                  onClick={() => onSelectProjectForDiscussion(featured.name)}
-                  className="border border-slate bg-transparent hover:bg-slate/5 text-navy text-sm font-medium px-4 py-2.5 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
-                  id={`consult-like-${featured.id}`}
-                >
-                  Consultar proyecto similar
-                </button>
+                <LiveLink url={featured.liveUrl} />
               </div>
             </div>
 
-            {/* Panel de especificación técnica */}
-            <div className="lg:col-span-5 bg-navy text-white p-6 rounded border border-slate flex flex-col justify-between h-full">
-              <div>
-                <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate">
-                  <span className="text-xs font-semibold text-steel tracking-wide">
-                    {featured.specPanel?.title ?? 'ESPECIFICACIÓN TÉCNICA'}
-                  </span>
-                  {featured.specPanel?.badge && (
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-copper" />
-                      <span className="text-[11px] text-steel">{featured.specPanel.badge}</span>
-                    </div>
-                  )}
-                </div>
-
-                <div className="space-y-3 mb-6">
-                  {(featured.specPanel?.items ?? featured.architecturePoints.map((text) => ({ title: '', text }))).map((item, idx) => (
-                    <div key={idx} className="p-3 bg-slate/40 rounded border border-slate text-xs">
-                      {item.title && <div className="text-steel font-semibold mb-1">{item.title}</div>}
-                      <div className="text-near-white/85">{item.text}</div>
-                    </div>
-                  ))}
-                </div>
+            <div className="lg:col-span-5 bg-navy text-white p-7 sm:p-10">
+              <div className="text-xs font-semibold text-steel tracking-wide mb-5">
+                {featured.specPanel?.title ?? 'CÓMO FUNCIONA'}
               </div>
-
-              <div>
-                <div className="text-[11px] text-steel font-semibold mb-2">Stack implementado:</div>
-                <div className="flex flex-wrap gap-1.5">
-                  {featured.techStack.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="text-[11px] px-2 py-0.5 rounded bg-slate text-near-white border border-steel/20"
-                    >
-                      {tech}
+              <ol className="space-y-5 list-none p-0 m-0">
+                {(featured.specPanel?.items ?? featured.architecturePoints.map((text) => ({ title: '', text }))).map((item, idx) => (
+                  <li key={idx} className="flex gap-4">
+                    <span className="w-7 h-7 rounded-full bg-copper/20 text-copper text-xs font-bold flex items-center justify-center shrink-0">
+                      {idx + 1}
                     </span>
-                  ))}
-                </div>
-              </div>
+                    <div className="text-sm leading-relaxed">
+                      {item.title && <div className="font-semibold text-white">{item.title.replace(/:$/, '')}</div>}
+                      <div className="text-near-white/75">{item.text}</div>
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
-        </div>
+        </article>
 
-        {/* Resto de casos */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {otherCases.map((project) => (
-            <div key={project.id} className="border border-steel/70 bg-white rounded-lg p-6 sm:p-7 flex flex-col justify-between shadow-xs">
-              <div>
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded bg-near-white border border-steel/40 text-slate">
-                    {project.scaleLabel}
+        {/* Productos y clientes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          {mainCases.map((project) => (
+            <article key={project.id} className="bg-white rounded-xl p-7 shadow-xs ring-1 ring-steel/40 flex flex-col">
+              <StatusBadge label={project.scaleLabel} />
+              <h2 className="text-xl font-bold text-navy mt-4 mb-3">{project.name}</h2>
+              <p className="text-base text-mid-gray leading-relaxed mb-5">{project.summary}</p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {project.techStack.slice(0, 3).map((tech) => (
+                  <span key={tech} className="text-xs px-2.5 py-1 rounded-md bg-near-white text-slate">
+                    {tech}
                   </span>
-                  <span className="text-xs text-mid-gray">{project.category}</span>
-                </div>
-
-                <h3 className="text-xl font-bold text-navy mb-2">{project.name}</h3>
-                <p className="text-xs text-mid-gray mb-4">
-                  {project.clientContext} <LiveLink url={project.liveUrl} className="ml-1" />
-                </p>
-                <p className="text-sm text-navy leading-relaxed mb-5">{project.summary}</p>
-
-                <div className="space-y-2 mb-6">
-                  {project.keyHighlights.slice(0, 3).map((hl, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs text-navy">
-                      <span className="mt-0.5 w-1.5 h-1.5 rounded-full bg-slate shrink-0" />
-                      <span>{hl}</span>
-                    </div>
-                  ))}
-                </div>
+                ))}
               </div>
-
-              <div>
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {project.techStack.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="text-[11px] px-2 py-0.5 rounded bg-near-white text-slate border border-steel/40"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => setSelectedCase(project)}
-                    className="flex-1 text-center border border-slate hover:bg-slate/5 text-navy text-xs font-medium py-2 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
-                    id={`inspect-case-${project.id}`}
-                  >
-                    {project.ctaLabel ?? 'Ver arquitectura'}
-                  </button>
-                  <button
-                    onClick={() => onSelectProjectForDiscussion(project.name)}
-                    className="text-xs text-copper hover:underline font-medium px-2 py-2 cursor-pointer"
-                  >
-                    Consultar similar
-                  </button>
-                </div>
+              <div className="mt-auto flex items-center gap-5">
+                <button
+                  onClick={() => setSelectedCase(project)}
+                  className="text-sm font-medium text-navy border border-slate/60 hover:border-navy px-4 py-2 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
+                  id={`inspect-case-${project.id}`}
+                >
+                  Ver el caso
+                </button>
+                <LiveLink url={project.liveUrl} />
               </div>
-            </div>
+            </article>
           ))}
         </div>
+
+        {/* Automatizaciones propias: fila compacta */}
+        {internalTools.length > 0 && (
+          <div>
+            <h2 className="text-xl font-bold text-navy mb-2">Automatizaciones propias</h2>
+            <p className="text-base text-mid-gray mb-6">Las uso a diario en EG Solutions; también se pueden adaptar a tu empresa.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {internalTools.map((tool) => (
+                <button
+                  key={tool.id}
+                  onClick={() => setSelectedCase(tool)}
+                  className="text-left bg-white/70 hover:bg-white rounded-xl p-5 ring-1 ring-steel/30 hover:ring-slate/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
+                  id={`inspect-case-${tool.id}`}
+                >
+                  <span className="block text-base font-semibold text-navy mb-1">{tool.name}</span>
+                  <span className="block text-sm text-mid-gray leading-relaxed">{tool.summary}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Modal accesible de inspección técnica */}
@@ -251,6 +195,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
                 <h3 id="case-modal-title" className="text-xl sm:text-2xl font-bold text-navy">
                   {selectedCase.name}
                 </h3>
+                <p className="text-sm text-mid-gray mt-2">{selectedCase.clientContext}</p>
               </div>
               <button
                 ref={modalCloseButtonRef}

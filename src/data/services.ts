@@ -3,44 +3,41 @@ import { ServiceLine } from '../types';
 export const SERVICE_LINES: ServiceLine[] = [
   {
     id: 'plataformas-web',
-    title: 'Plataformas Web a Medida',
+    title: 'Plataformas web a medida',
     summary:
-      'Desarrollo de sitios y aplicaciones web construidas específicamente para el flujo operativo de tu negocio, sin plantillas rígidas ni código inflado.',
-    deliverables: [
-      'Cotizadores dinámicos con desglose instantáneo de precios y condiciones',
-      'Sistemas de reservas con validación de inventario y disponibilidad en tiempo real',
-      'Catálogos interactivos con filtrado reactivo y gestión de variantes',
-      'Paneles de administración internos con métricas clave y exportación de datos'
+      'Si tu negocio funciona con hojas de cálculo, WhatsApp y herramientas que no encajan, te construyo la web o la herramienta interna que sigue tu forma de trabajar.',
+    examples: [
+      'Web profesional que convierte visitas en clientes, con el formulario conectado a tu correo o a una hoja de cálculo',
+      'Cotizador o sistema de reservas propio, sin pagar suscripciones que no se adaptan a ti',
+      'Panel interno para ver pedidos, clientes o cifras en un solo sitio',
     ],
-    bestFor: 'Negocios que necesitan digitalizar ventas o gestión sin la fricción de herramientas genéricas de suscripción que no encajan en su modelo.',
-    technicalDetails: 'Construido en TypeScript con React, Tailwind CSS y backend en Node.js o Firebase. Código tipado de punta a punta, tiempos de carga inferiores a 1 segundo y foco absoluto en usabilidad móvil y escritorio.'
+    inquiry: 'Plataformas Web',
+    cta: 'Consultar una web',
   },
   {
     id: 'automatizaciones',
-    title: 'Automatizaciones de Procesos',
+    title: 'Automatización de procesos',
     summary:
-      'Orquestación de tareas repetitivas entre diferentes herramientas y sistemas mediante n8n, webhooks y APIs, eliminando el trabajo manual propenso a errores.',
-    deliverables: [
-      'Extracción y estructuración de datos desde facturas, albaranes, recibos y PDFs',
-      'Sincronización bidireccional entre CRM, ERP, hojas de cálculo y pasarelas de pago',
-      'Alertas automáticas en mensajería interna (Slack, Teams, WhatsApp) con botones de acción',
-      'Tratamiento, validación y formateo de datos masivos antes de su almacenamiento'
+      'Si tu equipo copia datos de un sitio a otro o revisa documentos a mano cada semana, eso se puede automatizar para que ocurra solo y sin errores.',
+    examples: [
+      'Pasar los datos de facturas, albaranes o PDFs a Excel o a tu sistema',
+      'Conectar CRM, hojas de cálculo, correo y pagos para que se actualicen solos',
+      'Avisos por WhatsApp, Slack o correo cuando algo necesita tu atención',
     ],
-    bestFor: 'Equipos que pierden horas semanales copiando datos entre plataformas o procesando documentos en papel y hojas de cálculo.',
-    technicalDetails: 'Flujos implementados en servidores privados de n8n o funciones serverless. Control de errores con reintentos exponenciales, registro detallado de eventos para auditoría y trazabilidad completa de cada ejecución.'
+    inquiry: 'Automatizaciones',
+    cta: 'Consultar una automatización',
   },
   {
     id: 'agentes-ia',
-    title: 'Agentes de IA y LLM Aplicados',
+    title: 'Agentes de IA',
     summary:
-      'Implementación de agentes inteligentes integrados en tus herramientas cotidianas para analizar información, redactar respuestas fundamentadas y asistir al equipo humano.',
-    deliverables: [
-      'Sistemas RAG (Retrieval-Augmented Generation) conectados a la base de conocimiento o manuales internos de tu empresa',
-      'Pipelines de extracción y clasificación inteligente de consultas o solicitudes de clientes',
-      'Módulos de validación y control de coherencia en procesos con supervisión humana (human-in-the-loop)',
-      'Asistentes de primera línea que consultan bases de datos en tiempo real antes de responder'
+      'La IA puede leer, clasificar y redactar por tu equipo, siempre con una persona que revisa lo importante antes de que llegue al cliente.',
+    examples: [
+      'Asistente que responde preguntas usando tus propios manuales y documentos',
+      'Clasificar correos o solicitudes y preparar un borrador de respuesta',
+      'Revisar documentos automáticamente, con aprobación humana antes de enviarlos',
     ],
-    bestFor: 'Empresas que quieren aprovechar modelos de lenguaje para ganar velocidad operativa sin comprometer la precisión ni la privacidad de sus datos.',
-    technicalDetails: 'Integración con modelos de frontera (Google Gemini, OpenAI, Claude) con esquemas de salida forzados (JSON Schema), almacenamiento vectorial seguro y puntos explícitos de revisión humana para decisiones críticas.'
-  }
+    inquiry: 'Agentes de IA',
+    cta: 'Consultar un agente de IA',
+  },
 ];

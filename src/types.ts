@@ -29,9 +29,11 @@ export interface ServiceLine {
   id: string;
   title: string;
   summary: string;
-  deliverables: string[];
-  bestFor: string;
-  technicalDetails: string;
+  /** Tres ejemplos concretos, en lenguaje de cliente. */
+  examples: string[];
+  /** Valor del selector de servicio en el formulario de contacto. */
+  inquiry: string;
+  cta: string;
 }
 
 export interface ContactFormData {
@@ -56,7 +58,6 @@ export interface BlueprintStep {
   title: string;
   tag: string;
   desc: string;
-  detail: string;
   isCritical?: boolean;
 }
 
