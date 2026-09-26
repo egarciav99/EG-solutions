@@ -35,7 +35,7 @@ export function Footer({ onNavigate }: FooterProps) {
                     onNavigate={onNavigate}
                     className="text-steel hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
                   >
-                    Líneas de servicio
+                    Servicios
                   </PageLink>
                 </li>
                 <li>
@@ -44,7 +44,7 @@ export function Footer({ onNavigate }: FooterProps) {
                     onNavigate={onNavigate}
                     className="text-steel hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
                   >
-                    Proyectos y propuestas
+                    Proyectos
                   </PageLink>
                 </li>
                 <li>
@@ -53,7 +53,7 @@ export function Footer({ onNavigate }: FooterProps) {
                     onNavigate={onNavigate}
                     className="text-steel hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
                   >
-                    Cómo trabajo (Rigor técnico)
+                    Cómo trabajo
                   </PageLink>
                 </li>
                 <li>
@@ -62,7 +62,7 @@ export function Footer({ onNavigate }: FooterProps) {
                     onNavigate={onNavigate}
                     className="text-steel hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
                   >
-                    Iniciar consulta directa
+                    Contacto
                   </PageLink>
                 </li>
                 <li>

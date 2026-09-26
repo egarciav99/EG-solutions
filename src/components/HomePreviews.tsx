@@ -48,10 +48,10 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
                 key={s.id}
                 to="servicios"
                 onNavigate={onNavigate}
-                className="block text-left bg-white border border-steel/60 rounded-lg p-6 shadow-xs hover:border-slate transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
+                className="block text-left bg-white rounded-xl p-6 shadow-xs ring-1 ring-steel/40 hover:ring-slate/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
               >
                 <h3 className="text-lg font-bold text-navy mb-2">{s.title}</h3>
-                <p className="text-sm text-mid-gray leading-relaxed">{s.summary}</p>
+                <p className="text-base text-mid-gray leading-relaxed">{s.summary}</p>
               </PageLink>
             ))}
           </div>
@@ -76,8 +76,8 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
                 key={c.id}
                 to="proyectos"
                 onNavigate={onNavigate}
-                className={`block text-left rounded-lg p-6 shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer ${
-                  idx === 0 ? 'bg-navy text-white border border-slate hover:border-copper' : 'bg-white border border-steel/60 hover:border-slate'
+                className={`block text-left rounded-xl p-6 shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer ${
+                  idx === 0 ? 'bg-navy text-white ring-1 ring-slate hover:ring-copper' : 'bg-white ring-1 ring-steel/40 hover:ring-slate/60'
                 }`}
               >
                 <span
@@ -109,7 +109,7 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
           </div>
           <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 list-none p-0 m-0">
             {BLUEPRINT_STEPS.map((step) => (
-              <li key={step.id} className="bg-white border border-steel/60 rounded-lg p-5 shadow-xs">
+              <li key={step.id} className="bg-white rounded-xl p-5 shadow-xs ring-1 ring-steel/40">
                 <span className="text-xs font-semibold text-copper">Paso {step.id + 1} · {step.tag}</span>
                 <h3 className="text-base font-bold text-navy mt-1 mb-2">{step.title}</h3>
                 <p className="text-sm text-mid-gray leading-relaxed">{step.desc}</p>
