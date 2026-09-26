@@ -78,7 +78,7 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
                 <div className="flex items-center gap-2 min-w-0">
                   <div className="w-2.5 h-2.5 rounded-full bg-copper shrink-0" />
                   <span className="text-xs font-semibold tracking-wide text-steel truncate">
-                    PRODUCTO PROPIO · {featured.name.split(' — ')[0]}
+                    PRODUCTO PROPIO · {featured.name.split(' · ')[0]}
                   </span>
                 </div>
                 <span className="text-xs text-steel/80 shrink-0">PDF → Excel</span>

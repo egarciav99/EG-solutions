@@ -71,7 +71,7 @@ export async function sendLeadNotification(lead: LeadData): Promise<void> {
       <div style="background-color: #ffffff; border-left: 4px solid #3b82f6; padding: 12px; margin: 8px 0; font-size: 14px; white-space: pre-wrap;">${lead.details}</div>
 
       <p style="font-size: 12px; color: #64748b; margin-top: 24px; border-top: 1px solid #e2e8f0; padding-top: 8px;">
-        EG Solutions — Notificación automática del sistema
+        EG Solutions · Notificación automática del sistema
       </p>
     </div>
   `;
@@ -91,7 +91,7 @@ export async function sendLeadNotification(lead: LeadData): Promise<void> {
 export async function sendClientConfirmation(lead: LeadData): Promise<void> {
   const transporter = getTransporter();
 
-  const subject = `Confirmación de consulta: ${lead.serviceCategory} — EG Solutions`;
+  const subject = `Confirmación de consulta: ${lead.serviceCategory} · EG Solutions`;
 
   const htmlContent = `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #2b3242; max-width: 600px; margin: 0 auto; line-height: 1.6;">
@@ -124,7 +124,7 @@ export async function sendClientConfirmation(lead: LeadData): Promise<void> {
   `;
 
   await transporter.sendMail({
-    from: `"Elier Garcia — EG Solutions" <${process.env.GMAIL_USER}>`,
+    from: `"Elier Garcia · EG Solutions" <${process.env.GMAIL_USER}>`,
     to: lead.email,
     subject,
     html: htmlContent,

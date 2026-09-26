@@ -114,7 +114,7 @@ export function Footer({ onNavigate }: FooterProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded"
-              aria-label="Beca aprobada por mentorDay — visitar mentorday.es"
+              aria-label="Beca aprobada por mentorDay. Visitar mentorday.es"
             >
               <img
                 src="/sello-mentorday.png"
