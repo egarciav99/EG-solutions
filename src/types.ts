@@ -15,6 +15,8 @@ export interface ProjectCase {
   featured?: boolean;
   /** Texto del botón que abre el detalle técnico. */
   ctaLabel?: string;
+  /** Web o demo en producción, si es pública. */
+  liveUrl?: string;
   /** Panel lateral del caso destacado. */
   specPanel?: {
     title: string;
