@@ -1,9 +1,26 @@
 import { useState, useEffect, useRef } from 'react';
 import { CASE_STUDIES } from '../data/projects';
 import { ProjectCase } from '../types';
-import { X } from 'lucide-react';
+import { ExternalLink, X } from 'lucide-react';
 import { secondaryCircuitLayout } from '../data/circuitLayouts';
 import { CircuitBackground } from './CircuitBackground';
+
+/** Enlace a la web en producción de un caso (solo si es pública). */
+function LiveLink({ url, className = '' }: { url?: string; className?: string }) {
+  if (!url) return null;
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center gap-1 text-xs font-medium text-copper hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded ${className}`}
+    >
+      Ver en vivo
+      <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+      <span className="sr-only">(se abre en otra pestaña)</span>
+    </a>
+  );
+}
 
 interface CaseStudiesProps {
   onSelectProjectForDiscussion: (projectName: string) => void;
@@ -75,7 +92,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
               </h3>
 
               <div className="text-xs text-slate font-medium mb-4">
-                {featured.clientContext}
+                {featured.clientContext} <LiveLink url={featured.liveUrl} className="ml-1" />
               </div>
 
               <p className="text-navy/90 text-base leading-relaxed mb-6">
@@ -166,7 +183,9 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
                 </div>
 
                 <h3 className="text-xl font-bold text-navy mb-2">{project.name}</h3>
-                <p className="text-xs text-mid-gray mb-4">{project.clientContext}</p>
+                <p className="text-xs text-mid-gray mb-4">
+                  {project.clientContext} <LiveLink url={project.liveUrl} className="ml-1" />
+                </p>
                 <p className="text-sm text-navy leading-relaxed mb-5">{project.summary}</p>
 
                 <div className="space-y-2 mb-6">
@@ -296,6 +315,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
             </div>
 
             <div className="mt-8 pt-4 border-t border-steel/40 flex flex-wrap items-center justify-end gap-3">
+              <LiveLink url={selectedCase.liveUrl} className="mr-auto" />
               <button
                 onClick={() => setSelectedCase(null)}
                 className="px-4 py-2 text-xs font-medium text-mid-gray hover:text-navy transition-colors cursor-pointer"
