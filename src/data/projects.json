@@ -87,16 +87,16 @@
     "name": "PDF Technical Assistant — Consulta tus documentos con IA",
     "category": "Agentes IA · RAG",
     "scaleType": "own-product",
-    "scaleLabel": "Producto propio · En desarrollo activo",
-    "clientContext": "Producto propio de EG Solutions: un asistente que responde preguntas usando solo la documentación técnica que sube cada usuario.",
-    "summary": "Subes un PDF técnico, obtienes un resumen y conversas con él. Cada respuesta se apoya en fragmentos del propio documento.",
+    "scaleLabel": "Producto propio · Multiempresa, en desarrollo activo",
+    "clientContext": "Producto propio de EG Solutions: un asistente que cada empresa usa con su propia documentación técnica, con sus usuarios, su marca y su especialidad.",
+    "summary": "Cada empresa sube sus PDF técnicos, obtiene resúmenes y conversa con ellos. Las respuestas se apoyan solo en sus documentos y nadie ve los de otra empresa.",
     "problem": "La documentación técnica está repartida en PDFs largos y buscar un dato concreto (una especificación, un límite, un procedimiento) lleva tiempo y genera errores.",
-    "solution": "Cada documento se anonimiza, se trocea por secciones y se indexa con embeddings en una base vectorial. Un agente con Gemini busca en el documento mediante function calling y responde solo con lo que encuentra; si no hay evidencia, lo dice.",
+    "solution": "Cada documento se anonimiza, se trocea por secciones y se indexa con embeddings en una base vectorial aislada por empresa. Un agente con Gemini busca en los documentos mediante function calling y responde solo con lo que encuentra, con el enfoque de la especialidad de la empresa; si no hay evidencia, lo dice. Se entrega como servicio o instalado en la empresa con Docker.",
     "keyHighlights": [
-      "Anonimización de datos personales antes de indexar el documento",
-      "Búsqueda vectorial con pgvector y aislamiento de datos por usuario (RLS)",
-      "Agente que responde solo con evidencia del documento, con memoria de la conversación",
-      "Evolución de un workflow de n8n multiproveedor a Supabase Edge Functions"
+      "Multiempresa: roles de superadmin, admin y usuario, acceso por invitación y chats privados",
+      "Aislamiento por empresa con RLS en tablas, archivos y búsqueda vectorial",
+      "Anonimización de datos personales antes de indexar y respuestas solo con evidencia",
+      "Entrega como SaaS o con Docker; interfaz en español e inglés; pruebas E2E automatizadas"
     ],
     "techStack": [
       "React",
@@ -104,12 +104,14 @@
       "Supabase Edge Functions",
       "pgvector",
       "Gemini (embeddings y chat)",
-      "Vitest"
+      "Docker",
+      "Vitest + Playwright"
     ],
     "architecturePoints": [
       "Ingesta: PDF → texto → redacción de datos personales → fragmentos por sección → embeddings → pgvector",
-      "Consulta: el agente llama a una herramienta de búsqueda filtrada por documento y usuario",
-      "Políticas RLS en todas las tablas; las claves de servicio solo viven en las Edge Functions"
+      "Consulta: el agente llama a una herramienta de búsqueda filtrada por empresa y documento",
+      "Políticas RLS por empresa en tablas y Storage; las claves de servicio solo viven en las Edge Functions",
+      "Configuración en tiempo de ejecución (config.json) para instalarlo en la empresa sin recompilar"
     ],
     "ctaLabel": "Ver arquitectura RAG",
     "liveUrl": "https://pdf-tech-assistant2.vercel.app"
