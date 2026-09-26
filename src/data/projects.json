@@ -79,7 +79,8 @@
       "La URL de callback sale de la configuración del servidor, nunca de la petición del cliente",
       "Limpieza posterior del texto generado para eliminar marcas típicas de la IA"
     ],
-    "ctaLabel": "Ver arquitectura"
+    "ctaLabel": "Ver arquitectura",
+    "liveUrl": "https://coverletter2.vercel.app"
   },
   {
     "id": "pdf-assistant",
@@ -110,7 +111,8 @@
       "Consulta: el agente llama a una herramienta de búsqueda filtrada por documento y usuario",
       "Políticas RLS en todas las tablas; las claves de servicio solo viven en las Edge Functions"
     ],
-    "ctaLabel": "Ver arquitectura RAG"
+    "ctaLabel": "Ver arquitectura RAG",
+    "liveUrl": "https://pdf-tech-assistant2.vercel.app"
   },
   {
     "id": "fidelizacion",
@@ -140,6 +142,39 @@
       "Propuesto para producción: QR de un solo uso con expiración y transacciones atómicas para impedir el doble canje"
     ],
     "ctaLabel": "Ver demo y arquitectura propuesta"
+  },
+  {
+    "id": "carolina-guijarro",
+    "name": "Carolina Guijarro — Web profesional",
+    "category": "Plataforma Web & Automatización",
+    "scaleType": "small-business",
+    "scaleLabel": "Cliente · En producción",
+    "clientContext": "Web para Carolina Guijarro, consultora independiente de ingeniería de equipos para pymes en crecimiento.",
+    "summary": "Web de cuatro páginas que explica su método y convierte las visitas en contactos, con el formulario conectado a una automatización que los ordena y avisa sola.",
+    "problem": "Una profesional independiente necesita que su web transmita su propuesta con claridad y que cada contacto quede registrado y le llegue al momento, sin revisar formularios a mano ni perder consultas.",
+    "solution": "Web en React con cuatro páginas y textos orientados a conversión. El formulario valida los datos y el consentimiento de privacidad y los envía a un workflow de n8n que guarda cada contacto en Google Sheets y le manda un email con su marca, con los datos y un enlace a la hoja.",
+    "keyHighlights": [
+      "Cuatro páginas con rutas reales: inicio, sobre mí, servicios y contacto",
+      "Formulario con validación y consentimiento de privacidad",
+      "Cada contacto se guarda en Google Sheets y genera un email con su marca (Resend)",
+      "Analítica con Vercel Analytics y aviso legal y de privacidad"
+    ],
+    "techStack": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "n8n",
+      "Google Sheets",
+      "Resend"
+    ],
+    "architecturePoints": [
+      "SPA estática en Vercel con rutas reales (History API)",
+      "Formulario → webhook de n8n → fila en Google Sheets + email HTML con Resend → respuesta a la web",
+      "Credenciales de Sheets y correo a nombre de la clienta; el workflow lo aloja EG Solutions"
+    ],
+    "ctaLabel": "Ver cómo funciona",
+    "liveUrl": "https://carolinaguijarro.es"
   },
   {
     "id": "linkedin-engine",
