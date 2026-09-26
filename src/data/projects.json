@@ -2,7 +2,7 @@
   {
     "id": "coreit",
     "featured": true,
-    "name": "CoreIT — Hub de automatizaciones",
+    "name": "CoreIT · Hub de automatizaciones",
     "category": "Automatización & Extracción IA",
     "scaleType": "own-product",
     "scaleLabel": "Producto propio · Prototipo presentado",
@@ -50,7 +50,7 @@
   },
   {
     "id": "covercraft",
-    "name": "CoverCraft — Cartas de presentación con IA",
+    "name": "CoverCraft · Cartas de presentación con IA",
     "category": "SaaS propio · IA generativa",
     "scaleType": "own-product",
     "scaleLabel": "Producto propio · En uso real",
@@ -84,7 +84,7 @@
   },
   {
     "id": "pdf-assistant",
-    "name": "PDF Technical Assistant — Consulta tus documentos con IA",
+    "name": "PDF Technical Assistant · Consulta tus documentos con IA",
     "category": "Agentes IA · RAG",
     "scaleType": "own-product",
     "scaleLabel": "Producto propio · Multiempresa, en desarrollo activo",
@@ -118,7 +118,7 @@
   },
   {
     "id": "fidelizacion",
-    "name": "Plataforma de fidelización — Activación de marca",
+    "name": "Plataforma de fidelización · Activación de marca",
     "category": "Plataforma Web & Fidelización",
     "scaleType": "brand-campaign",
     "scaleLabel": "Demo presentada · Pendiente de aprobación",
@@ -147,7 +147,7 @@
   },
   {
     "id": "carolina-guijarro",
-    "name": "Carolina Guijarro — Web profesional",
+    "name": "Carolina Guijarro · Web profesional",
     "category": "Plataforma Web & Automatización",
     "scaleType": "small-business",
     "scaleLabel": "Cliente · En producción",
