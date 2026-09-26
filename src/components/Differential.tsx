@@ -6,7 +6,7 @@ import { Check } from 'lucide-react';
 
 const TRAYECTORIA = [
   { when: '2026', title: 'Máster en Business Analytics & IA', detail: 'INESDI (UNIE). Mejor expediente de la promoción.' },
-  { when: '2024 – 2025', title: 'Residente de obra eléctrica', detail: 'Data center de Microsoft (Querétaro) y nave de BMW Group (San Luis Potosí). Hasta 60 personas a cargo.' },
+  { when: '2024 – 2025', title: 'Residente de obra eléctrica', detail: 'Data center de Microsoft (Querétaro): responsable único del frente de exteriores, más de 60 personas. Planta de BMW Group (San Luis Potosí): requisiciones de casi todo el edificio.' },
   { when: '2023 – 2024', title: 'Analista de presupuestos', detail: 'Ofertas técnicas para proyectos industriales, incluida una para Terex ganada y presentada en inglés.' },
   { when: 'Formación', title: 'Grado en Ingeniería Eléctrica', detail: 'TecNM Chihuahua.' },
 ];
@@ -58,7 +58,7 @@ export function Differential() {
             <h2 className="text-xl font-bold text-navy mb-5">Sobre mí</h2>
             <div className="space-y-4 text-base text-mid-gray leading-relaxed">
               <p>
-                Soy {FOUNDER_NAME}, ingeniero eléctrico. Antes del software dirigí obra eléctrica: en un data center de Microsoft en Querétaro pasé en seis meses de recién llegado a responsable del frente, con hasta 60 personas, y en una nave de BMW Group en San Luis Potosí monté un sistema propio para seguir el material de obra.
+                Soy {FOUNDER_NAME}, ingeniero eléctrico. Antes del software dirigí obra eléctrica: en un data center de Microsoft en Querétaro pasé en seis meses de recién llegado a responsable único del frente de exteriores, con más de 60 personas, y en la ampliación de una planta de BMW Group en San Luis Potosí monté un sistema propio para seguir el material de obra que redujo los paros de suministro.
               </p>
               <p>
                 En 2026 terminé el Máster en Business Analytics &amp; IA en INESDI con el mejor expediente de la promoción, y hoy desarrollo software desde Madrid con {BRAND_NAME}. De la obra me traje la forma de trabajar; en software, esos puntos de control son la revisión humana en los flujos con IA.
