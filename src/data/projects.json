@@ -77,19 +77,19 @@
   },
   {
     "id": "covercraft",
-    "name": "CoverCraft · Cartas de presentación con IA",
+    "name": "CoverCraft · Cartas, CV y candidaturas con IA",
     "category": "SaaS propio · IA generativa",
     "scaleType": "own-product",
     "scaleLabel": "Producto propio · En uso real",
-    "clientContext": "Producto propio de EG Solutions, en uso real y en camino a un modelo freemium.",
-    "summary": "Aplicación web que genera una carta de presentación adaptada a cada oferta a partir del CV, editable y exportable a PDF.",
-    "problem": "Adaptar el CV y la carta a cada oferta lleva tiempo, y una carta genérica no pasa los filtros ATS ni convence a quien la lee.",
-    "solution": "La aplicación guarda los CV del usuario y envía cada solicitud a un pipeline asíncrono en n8n: extrae el texto del CV, detecta sus secciones, genera la carta con Gemini siguiendo reglas de tono y de palabras clave, y devuelve el resultado a la app mediante un callback protegido.",
+    "clientContext": "Producto propio de EG Solutions, en uso real con modelo freemium: plan gratis y plan Pro a 4,99 €/mes (el cobro se activa próximamente).",
+    "summary": "Herramienta para buscar empleo: cartas adaptadas a cada oferta, creador de CV, puntuación de encaje, CV adaptado a la oferta, seguimiento de candidaturas y preparación de entrevistas.",
+    "problem": "Adaptar el CV y la carta a cada oferta lleva tiempo, y sin orden es fácil perder el hilo de las candidaturas y llegar a la entrevista sin preparar.",
+    "solution": "Las cartas se generan en un pipeline asíncrono en n8n que lee el CV y devuelve el resultado por un callback protegido. Las funciones del CV (importar desde PDF, puntuación de encaje, CV adaptado y preparación de entrevista) llaman a Gemini desde el servidor con respuestas JSON validadas. Cada candidatura guarda su oferta, su carta, su CV y su preparación.",
     "keyHighlights": [
-      "Parser de CV que detecta secciones en español, inglés, francés y neerlandés",
-      "Generación asíncrona en n8n con modelo de respaldo y callback protegido con secreto",
-      "Editor de texto enriquecido y exportación a PDF con foto y firma",
-      "Datos aislados por usuario con Row Level Security en Supabase"
+      "Creador de CV gratis con importación desde PDF y versión ATS de una columna con texto real",
+      "Puntuación de encaje con la oferta y CV adaptado a cada oferta (Pro), que el usuario revisa antes de guardar",
+      "Seguimiento de candidaturas por estado y preparación de entrevista con preguntas probables",
+      "Cupos mensuales de IA por plan aplicados en el servidor y datos aislados por usuario con RLS"
     ],
     "techStack": [
       "Next.js 16",
@@ -102,9 +102,10 @@
       "TipTap"
     ],
     "architecturePoints": [
-      "Petición → registro pendiente en Supabase → webhook de n8n → callback que guarda la carta y marca el estado como completado",
-      "La URL de callback sale de la configuración del servidor, nunca de la petición del cliente",
-      "Limpieza posterior del texto generado para eliminar marcas típicas de la IA"
+      "Cartas: petición → registro pendiente en Supabase → webhook de n8n → callback que guarda la carta; la URL de callback sale de la configuración del servidor",
+      "CV: Gemini con esquema JSON; si el modelo rechaza la petición, reintenta en modo JSON y después en texto, y la salida siempre se valida",
+      "La oferta y el CV se tratan como datos, nunca como instrucciones, y el texto generado sale sin guiones largos",
+      "Cupos de IA por plan y mes (encaje, CV adaptado, importación y entrevista) aplicados en el servidor"
     ],
     "ctaLabel": "Ver arquitectura",
     "liveUrl": "https://coverletter2.vercel.app"
