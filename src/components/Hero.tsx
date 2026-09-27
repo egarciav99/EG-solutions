@@ -13,7 +13,7 @@ interface HeroProps {
 
 export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps) {
   const featured = CASE_STUDIES.find((c) => c.featured) ?? CASE_STUDIES[0];
-  // Flujo del caso destacado (viene de eg-content); si no tiene, sus puntos de arquitectura.
+  // Flujo del caso destacado (viene de eg-content): en el Hero solo los títulos; el detalle está en Proyectos.
   const flow = featured.hero?.flow ?? featured.architecturePoints.map((text) => ({ title: text, desc: '', isCritical: false }));
 
   return (
@@ -23,7 +23,7 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
       <CircuitBackground layout={heroCircuitLayout} priority={true} />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-start lg:items-center">
           {/* Columna de texto principal */}
           <div className="lg:col-span-7 flex flex-col">
             {/* Pilares de marca desglosados */}
@@ -83,11 +83,11 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
                 {featured.hero?.intro ?? featured.summary}
               </p>
 
-              <ol className="space-y-3 mb-5 list-none p-0 m-0">
+              <ol className="space-y-2 mb-5 list-none p-0 m-0">
                 {flow.map((step, idx) => (
                   <li
                     key={step.title}
-                    className={`p-3 rounded flex items-start gap-3 border ${
+                    className={`px-3 py-2.5 rounded flex items-center gap-3 border ${
                       step.isCritical ? 'bg-slate/70 border-copper' : 'bg-navy border-slate/80'
                     }`}
                   >
@@ -98,10 +98,7 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
                     >
                       {idx + 1}
                     </span>
-                    <div className="flex-1 min-w-0">
-                      <span className="text-xs font-bold text-white block">{step.title}</span>
-                      {step.desc && <span className="text-xs text-steel leading-relaxed">{step.desc}</span>}
-                    </div>
+                    <span className="flex-1 min-w-0 text-sm font-semibold text-white">{step.title}</span>
                   </li>
                 ))}
               </ol>
