@@ -6,8 +6,8 @@ import { Check } from 'lucide-react';
 
 const TRAYECTORIA = [
   { when: '2026', title: 'Máster en Business Analytics & IA', detail: 'INESDI (UNIE). Mejor expediente de la promoción.' },
-  { when: '2024 – 2025', title: 'Residente de obra eléctrica', detail: 'Data center de Microsoft (Querétaro): responsable único del frente de exteriores, más de 60 personas. Planta de BMW Group (San Luis Potosí): requisiciones de casi todo el edificio.' },
-  { when: '2023 – 2024', title: 'Analista de presupuestos', detail: 'Ofertas técnicas para proyectos industriales, incluida una para Terex ganada y presentada en inglés.' },
+  { when: '2024 – 2025', title: 'Supervisor de obra eléctrica', detail: 'Data center de Microsoft (Querétaro): responsable único del frente de exteriores, más de 60 personas. Planta de BMW Group (San Luis Potosí): requisiciones de casi todo el edificio.' },
+  { when: '2023 – 2024', title: 'Técnico de presupuestos', detail: 'Ofertas técnicas para proyectos industriales, incluida una para Terex ganada y presentada en inglés.' },
   { when: 'Formación', title: 'Grado en Ingeniería Eléctrica', detail: 'TecNM Chihuahua.' },
 ];
 
