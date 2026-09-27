@@ -23,6 +23,12 @@ export interface ProjectCase {
     badge: string;
     items: { title: string; text: string }[];
   };
+  /** Tarjeta del Hero cuando el caso es el destacado: etiqueta, frase y flujo en pasos. */
+  hero?: {
+    tag: string;
+    intro: string;
+    flow: { title: string; desc: string; isCritical?: boolean }[];
+  };
 }
 
 export interface ServiceLine {

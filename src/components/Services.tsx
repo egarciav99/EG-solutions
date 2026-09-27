@@ -34,11 +34,11 @@ export function Services({ onSelectServiceForInquiry }: ServicesProps) {
                 <div className="w-11 h-11 rounded-lg bg-copper/10 text-copper flex items-center justify-center mb-5">
                   <Icon className="w-5 h-5" aria-hidden="true" />
                 </div>
-                <h2 className="text-xl font-bold text-navy mb-3">{service.title}</h2>
-                <p className="text-base text-mid-gray leading-relaxed mb-6">{service.summary}</p>
+                <h2 className="card-title text-navy mb-3">{service.title}</h2>
+                <p className="card-text text-mid-gray mb-6">{service.summary}</p>
                 <ul className="space-y-3 mb-8 list-none p-0">
                   {service.examples.map((example) => (
-                    <li key={example} className="flex gap-3 text-sm text-navy leading-relaxed">
+                    <li key={example} className="flex gap-3 card-text text-navy">
                       <Check className="w-4 h-4 text-copper shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{example}</span>
                     </li>

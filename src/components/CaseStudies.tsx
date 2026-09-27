@@ -90,8 +90,8 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
           <div className="grid grid-cols-1 lg:grid-cols-12">
             <div className="lg:col-span-7 p-7 sm:p-10 flex flex-col">
               <StatusBadge label={featured.scaleLabel} strong />
-              <h2 className="text-2xl sm:text-3xl font-bold text-navy mt-4 mb-4">{featured.name}</h2>
-              <p className="text-lg text-mid-gray leading-relaxed mb-8">{featured.summary}</p>
+              <h2 className="text-2xl font-bold text-navy mt-4 mb-4">{featured.name}</h2>
+              <p className="text-base text-mid-gray leading-relaxed mb-8">{featured.summary}</p>
               <div className="mt-auto flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => setSelectedCase(featured)}
@@ -114,7 +114,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
                     <span className="w-7 h-7 rounded-full bg-copper/20 text-copper text-xs font-bold flex items-center justify-center shrink-0">
                       {idx + 1}
                     </span>
-                    <div className="text-sm leading-relaxed">
+                    <div className="card-text">
                       {item.title && <div className="font-semibold text-white">{item.title.replace(/:$/, '')}</div>}
                       <div className="text-near-white/75">{item.text}</div>
                     </div>
@@ -130,8 +130,8 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
           {mainCases.map((project) => (
             <article key={project.id} className="bg-white rounded-xl p-7 shadow-xs ring-1 ring-steel/40 flex flex-col">
               <StatusBadge label={project.scaleLabel} />
-              <h2 className="text-xl font-bold text-navy mt-4 mb-3">{project.name}</h2>
-              <p className="text-base text-mid-gray leading-relaxed mb-5">{project.summary}</p>
+              <h2 className="card-title text-navy mt-4 mb-3">{project.name}</h2>
+              <p className="card-text text-mid-gray mb-5">{project.summary}</p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {project.techStack.slice(0, 3).map((tech) => (
                   <span key={tech} className="text-xs px-2.5 py-1 rounded-md bg-near-white text-slate">
@@ -156,8 +156,8 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
         {/* Automatizaciones propias: fila compacta */}
         {internalTools.length > 0 && (
           <div>
-            <h2 className="text-xl font-bold text-navy mb-2">Automatizaciones propias</h2>
-            <p className="text-base text-mid-gray mb-6">Las uso a diario en EG Solutions; también se pueden adaptar a tu empresa.</p>
+            <h2 className="card-title text-navy mb-2">Automatizaciones propias</h2>
+            <p className="card-text text-mid-gray mb-6">Las uso a diario en EG Solutions; también se pueden adaptar a tu empresa.</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {internalTools.map((tool) => (
                 <button
@@ -166,8 +166,8 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
                   className="text-left bg-white/70 hover:bg-white rounded-xl p-5 ring-1 ring-steel/30 hover:ring-slate/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
                   id={`inspect-case-${tool.id}`}
                 >
-                  <span className="block text-base font-semibold text-navy mb-1">{tool.name}</span>
-                  <span className="block text-sm text-mid-gray leading-relaxed">{tool.summary}</span>
+                  <span className="block card-title text-navy mb-1">{tool.name}</span>
+                  <span className="block card-text text-mid-gray">{tool.summary}</span>
                 </button>
               ))}
             </div>
