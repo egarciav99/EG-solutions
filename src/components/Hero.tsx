@@ -10,16 +10,11 @@ interface HeroProps {
   onExploreProjectsClick: () => void;
 }
 
-/** Flujo real del caso destacado (CoreIT), en cuatro pasos. */
-const HERO_FLOW = [
-  { title: 'Subes el PDF técnico', desc: 'El procedimiento tal como lo tienes hoy.' },
-  { title: 'La IA extrae secciones, pasos y campos', desc: 'Dos extracciones en paralelo y un modelo que las audita.' },
-  { title: 'Revisión humana antes de generar', desc: 'Corriges textos, campos y límites. Nada sale sin tu visto bueno.', isCritical: true },
-  { title: 'Excel listo para capturar', desc: 'Hoja protegida con las celdas de captura desbloqueadas.' },
-];
 
 export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps) {
   const featured = CASE_STUDIES.find((c) => c.featured) ?? CASE_STUDIES[0];
+  // Flujo del caso destacado (viene de eg-content); si no tiene, sus puntos de arquitectura.
+  const flow = featured.hero?.flow ?? featured.architecturePoints.map((text) => ({ title: text, desc: '', isCritical: false }));
 
   return (
     <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 border-b border-steel/30 overflow-hidden bg-near-white" id="top">
@@ -74,22 +69,22 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
           {/* Columna derecha: producto propio destacado */}
           <div className="lg:col-span-5 lg:pl-4">
             <div className="bg-navy text-white rounded-lg p-5 sm:p-6 border border-slate shadow-sm">
-              <div className="flex items-center justify-between gap-3 pb-4 mb-4 border-b border-slate">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 pb-4 mb-4 border-b border-slate">
                 <div className="flex items-center gap-2 min-w-0">
                   <div className="w-2.5 h-2.5 rounded-full bg-copper shrink-0" />
-                  <span className="text-xs font-semibold tracking-wide text-steel truncate">
+                  <span className="text-xs font-semibold tracking-wide text-steel">
                     PRODUCTO PROPIO · {featured.name.split(' · ')[0]}
                   </span>
                 </div>
-                <span className="text-xs text-steel/80 shrink-0">PDF → Excel</span>
+                {featured.hero?.tag && <span className="text-xs text-steel/80 shrink-0">{featured.hero.tag}</span>}
               </div>
 
               <p className="text-sm text-near-white/85 leading-relaxed mb-4">
-                Un procedimiento técnico en PDF convertido en una hoja de trabajo Excel, con una persona revisando antes de generar.
+                {featured.hero?.intro ?? featured.summary}
               </p>
 
               <ol className="space-y-3 mb-5 list-none p-0 m-0">
-                {HERO_FLOW.map((step, idx) => (
+                {flow.map((step, idx) => (
                   <li
                     key={step.title}
                     className={`p-3 rounded flex items-start gap-3 border ${
@@ -105,7 +100,7 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
                     </span>
                     <div className="flex-1 min-w-0">
                       <span className="text-xs font-bold text-white block">{step.title}</span>
-                      <span className="text-xs text-steel leading-relaxed">{step.desc}</span>
+                      {step.desc && <span className="text-xs text-steel leading-relaxed">{step.desc}</span>}
                     </div>
                   </li>
                 ))}

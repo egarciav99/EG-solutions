@@ -23,6 +23,12 @@ export interface ProjectCase {
     badge: string;
     items: { title: string; text: string }[];
   };
+  /** Tarjeta del Hero cuando el caso es el destacado: etiqueta, frase y flujo en pasos. */
+  hero?: {
+    tag: string;
+    intro: string;
+    flow: { title: string; desc: string; isCritical?: boolean }[];
+  };
 }
 
 export interface ServiceLine {
@@ -44,7 +50,7 @@ export interface ContactFormData {
 }
 
 /**
- * Pilar visual del tagline — reemplaza el string plano de BRAND_TAGLINE
+ * Pilar visual del tagline: reemplaza el string plano de BRAND_TAGLINE
  * cuando el Hero necesite fragmentarlo en 3 microtags/íconos.
  */
 export interface BrandPillar {
@@ -86,7 +92,7 @@ export interface CircuitLayout {
 
 /**
  * Preparado para Fase 1: estados de ejecución async (webhooks n8n, agentes IA).
- * No se usa todavía — evita `any` implícitos cuando conectemos CTAs a automatizaciones.
+ * No se usa todavía; evita `any` implícitos cuando conectemos CTAs a automatizaciones.
  */
 export type ExecutionState =
   | 'idle'

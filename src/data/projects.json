@@ -1,7 +1,178 @@
 [
   {
-    "id": "coreit",
+    "id": "pdf-assistant",
     "featured": true,
+    "name": "PDF Technical Assistant · Consulta tus documentos con IA",
+    "category": "Agentes IA · RAG",
+    "scaleType": "own-product",
+    "scaleLabel": "Producto propio · Multiempresa, en desarrollo activo",
+    "clientContext": "Producto propio de EG Solutions: un asistente que cada empresa usa con su propia documentación técnica, con sus usuarios, su marca y su especialidad.",
+    "summary": "Cada empresa sube sus PDF técnicos, obtiene resúmenes y conversa con ellos. Las respuestas se apoyan solo en sus documentos y nadie ve los de otra empresa.",
+    "problem": "La documentación técnica está repartida en PDFs largos y buscar un dato concreto (una especificación, un límite, un procedimiento) lleva tiempo y genera errores.",
+    "solution": "Cada documento se anonimiza, se trocea por secciones y se indexa con embeddings en una base vectorial aislada por empresa. Un agente con Gemini busca en los documentos mediante function calling y responde solo con lo que encuentra, con el enfoque de la especialidad de la empresa; si no hay evidencia, lo dice. Se entrega como servicio o instalado en la empresa con Docker.",
+    "keyHighlights": [
+      "Multiempresa: roles de superadmin, admin y usuario, acceso por invitación y chats privados",
+      "Aislamiento por empresa con RLS en tablas, archivos y búsqueda vectorial",
+      "Anonimización de datos personales antes de indexar y respuestas solo con evidencia",
+      "Entrega como SaaS o con Docker; interfaz en español e inglés; pruebas E2E automatizadas"
+    ],
+    "techStack": [
+      "React",
+      "TypeScript",
+      "Supabase Edge Functions",
+      "pgvector",
+      "Gemini (embeddings y chat)",
+      "Docker",
+      "Vitest + Playwright"
+    ],
+    "architecturePoints": [
+      "Ingesta: PDF → texto → redacción de datos personales → fragmentos por sección → embeddings → pgvector",
+      "Consulta: el agente llama a una herramienta de búsqueda filtrada por empresa y documento",
+      "Políticas RLS por empresa en tablas y Storage; las claves de servicio solo viven en las Edge Functions",
+      "Configuración en tiempo de ejecución (config.json) para instalarlo en la empresa sin recompilar"
+    ],
+    "ctaLabel": "Ver arquitectura RAG",
+    "specPanel": {
+      "title": "CÓMO RESPONDE",
+      "badge": "Solo con evidencia",
+      "items": [
+        {
+          "title": "Anonimización:",
+          "text": "Los datos personales se ocultan antes de indexar el documento."
+        },
+        {
+          "title": "Búsqueda por empresa:",
+          "text": "Cada empresa solo busca en sus propios documentos (aislamiento con RLS)."
+        },
+        {
+          "title": "Respuesta con evidencia:",
+          "text": "El agente responde con los fragmentos que encuentra; si no hay evidencia, lo dice."
+        }
+      ]
+    },
+    "hero": {
+      "tag": "PDF → Respuestas",
+      "intro": "Tus documentos técnicos convertidos en un asistente que responde con lo que dicen, y solo con eso.",
+      "flow": [
+        {
+          "title": "Subes tus PDF técnicos",
+          "desc": "Especificaciones, manuales, memorias o catálogos."
+        },
+        {
+          "title": "Se anonimizan y se indexan",
+          "desc": "Los datos personales se ocultan antes de guardar nada."
+        },
+        {
+          "title": "Preguntas en lenguaje normal",
+          "desc": "El asistente busca en tus documentos los fragmentos que responden."
+        },
+        {
+          "title": "Responde solo con tus documentos",
+          "desc": "Si la respuesta no está en ellos, te lo dice en vez de inventar.",
+          "isCritical": true
+        }
+      ]
+    },
+    "liveUrl": "https://pdf-tech-assistant2.vercel.app"
+  },
+  {
+    "id": "covercraft",
+    "name": "CoverCraft · Cartas de presentación con IA",
+    "category": "SaaS propio · IA generativa",
+    "scaleType": "own-product",
+    "scaleLabel": "Producto propio · En uso real",
+    "clientContext": "Producto propio de EG Solutions, en uso real y en camino a un modelo freemium.",
+    "summary": "Aplicación web que genera una carta de presentación adaptada a cada oferta a partir del CV, editable y exportable a PDF.",
+    "problem": "Adaptar el CV y la carta a cada oferta lleva tiempo, y una carta genérica no pasa los filtros ATS ni convence a quien la lee.",
+    "solution": "La aplicación guarda los CV del usuario y envía cada solicitud a un pipeline asíncrono en n8n: extrae el texto del CV, detecta sus secciones, genera la carta con Gemini siguiendo reglas de tono y de palabras clave, y devuelve el resultado a la app mediante un callback protegido.",
+    "keyHighlights": [
+      "Parser de CV que detecta secciones en español, inglés, francés y neerlandés",
+      "Generación asíncrona en n8n con modelo de respaldo y callback protegido con secreto",
+      "Editor de texto enriquecido y exportación a PDF con foto y firma",
+      "Datos aislados por usuario con Row Level Security en Supabase"
+    ],
+    "techStack": [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Supabase (Auth, Storage, RLS)",
+      "n8n",
+      "Google Gemini",
+      "next-intl",
+      "TipTap"
+    ],
+    "architecturePoints": [
+      "Petición → registro pendiente en Supabase → webhook de n8n → callback que guarda la carta y marca el estado como completado",
+      "La URL de callback sale de la configuración del servidor, nunca de la petición del cliente",
+      "Limpieza posterior del texto generado para eliminar marcas típicas de la IA"
+    ],
+    "ctaLabel": "Ver arquitectura",
+    "liveUrl": "https://coverletter2.vercel.app"
+  },
+  {
+    "id": "carolina-guijarro",
+    "name": "Carolina Guijarro · Web profesional",
+    "category": "Plataforma Web & Automatización",
+    "scaleType": "small-business",
+    "scaleLabel": "Cliente · En producción",
+    "clientContext": "Web para Carolina Guijarro, consultora independiente de ingeniería de equipos para pymes en crecimiento.",
+    "summary": "Web de cuatro páginas que explica su método y convierte las visitas en contactos, con el formulario conectado a una automatización que los ordena y avisa sola.",
+    "problem": "Una profesional independiente necesita que su web transmita su propuesta con claridad y que cada contacto quede registrado y le llegue al momento, sin revisar formularios a mano ni perder consultas.",
+    "solution": "Web en React con cuatro páginas y textos orientados a conversión. El formulario valida los datos y el consentimiento de privacidad y los envía a un workflow de n8n que guarda cada contacto en Google Sheets y le manda un email con su marca, con los datos y un enlace a la hoja.",
+    "keyHighlights": [
+      "Cuatro páginas con rutas reales: inicio, sobre mí, servicios y contacto",
+      "Formulario con validación y consentimiento de privacidad",
+      "Cada contacto se guarda en Google Sheets y genera un email con su marca (Resend)",
+      "Analítica con Vercel Analytics y aviso legal y de privacidad"
+    ],
+    "techStack": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "n8n",
+      "Google Sheets",
+      "Resend"
+    ],
+    "architecturePoints": [
+      "SPA estática en Vercel con rutas reales (History API)",
+      "Formulario → webhook de n8n → fila en Google Sheets + email HTML con Resend → respuesta a la web",
+      "Credenciales de Sheets y correo a nombre de la clienta; el workflow lo aloja EG Solutions"
+    ],
+    "ctaLabel": "Ver cómo funciona",
+    "liveUrl": "https://carolinaguijarro.es"
+  },
+  {
+    "id": "fidelizacion",
+    "name": "Plataforma de fidelización · Activación de marca",
+    "category": "Plataforma Web & Fidelización",
+    "scaleType": "brand-campaign",
+    "scaleLabel": "Demo presentada · Pendiente de aprobación",
+    "clientContext": "Demo funcional y propuesta técnica para la activación de una marca de bebidas durante una temporada deportiva, presentada a través de una agencia.",
+    "summary": "Demo web navegable de los tres roles de la campaña y arquitectura propuesta para la versión en producción, sin descarga de app.",
+    "problem": "Las campañas que obligan a descargar una app pierden a gran parte del público, y el canje presencial tiene que evitar tickets duplicados o capturas de pantalla fraudulentas sin complicar el trabajo del personal.",
+    "solution": "La demo recorre el flujo completo: registro, envío del ticket, validación en dos pasos por el personal del punto de venta, catálogo de recompensas y pases de wallet (simulados en la demo). La propuesta técnica define la arquitectura de producción: pases firmados en servidor, antifraude y canjes atómicos.",
+    "keyHighlights": [
+      "Demo navegable de los tres roles: cliente, personal del punto de venta y administración",
+      "Validación del ticket en dos pasos: envío del cliente y aprobación del personal",
+      "Catálogo de recompensas con stock y canje",
+      "Propuesta de producción: pases de Apple y Google Wallet firmados en servidor y QR de un solo uso"
+    ],
+    "techStack": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS"
+    ],
+    "architecturePoints": [
+      "Implementado en la demo: SPA con los tres roles y el estado del flujo completo",
+      "Propuesto para producción: generación de pases .pkpass y tokens de Google Wallet firmados en servidor",
+      "Propuesto para producción: QR de un solo uso con expiración y transacciones atómicas para impedir el doble canje"
+    ],
+    "ctaLabel": "Ver demo y arquitectura propuesta"
+  },
+  {
+    "id": "coreit",
     "name": "CoreIT · Hub de automatizaciones",
     "category": "Automatización & Extracción IA",
     "scaleType": "own-product",
@@ -47,136 +218,6 @@
         }
       ]
     }
-  },
-  {
-    "id": "covercraft",
-    "name": "CoverCraft · Cartas de presentación con IA",
-    "category": "SaaS propio · IA generativa",
-    "scaleType": "own-product",
-    "scaleLabel": "Producto propio · En uso real",
-    "clientContext": "Producto propio de EG Solutions, en uso real y en camino a un modelo freemium.",
-    "summary": "Aplicación web que genera una carta de presentación adaptada a cada oferta a partir del CV, editable y exportable a PDF.",
-    "problem": "Adaptar el CV y la carta a cada oferta lleva tiempo, y una carta genérica no pasa los filtros ATS ni convence a quien la lee.",
-    "solution": "La aplicación guarda los CV del usuario y envía cada solicitud a un pipeline asíncrono en n8n: extrae el texto del CV, detecta sus secciones, genera la carta con Gemini siguiendo reglas de tono y de palabras clave, y devuelve el resultado a la app mediante un callback protegido.",
-    "keyHighlights": [
-      "Parser de CV que detecta secciones en español, inglés, francés y neerlandés",
-      "Generación asíncrona en n8n con modelo de respaldo y callback protegido con secreto",
-      "Editor de texto enriquecido y exportación a PDF con foto y firma",
-      "Datos aislados por usuario con Row Level Security en Supabase"
-    ],
-    "techStack": [
-      "Next.js 16",
-      "React 19",
-      "TypeScript",
-      "Supabase (Auth, Storage, RLS)",
-      "n8n",
-      "Google Gemini",
-      "next-intl",
-      "TipTap"
-    ],
-    "architecturePoints": [
-      "Petición → registro pendiente en Supabase → webhook de n8n → callback que guarda la carta y marca el estado como completado",
-      "La URL de callback sale de la configuración del servidor, nunca de la petición del cliente",
-      "Limpieza posterior del texto generado para eliminar marcas típicas de la IA"
-    ],
-    "ctaLabel": "Ver arquitectura",
-    "liveUrl": "https://coverletter2.vercel.app"
-  },
-  {
-    "id": "pdf-assistant",
-    "name": "PDF Technical Assistant · Consulta tus documentos con IA",
-    "category": "Agentes IA · RAG",
-    "scaleType": "own-product",
-    "scaleLabel": "Producto propio · Multiempresa, en desarrollo activo",
-    "clientContext": "Producto propio de EG Solutions: un asistente que cada empresa usa con su propia documentación técnica, con sus usuarios, su marca y su especialidad.",
-    "summary": "Cada empresa sube sus PDF técnicos, obtiene resúmenes y conversa con ellos. Las respuestas se apoyan solo en sus documentos y nadie ve los de otra empresa.",
-    "problem": "La documentación técnica está repartida en PDFs largos y buscar un dato concreto (una especificación, un límite, un procedimiento) lleva tiempo y genera errores.",
-    "solution": "Cada documento se anonimiza, se trocea por secciones y se indexa con embeddings en una base vectorial aislada por empresa. Un agente con Gemini busca en los documentos mediante function calling y responde solo con lo que encuentra, con el enfoque de la especialidad de la empresa; si no hay evidencia, lo dice. Se entrega como servicio o instalado en la empresa con Docker.",
-    "keyHighlights": [
-      "Multiempresa: roles de superadmin, admin y usuario, acceso por invitación y chats privados",
-      "Aislamiento por empresa con RLS en tablas, archivos y búsqueda vectorial",
-      "Anonimización de datos personales antes de indexar y respuestas solo con evidencia",
-      "Entrega como SaaS o con Docker; interfaz en español e inglés; pruebas E2E automatizadas"
-    ],
-    "techStack": [
-      "React",
-      "TypeScript",
-      "Supabase Edge Functions",
-      "pgvector",
-      "Gemini (embeddings y chat)",
-      "Docker",
-      "Vitest + Playwright"
-    ],
-    "architecturePoints": [
-      "Ingesta: PDF → texto → redacción de datos personales → fragmentos por sección → embeddings → pgvector",
-      "Consulta: el agente llama a una herramienta de búsqueda filtrada por empresa y documento",
-      "Políticas RLS por empresa en tablas y Storage; las claves de servicio solo viven en las Edge Functions",
-      "Configuración en tiempo de ejecución (config.json) para instalarlo en la empresa sin recompilar"
-    ],
-    "ctaLabel": "Ver arquitectura RAG",
-    "liveUrl": "https://pdf-tech-assistant2.vercel.app"
-  },
-  {
-    "id": "fidelizacion",
-    "name": "Plataforma de fidelización · Activación de marca",
-    "category": "Plataforma Web & Fidelización",
-    "scaleType": "brand-campaign",
-    "scaleLabel": "Demo presentada · Pendiente de aprobación",
-    "clientContext": "Demo funcional y propuesta técnica para la activación de una marca de bebidas durante una temporada deportiva, presentada a través de una agencia.",
-    "summary": "Demo web navegable de los tres roles de la campaña y arquitectura propuesta para la versión en producción, sin descarga de app.",
-    "problem": "Las campañas que obligan a descargar una app pierden a gran parte del público, y el canje presencial tiene que evitar tickets duplicados o capturas de pantalla fraudulentas sin complicar el trabajo del personal.",
-    "solution": "La demo recorre el flujo completo: registro, envío del ticket, validación en dos pasos por el personal del punto de venta, catálogo de recompensas y pases de wallet (simulados en la demo). La propuesta técnica define la arquitectura de producción: pases firmados en servidor, antifraude y canjes atómicos.",
-    "keyHighlights": [
-      "Demo navegable de los tres roles: cliente, personal del punto de venta y administración",
-      "Validación del ticket en dos pasos: envío del cliente y aprobación del personal",
-      "Catálogo de recompensas con stock y canje",
-      "Propuesta de producción: pases de Apple y Google Wallet firmados en servidor y QR de un solo uso"
-    ],
-    "techStack": [
-      "React",
-      "TypeScript",
-      "Vite",
-      "Tailwind CSS"
-    ],
-    "architecturePoints": [
-      "Implementado en la demo: SPA con los tres roles y el estado del flujo completo",
-      "Propuesto para producción: generación de pases .pkpass y tokens de Google Wallet firmados en servidor",
-      "Propuesto para producción: QR de un solo uso con expiración y transacciones atómicas para impedir el doble canje"
-    ],
-    "ctaLabel": "Ver demo y arquitectura propuesta"
-  },
-  {
-    "id": "carolina-guijarro",
-    "name": "Carolina Guijarro · Web profesional",
-    "category": "Plataforma Web & Automatización",
-    "scaleType": "small-business",
-    "scaleLabel": "Cliente · En producción",
-    "clientContext": "Web para Carolina Guijarro, consultora independiente de ingeniería de equipos para pymes en crecimiento.",
-    "summary": "Web de cuatro páginas que explica su método y convierte las visitas en contactos, con el formulario conectado a una automatización que los ordena y avisa sola.",
-    "problem": "Una profesional independiente necesita que su web transmita su propuesta con claridad y que cada contacto quede registrado y le llegue al momento, sin revisar formularios a mano ni perder consultas.",
-    "solution": "Web en React con cuatro páginas y textos orientados a conversión. El formulario valida los datos y el consentimiento de privacidad y los envía a un workflow de n8n que guarda cada contacto en Google Sheets y le manda un email con su marca, con los datos y un enlace a la hoja.",
-    "keyHighlights": [
-      "Cuatro páginas con rutas reales: inicio, sobre mí, servicios y contacto",
-      "Formulario con validación y consentimiento de privacidad",
-      "Cada contacto se guarda en Google Sheets y genera un email con su marca (Resend)",
-      "Analítica con Vercel Analytics y aviso legal y de privacidad"
-    ],
-    "techStack": [
-      "React",
-      "TypeScript",
-      "Vite",
-      "Tailwind CSS",
-      "n8n",
-      "Google Sheets",
-      "Resend"
-    ],
-    "architecturePoints": [
-      "SPA estática en Vercel con rutas reales (History API)",
-      "Formulario → webhook de n8n → fila en Google Sheets + email HTML con Resend → respuesta a la web",
-      "Credenciales de Sheets y correo a nombre de la clienta; el workflow lo aloja EG Solutions"
-    ],
-    "ctaLabel": "Ver cómo funciona",
-    "liveUrl": "https://carolinaguijarro.es"
   },
   {
     "id": "linkedin-engine",

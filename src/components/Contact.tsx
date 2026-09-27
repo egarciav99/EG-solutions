@@ -237,7 +237,7 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
           <div className="lg:col-span-5 space-y-6">
             {/* Tarjeta de contacto directo */}
             <div className="bg-white border border-steel/70 rounded-lg p-6 shadow-xs">
-              <h3 className="text-base font-bold text-navy mb-3">
+              <h3 className="card-title text-navy mb-3">
                 Canales de comunicación directa
               </h3>
 

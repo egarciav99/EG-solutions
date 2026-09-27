@@ -50,8 +50,8 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
                 onNavigate={onNavigate}
                 className="block text-left bg-white rounded-xl p-6 shadow-xs ring-1 ring-steel/40 hover:ring-slate/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
               >
-                <h3 className="text-lg font-bold text-navy mb-2">{s.title}</h3>
-                <p className="text-base text-mid-gray leading-relaxed">{s.summary}</p>
+                <h3 className="card-title text-navy mb-2">{s.title}</h3>
+                <p className="card-text text-mid-gray">{s.summary}</p>
               </PageLink>
             ))}
           </div>
@@ -87,8 +87,8 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
                 >
                   {c.scaleLabel}
                 </span>
-                <h3 className={`text-lg font-bold mb-2 ${idx === 0 ? 'text-white' : 'text-navy'}`}>{c.name}</h3>
-                <p className={`text-sm leading-relaxed ${idx === 0 ? 'text-near-white/85' : 'text-mid-gray'}`}>{c.summary}</p>
+                <h3 className={`card-title mb-2 ${idx === 0 ? 'text-white' : 'text-navy'}`}>{c.name}</h3>
+                <p className={`card-text ${idx === 0 ? 'text-near-white/85' : 'text-mid-gray'}`}>{c.summary}</p>
               </PageLink>
             ))}
           </div>
@@ -111,8 +111,8 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
             {BLUEPRINT_STEPS.map((step) => (
               <li key={step.id} className="bg-white rounded-xl p-5 shadow-xs ring-1 ring-steel/40">
                 <span className="text-xs font-semibold text-copper">Paso {step.id + 1} · {step.tag}</span>
-                <h3 className="text-base font-bold text-navy mt-1 mb-2">{step.title}</h3>
-                <p className="text-sm text-mid-gray leading-relaxed">{step.desc}</p>
+                <h3 className="card-title text-navy mt-1 mb-2">{step.title}</h3>
+                <p className="card-text text-mid-gray">{step.desc}</p>
               </li>
             ))}
           </ol>

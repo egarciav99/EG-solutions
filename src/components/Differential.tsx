@@ -55,8 +55,8 @@ export function Differential() {
         {/* Sobre mí + trayectoria */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-20" id="sobre-mi">
           <div className="lg:col-span-7 bg-white rounded-xl p-7 sm:p-9 shadow-xs ring-1 ring-steel/40">
-            <h2 className="text-xl font-bold text-navy mb-5">Sobre mí</h2>
-            <div className="space-y-4 text-base text-mid-gray leading-relaxed">
+            <h2 className="card-title text-navy mb-5">Sobre mí</h2>
+            <div className="space-y-4 card-text text-mid-gray">
               <p>
                 Soy {FOUNDER_NAME}, ingeniero eléctrico. Antes del software dirigí obra eléctrica: en un data center de Microsoft en Querétaro pasé en seis meses de recién llegado a responsable único del frente de exteriores, con más de 60 personas, y en la ampliación de una planta de BMW Group en San Luis Potosí monté un sistema propio para seguir el material de obra que redujo los paros de suministro.
               </p>
@@ -104,8 +104,8 @@ export function Differential() {
                 <span className="w-8 h-8 rounded-full bg-copper/15 text-copper text-sm font-bold flex items-center justify-center mb-4">
                   {step.id + 1}
                 </span>
-                <h3 className={`text-base font-bold mb-2 ${step.isCritical ? 'text-white' : 'text-navy'}`}>{step.title}</h3>
-                <p className={`text-sm leading-relaxed ${step.isCritical ? 'text-near-white/80' : 'text-mid-gray'}`}>{step.desc}</p>
+                <h3 className={`card-title mb-2 ${step.isCritical ? 'text-white' : 'text-navy'}`}>{step.title}</h3>
+                <p className={`card-text ${step.isCritical ? 'text-near-white/80' : 'text-mid-gray'}`}>{step.desc}</p>
               </li>
             ))}
           </ol>
@@ -121,16 +121,16 @@ export function Differential() {
                 key={title}
                 className={`rounded-xl p-6 flex flex-col ${highlight ? 'bg-navy text-white ring-2 ring-copper' : 'bg-white shadow-xs ring-1 ring-steel/40'}`}
               >
-                <h3 className={`text-base font-bold mb-4 ${highlight ? 'text-white' : 'text-navy'}`}>{title}</h3>
+                <h3 className={`card-title mb-4 ${highlight ? 'text-white' : 'text-navy'}`}>{title}</h3>
                 <ul className="space-y-2.5 mb-6 list-none p-0">
                   {points.map((point) => (
-                    <li key={point} className={`flex gap-2.5 text-sm ${highlight ? 'text-near-white' : 'text-mid-gray'}`}>
+                    <li key={point} className={`flex gap-2.5 card-text ${highlight ? 'text-near-white' : 'text-mid-gray'}`}>
                       <Check className={`w-4 h-4 mt-0.5 shrink-0 ${highlight ? 'text-copper' : 'text-steel'}`} aria-hidden="true" />
                       <span>{point}</span>
                     </li>
                   ))}
                 </ul>
-                <p className={`mt-auto pt-4 border-t text-sm ${highlight ? 'border-slate text-copper font-semibold' : 'border-steel/40 text-mid-gray'}`}>
+                <p className={`mt-auto pt-4 border-t card-text ${highlight ? 'border-slate text-copper font-semibold' : 'border-steel/40 text-mid-gray'}`}>
                   {fit}
                 </p>
               </div>

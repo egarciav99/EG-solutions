@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* 
- * Design Tokens — EG Solutions
+ * Design Tokens · EG Solutions
  * Paleta oficial de 6 tonos. Fuente única de verdad para color en todo el proyecto.
  * Los componentes existentes con bg-[#2B3242] siguen funcionando: esto es aditivo,
  * no reemplaza nada todavía.
@@ -9,10 +9,26 @@
 @theme {
   --color-navy: #2B3242;      /* Fondo oscuro, texto principal */
   --color-slate: #3B4B5C;     /* Secundario oscuro */
-  --color-copper: #C77B4B;    /* Acento único — CTAs y alertas críticas */
+  --color-copper: #C77B4B;    /* Acento único: CTAs y alertas críticas */
   --color-steel: #A9B7C4;     /* Bordes técnicos, líneas de esquema */
   --color-mid-gray: #5F6874;  /* Texto secundario optimizado a ratio 5.2:1 (WCAG AA) */
   --color-near-white: #F6F7F8; /* Fondo base */
+}
+
+/* Escala tipográfica de las tarjetas (igual en todas las páginas):
+ * card-title 18 px negrita, card-text 14 px, card-meta 12 px (estados, categorías, tecnologías). */
+@utility card-title {
+  font-size: 1.125rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+@utility card-text {
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+@utility card-meta {
+  font-size: 0.75rem;
+  line-height: 1.4;
 }
 
 @layer base {
@@ -24,7 +40,7 @@
 }
 
 @layer utilities {
-  /* Patrón de cuadrícula técnica reutilizable — Hero, Services, CaseStudies */
+  /* Patrón de cuadrícula técnica reutilizable: Hero, Services, CaseStudies */
   .bg-blueprint-grid {
     background-image:
       linear-gradient(var(--color-steel) 1px, transparent 1px),
