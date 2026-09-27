@@ -6,7 +6,7 @@ import { Check } from 'lucide-react';
 
 const TRAYECTORIA = [
   { when: '2026', title: 'Máster en Business Analytics & IA', detail: 'INESDI (UNIE). Mejor expediente de la promoción.' },
-  { when: '2024 – 2025', title: 'Supervisor de obra eléctrica', detail: 'Data center de Microsoft (Querétaro): de supervisor auxiliar a encargado del frente de exteriores, más de 60 personas. Planta de BMW Group (San Luis Potosí): requisiciones de casi todo el edificio.' },
+  { when: '2024 – 2025', title: 'Coordinador de instalaciones eléctricas', detail: 'Data center de Microsoft (Querétaro): coordinación de las instalaciones eléctricas de exteriores, más de 60 personas. Planta de BMW Group (San Luis Potosí): requisiciones de casi todo el edificio.' },
   { when: '2023 – 2024', title: 'Técnico de presupuestos', detail: 'Ofertas técnicas para proyectos industriales, incluida una para Terex ganada y presentada en inglés.' },
   { when: 'Formación', title: 'Grado en Ingeniería Eléctrica', detail: 'TecNM Chihuahua.' },
 ];
@@ -58,7 +58,7 @@ export function Differential() {
             <h2 className="card-title text-navy mb-5">Sobre mí</h2>
             <div className="space-y-4 card-text text-mid-gray">
               <p>
-                Soy {FOUNDER_NAME}, ingeniero eléctrico. Antes del software dirigí obra eléctrica: en un data center de Microsoft en Querétaro pasé en seis meses de supervisor auxiliar a supervisor encargado del frente de exteriores, con más de 60 personas, y en la ampliación de una planta de BMW Group en San Luis Potosí monté un sistema propio para seguir el material de obra que redujo los paros de suministro.
+                Soy {FOUNDER_NAME}, ingeniero eléctrico. Antes del software dirigí obra eléctrica: en un data center de Microsoft en Querétaro coordiné las instalaciones eléctricas de exteriores, con más de 60 personas, y en la ampliación de una planta de BMW Group en San Luis Potosí monté un sistema propio para seguir el material de obra que redujo los paros de suministro.
               </p>
               <p>
                 En 2026 terminé el Máster en Business Analytics &amp; IA en INESDI con el mejor expediente de la promoción, y hoy desarrollo software desde Madrid con {BRAND_NAME}. De la obra me traje la forma de trabajar; en software, esos puntos de control son la revisión humana en los flujos con IA.
