@@ -17,6 +17,8 @@ export interface ProjectCase {
   ctaLabel?: string;
   /** Web o demo en producción, si es pública. */
   liveUrl?: string;
+  /** Texto del enlace a liveUrl (por defecto "Ver en vivo"), p. ej. "Probar demo". */
+  liveLabel?: string;
   /** Panel lateral del caso destacado. */
   specPanel?: {
     title: string;
