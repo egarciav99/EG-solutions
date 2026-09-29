@@ -83,11 +83,13 @@
     "scaleType": "own-product",
     "scaleLabel": "Producto propio · En uso real",
     "clientContext": "Producto propio de EG Solutions, en uso real con modelo freemium: plan gratis y plan Pro a 4,99 €/mes (el cobro se activa próximamente).",
-    "summary": "Herramienta para buscar empleo: cartas adaptadas a cada oferta, creador de CV, puntuación de encaje, CV adaptado a la oferta, seguimiento de candidaturas y preparación de entrevistas.",
+    "summary": "Herramienta para buscar empleo: cartas adaptadas a cada oferta, creador de CV con asistente de IA y chat, CV online con enlace y QR, puntuación de encaje, CV adaptado a la oferta, seguimiento de candidaturas y preparación de entrevistas.",
     "problem": "Adaptar el CV y la carta a cada oferta lleva tiempo, y sin orden es fácil perder el hilo de las candidaturas y llegar a la entrevista sin preparar.",
     "solution": "Las cartas se generan en un pipeline asíncrono en n8n que lee el CV y devuelve el resultado por un callback protegido. Las funciones del CV (importar desde PDF, puntuación de encaje, CV adaptado y preparación de entrevista) llaman a Gemini desde el servidor con respuestas JSON validadas. Cada candidatura guarda su oferta, su carta, su CV y su preparación.",
     "keyHighlights": [
       "Creador de CV gratis con importación desde PDF y versión ATS de una columna con texto real",
+      "Asistente de IA en el CV (Pro): revisión con sugerencias, reescritura de perfil y logros y un chat que propone cambios que se aplican con un clic",
+      "CV online con enlace propio, QR y contador de visitas (Pro); correo y teléfono ocultos por defecto",
       "Puntuación de encaje con la oferta y CV adaptado a cada oferta (Pro), que el usuario revisa antes de guardar",
       "Seguimiento de candidaturas por estado y preparación de entrevista con preguntas probables",
       "Cupos mensuales de IA por plan aplicados en el servidor y datos aislados por usuario con RLS"
