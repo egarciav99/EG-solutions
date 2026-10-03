@@ -24,6 +24,12 @@ export const PAGE_SEO = {
     description:
       'Proyectos reales de EG Solutions: productos propios, automatizaciones en uso y trabajos para clientes, cada uno con su estado y su tecnología.',
   },
+  laboratorio: {
+    path: '/laboratorio',
+    title: 'Laboratorio: pruébalo en vivo · EG Solutions',
+    description:
+      'Ejecuta una automatización, habla con un agente de IA y monta una web en directo. Demos interactivas de lo que hace EG Solutions, sin registrarte.',
+  },
   diferencial: {
     path: '/como-trabajo',
     title: 'Cómo trabajo · EG Solutions',

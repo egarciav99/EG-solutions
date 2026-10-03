@@ -72,7 +72,7 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Formulario de contacto directo */}
-          <div className="lg:col-span-7 bg-white border border-slate rounded-lg p-6 sm:p-8">
+          <div className="lg:col-span-7 bg-card border border-slate rounded-lg p-6 sm:p-8">
             {isSuccess ? (
               <div className="py-8 text-center space-y-4">
                 <div className="w-12 h-12 rounded-full bg-slate text-white mx-auto flex items-center justify-center">
@@ -127,7 +127,7 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Ej. Carlos Mendoza / Estudio Bahl"
-                    className="w-full text-sm px-3.5 py-2.5 rounded border border-steel focus:border-slate focus:ring-1 focus:ring-slate focus:outline-none bg-white text-navy"
+                    className="w-full text-sm px-3.5 py-2.5 rounded border border-steel focus:border-slate focus:ring-1 focus:ring-slate focus:outline-none bg-card text-navy"
                   />
                 </div>
 
@@ -142,7 +142,7 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="nombre@empresa.com"
-                    className="w-full text-sm px-3.5 py-2.5 rounded border border-steel focus:border-slate focus:ring-1 focus:ring-slate focus:outline-none bg-white text-navy"
+                    className="w-full text-sm px-3.5 py-2.5 rounded border border-steel focus:border-slate focus:ring-1 focus:ring-slate focus:outline-none bg-card text-navy"
                   />
                 </div>
 
@@ -154,7 +154,7 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
                     id="contact-service"
                     value={formData.serviceCategory}
                     onChange={(e) => setFormData({ ...formData, serviceCategory: e.target.value })}
-                    className="w-full text-sm px-3.5 py-2.5 rounded border border-steel focus:border-slate focus:ring-1 focus:ring-slate focus:outline-none bg-white text-navy"
+                    className="w-full text-sm px-3.5 py-2.5 rounded border border-steel focus:border-slate focus:ring-1 focus:ring-slate focus:outline-none bg-card text-navy"
                   >
                     <option value="Plataformas Web">Plataformas Web a medida (cotizadores, reservas, paneles)</option>
                     <option value="Automatizaciones">Automatizaciones de Procesos (n8n, APIs, documentos)</option>
@@ -175,7 +175,7 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
                     value={formData.details}
                     onChange={(e) => setFormData({ ...formData, details: e.target.value })}
                     placeholder="Describe el contexto actual, qué herramientas usas y qué resultado operativo buscas alcanzar."
-                    className="w-full text-sm px-3.5 py-2.5 rounded border border-steel focus:border-slate focus:ring-1 focus:ring-slate focus:outline-none bg-white text-navy"
+                    className="w-full text-sm px-3.5 py-2.5 rounded border border-steel focus:border-slate focus:ring-1 focus:ring-slate focus:outline-none bg-card text-navy"
                   />
                 </div>
 
@@ -236,7 +236,7 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
           {/* Información complementaria y canales directos */}
           <div className="lg:col-span-5 space-y-6">
             {/* Tarjeta de contacto directo */}
-            <div className="bg-white border border-steel/70 rounded-lg p-6 shadow-xs">
+            <div className="bg-card border border-steel/70 rounded-lg p-6 shadow-xs">
               <h3 className="card-title text-navy mb-3">
                 Canales de comunicación directa
               </h3>
@@ -290,14 +290,14 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
             </div>
 
             {/* Compromiso de presupuesto y alcance */}
-            <div className="bg-navy text-white rounded-lg p-6 border border-slate shadow-xs">
+            <div className="bg-ink text-white rounded-lg p-6 border border-slate shadow-xs">
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-2 h-2 rounded-full bg-copper" />
                 <h4 className="text-xs font-bold uppercase tracking-wide text-steel">
                   Compromiso de transparencia
                 </h4>
               </div>
-              <p className="text-xs text-near-white/85 leading-relaxed">
+              <p className="text-xs text-snow/85 leading-relaxed">
                 Alcance, pagos y entregables definidos por escrito antes de empezar.
               </p>
             </div>

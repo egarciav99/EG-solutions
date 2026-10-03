@@ -27,7 +27,7 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
           {/* Columna de texto principal */}
           <div className="lg:col-span-7 flex flex-col">
             {/* Pilares de marca desglosados */}
-            <div className="inline-flex flex-wrap items-center gap-2 mb-5 px-3 py-1.5 rounded border border-steel/60 bg-white/80 w-fit text-xs font-medium text-slate shadow-xs">
+            <div className="inline-flex flex-wrap items-center gap-2 mb-5 px-3 py-1.5 rounded border border-steel/60 bg-card/80 w-fit text-xs font-medium text-slate shadow-xs">
               {BRAND_PILLARS.map((pillar, idx) => (
                 <div key={pillar.id} className="flex items-center gap-2">
                   {idx === 0 && <span className="w-2 h-2 rounded-full bg-copper inline-block shrink-0" />}
@@ -68,7 +68,7 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
 
           {/* Columna derecha: producto propio destacado */}
           <div className="lg:col-span-5 lg:pl-4">
-            <div className="bg-navy text-white rounded-lg p-5 sm:p-6 border border-slate shadow-sm">
+            <div className="bg-ink text-white rounded-lg p-5 sm:p-6 border border-slate shadow-sm">
               <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 pb-4 mb-4 border-b border-slate">
                 <div className="flex items-center gap-2 min-w-0">
                   <div className="w-2.5 h-2.5 rounded-full bg-copper shrink-0" />
@@ -79,7 +79,7 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
                 {featured.hero?.tag && <span className="text-xs text-steel/80 shrink-0">{featured.hero.tag}</span>}
               </div>
 
-              <p className="text-sm text-near-white/85 leading-relaxed mb-4">
+              <p className="text-sm text-snow/85 leading-relaxed mb-4">
                 {featured.hero?.intro ?? featured.summary}
               </p>
 
@@ -88,7 +88,7 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
                   <li
                     key={step.title}
                     className={`px-3 py-2.5 rounded flex items-center gap-3 border ${
-                      step.isCritical ? 'bg-slate/70 border-copper' : 'bg-navy border-slate/80'
+                      step.isCritical ? 'bg-slate/70 border-copper' : 'bg-ink border-slate/80'
                     }`}
                   >
                     <span
@@ -115,7 +115,7 @@ export function Hero({ onConsultationClick, onExploreProjectsClick }: HeroProps)
             </div>
 
             {/* Ficha técnica compacta */}
-            <div className="mt-4 p-4 rounded bg-white border border-steel/50 flex items-center justify-between text-xs text-navy shadow-xs">
+            <div className="mt-4 p-4 rounded bg-card border border-steel/50 flex items-center justify-between text-xs text-navy shadow-xs">
               <div>
                 <span className="font-semibold block text-navy">Perfil diferencial:</span>
                 <span className="text-mid-gray">Ingeniería Eléctrica + Full-Stack</span>

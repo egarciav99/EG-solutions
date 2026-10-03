@@ -6,7 +6,9 @@ Web de [EG Solutions](https://egsolutions.tech): plataformas web, automatizacion
 
 ## Qué hace
 
-- **Web multipágina.** La portada resume cada sección y enlaza a su página: `/servicios`, `/proyectos`, `/como-trabajo` y `/contacto`. Usa un router propio con la History API (`src/router.ts`), sin dependencias.
+- **Web multipágina.** La portada resume cada sección y enlaza a su página: `/servicios`, `/proyectos`, `/laboratorio`, `/como-trabajo` y `/contacto`. Usa un router propio con la History API (`src/router.ts`), sin dependencias.
+- **Laboratorio interactivo** (`src/components/lab/`): una automatización que se ejecuta paso a paso (con aprobación humana), un agente de IA que cita sus fuentes y una web dentro de la web que cambia de sector, dispositivo y tema. Son simulaciones en el navegador: no envían datos. Aparece en pestañas en la portada y completo en `/laboratorio`.
+- **Modo claro y oscuro** con la misma paleta (`src/theme.ts`, tokens en `src/index.css`). Se guarda en el navegador y `public/theme-init.js` lo aplica antes de pintar.
 - **Proyectos generados desde una fuente única.** `src/data/projects.json` no se edita a mano: lo genera el repo de contenidos con `scripts/build-webs.mjs --eg`.
 - **Pipeline de leads serverless** (`api/lead.ts`):
   1. Honeypot antibots y validación.
