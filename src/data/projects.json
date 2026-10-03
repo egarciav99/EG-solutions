@@ -147,35 +147,6 @@
     "liveUrl": "https://carolinaguijarro.es"
   },
   {
-    "id": "fidelizacion",
-    "name": "Plataforma de fidelización · Activación de marca",
-    "category": "Plataforma Web & Fidelización",
-    "scaleType": "brand-campaign",
-    "scaleLabel": "Demo presentada · Pendiente de aprobación",
-    "clientContext": "Demo funcional y propuesta técnica para la activación de una marca de bebidas durante una temporada deportiva, presentada a través de una agencia.",
-    "summary": "Demo web navegable de los tres roles de la campaña y arquitectura propuesta para la versión en producción, sin descarga de app.",
-    "problem": "Las campañas que obligan a descargar una app pierden a gran parte del público, y el canje presencial tiene que evitar tickets duplicados o capturas de pantalla fraudulentas sin complicar el trabajo del personal.",
-    "solution": "La demo recorre el flujo completo: registro, envío del ticket, validación en dos pasos por el personal del punto de venta, catálogo de recompensas y pases de wallet (simulados en la demo). La propuesta técnica define la arquitectura de producción: pases firmados en servidor, antifraude y canjes atómicos.",
-    "keyHighlights": [
-      "Demo navegable de los tres roles: cliente, personal del punto de venta y administración",
-      "Validación del ticket en dos pasos: envío del cliente y aprobación del personal",
-      "Catálogo de recompensas con stock y canje",
-      "Propuesta de producción: pases de Apple y Google Wallet firmados en servidor y QR de un solo uso"
-    ],
-    "techStack": [
-      "React",
-      "TypeScript",
-      "Vite",
-      "Tailwind CSS"
-    ],
-    "architecturePoints": [
-      "Implementado en la demo: SPA con los tres roles y el estado del flujo completo",
-      "Propuesto para producción: generación de pases .pkpass y tokens de Google Wallet firmados en servidor",
-      "Propuesto para producción: QR de un solo uso con expiración y transacciones atómicas para impedir el doble canje"
-    ],
-    "ctaLabel": "Ver demo y arquitectura propuesta"
-  },
-  {
     "id": "coreit",
     "name": "CoreIT · Hub de automatizaciones",
     "category": "Automatización & Extracción IA",
