@@ -77,7 +77,7 @@ export function LabTabs({ onNavigate }: { onNavigate: (id: PageId) => void }) {
             to="laboratorio"
             onNavigate={onNavigate}
             id="home-ver-laboratorio"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-copper hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded cursor-pointer"
+            className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-sm font-medium text-copper hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper rounded cursor-pointer"
           >
             Abrir el laboratorio completo
             <ArrowRight className="w-4 h-4" />

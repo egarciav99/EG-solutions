@@ -208,9 +208,9 @@ export function AutomationDemo() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+      <div className="grid grid-cols-1 xl:grid-cols-12 gap-5">
         {/* Lienzo del flujo */}
-        <div className="lg:col-span-8 relative rounded-xl bg-ink text-white p-5 sm:p-6 overflow-hidden ring-1 ring-slate">
+        <div className="xl:col-span-8 relative rounded-xl bg-ink text-white p-5 sm:p-6 overflow-hidden ring-1 ring-slate">
           <div className="absolute inset-0 pointer-events-none opacity-[0.07] bg-[linear-gradient(var(--color-steel)_1px,transparent_1px),linear-gradient(90deg,var(--color-steel)_1px,transparent_1px)] bg-[size:20px_20px]" aria-hidden="true" />
 
           <div className="relative flex flex-wrap items-start justify-between gap-3 mb-6">
@@ -337,7 +337,7 @@ export function AutomationDemo() {
         </div>
 
         {/* Registro y resultado */}
-        <div className="lg:col-span-4 flex flex-col gap-4 min-w-0">
+        <div className="xl:col-span-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-4 content-start min-w-0">
           <div className="rounded-xl bg-ink ring-1 ring-slate overflow-hidden flex flex-col">
             <div className="flex items-center gap-1.5 px-3 py-2 border-b border-slate">
               <span className="w-2.5 h-2.5 rounded-full bg-slate" />
@@ -345,7 +345,7 @@ export function AutomationDemo() {
               <span className="w-2.5 h-2.5 rounded-full bg-copper" />
               <span className="ml-2 text-[11px] text-steel font-mono">registro de ejecución</span>
             </div>
-            <ol ref={logRef} className="h-48 overflow-y-auto p-3 font-mono text-[11.5px] leading-relaxed list-none m-0 space-y-1" aria-live="polite">
+            <ol ref={logRef} className="h-44 xl:h-48 overflow-y-auto p-3 font-mono text-[11.5px] leading-relaxed list-none m-0 space-y-1" aria-live="polite">
               {logs.length === 0 && <li className="text-steel/80 lab-caret">Pulsa Ejecutar</li>}
               {logs.map((l, i) => (
                 <li key={i} className="flex gap-2">
@@ -381,7 +381,7 @@ function Connector({ active, passed }: { active: boolean; passed: boolean }) {
 function ResultPanel({ scenario, status, elapsed }: { scenario: Scenario; status: string; elapsed: number }) {
   const finished = status === 'done' || status === 'rejected';
   return (
-    <div className="rounded-xl bg-card ring-1 ring-steel/40 p-4 flex-1 min-h-[11rem]">
+    <div className="rounded-xl bg-card ring-1 ring-steel/40 p-4 min-h-[11rem]">
       <p className="text-xs font-semibold text-mid-gray tracking-wide mb-3">RESULTADO</p>
       {!finished && <p className="card-text text-mid-gray">Aquí aparecerá lo que produce el flujo.</p>}
 
