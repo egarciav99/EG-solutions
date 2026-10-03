@@ -48,7 +48,7 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
                 key={s.id}
                 to="servicios"
                 onNavigate={onNavigate}
-                className="block text-left bg-white rounded-xl p-6 shadow-xs ring-1 ring-steel/40 hover:ring-slate/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
+                className="block text-left bg-card rounded-xl p-6 shadow-xs ring-1 ring-steel/40 hover:ring-slate/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
               >
                 <h3 className="card-title text-navy mb-2">{s.title}</h3>
                 <p className="card-text text-mid-gray">{s.summary}</p>
@@ -59,7 +59,7 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
       </section>
 
       {/* Proyectos */}
-      <section className="py-16 border-b border-steel/30 bg-[#F6F7F8]" id="resumen-proyectos">
+      <section className="py-16 border-b border-steel/30 bg-near-white" id="resumen-proyectos">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <div className="max-w-2xl">
@@ -77,7 +77,7 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
                 to="proyectos"
                 onNavigate={onNavigate}
                 className={`block text-left rounded-xl p-6 shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer ${
-                  idx === 0 ? 'bg-navy text-white ring-1 ring-slate hover:ring-copper' : 'bg-white ring-1 ring-steel/40 hover:ring-slate/60'
+                  idx === 0 ? 'bg-ink text-white ring-1 ring-slate hover:ring-copper' : 'bg-card ring-1 ring-steel/40 hover:ring-slate/60'
                 }`}
               >
                 <span
@@ -88,7 +88,7 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
                   {c.scaleLabel}
                 </span>
                 <h3 className={`card-title mb-2 ${idx === 0 ? 'text-white' : 'text-navy'}`}>{c.name}</h3>
-                <p className={`card-text ${idx === 0 ? 'text-near-white/85' : 'text-mid-gray'}`}>{c.summary}</p>
+                <p className={`card-text ${idx === 0 ? 'text-snow/85' : 'text-mid-gray'}`}>{c.summary}</p>
               </PageLink>
             ))}
           </div>
@@ -109,7 +109,7 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
           </div>
           <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 list-none p-0 m-0">
             {BLUEPRINT_STEPS.map((step) => (
-              <li key={step.id} className="bg-white rounded-xl p-5 shadow-xs ring-1 ring-steel/40">
+              <li key={step.id} className="bg-card rounded-xl p-5 shadow-xs ring-1 ring-steel/40">
                 <span className="text-xs font-semibold text-copper">Paso {step.id + 1} · {step.tag}</span>
                 <h3 className="card-title text-navy mt-1 mb-2">{step.title}</h3>
                 <p className="card-text text-mid-gray">{step.desc}</p>
@@ -120,11 +120,11 @@ export function HomePreviews({ onNavigate }: HomePreviewsProps) {
       </section>
 
       {/* Llamada a la acción */}
-      <section className="py-16 bg-navy text-white" id="resumen-contacto">
+      <section className="py-16 bg-ink text-white" id="resumen-contacto">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="max-w-2xl">
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight mb-2">¿Tienes un proceso que te quita horas?</h2>
-            <p className="text-base text-near-white/80 leading-relaxed">
+            <p className="text-base text-snow/80 leading-relaxed">
               Cuéntamelo en unas líneas y te respondo en menos de 24 horas laborables con una primera propuesta.
             </p>
           </div>

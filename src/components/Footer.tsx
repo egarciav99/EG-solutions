@@ -49,6 +49,15 @@ export function Footer({ onNavigate }: FooterProps) {
                 </li>
                 <li>
                   <PageLink
+                    to="laboratorio"
+                    onNavigate={onNavigate}
+                    className="text-steel hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"
+                  >
+                    Laboratorio
+                  </PageLink>
+                </li>
+                <li>
+                  <PageLink
                     to="diferencial"
                     onNavigate={onNavigate}
                     className="text-steel hover:text-white transition-colors focus-visible:outline-none focus-visible:underline cursor-pointer"

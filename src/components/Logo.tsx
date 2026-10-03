@@ -27,7 +27,7 @@ export function Logo({
         className={`flex items-center justify-center transition-all ${
           isDark
             ? 'bg-[#F6F7F8] p-2 sm:p-2.5 rounded border border-[#A9B7C4]/40 shadow-xs'
-            : 'p-1'
+            : 'p-1 logo-frame'
         }`}
       >
         <img
@@ -44,7 +44,7 @@ export function Logo({
 
       {showTagline && (
         <div className="hidden lg:flex flex-col border-l border-[#A9B7C4]/50 pl-3">
-          <span className={`text-xs font-semibold tracking-tight ${isDark ? 'text-white' : 'text-[#2B3242]'}`}>
+          <span className={`text-xs font-semibold tracking-tight ${isDark ? 'text-white' : 'text-navy'}`}>
             Plataformas Web · Automatizaciones · Agentes IA
           </span>
         </div>

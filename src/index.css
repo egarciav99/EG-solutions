@@ -13,6 +13,41 @@
   --color-steel: #A9B7C4;     /* Bordes técnicos, líneas de esquema */
   --color-mid-gray: #5F6874;  /* Texto secundario optimizado a ratio 5.2:1 (WCAG AA) */
   --color-near-white: #F6F7F8; /* Fondo base */
+
+  /* Tokens que cambian con el tema (ver modo oscuro más abajo) o que nunca cambian */
+  --color-card: #FFFFFF;      /* Fondo de tarjetas */
+  --color-ink: #2B3242;       /* Superficie oscura fija: tarjetas destacadas, modales */
+  --color-snow: #F6F7F8;      /* Texto claro fijo sobre superficies oscuras */
+
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+
+/*
+ * Modo oscuro: misma paleta, superficies invertidas.
+ * navy pasa a ser el texto claro y near-white el fondo; ink, copper y steel se mantienen.
+ * Lo activa data-theme="dark" en <html> (public/theme-init.js y el botón de la cabecera).
+ */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-navy: #E8ECF0;
+  --color-near-white: #151A23;
+  --color-card: #1E2531;
+  --color-mid-gray: #A3AEBA;
+  --color-ink: #262D3B;
+}
+:root[data-theme='dark'] .text-slate {
+  color: #C3CCD5;
+}
+:root[data-theme='dark'] .logo-frame {
+  background: var(--color-snow);
+  border-radius: 0.375rem;
+}
+
+/* Transición circular al cambiar de tema (View Transitions API) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 /* Escala tipográfica de las tarjetas (igual en todas las páginas):
@@ -54,4 +89,33 @@
   .border-technical {
     border: 1px solid var(--color-steel);
   }
+}
+/* Laboratorio: pulso que recorre las conexiones de un flujo */
+@keyframes lab-flow-x {
+  from { left: 0%; }
+  to { left: 100%; }
+}
+@keyframes lab-flow-y {
+  from { top: 0%; }
+  to { top: 100%; }
+}
+@keyframes lab-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes lab-blink {
+  50% { opacity: 0; }
+}
+.lab-caret::after {
+  content: '';
+  display: inline-block;
+  width: 0.5ch;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: currentColor;
+  animation: lab-blink 1s step-end infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lab-caret::after { animation: none; }
 }

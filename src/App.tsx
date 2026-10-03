@@ -13,6 +13,8 @@ const HomePreviews = lazy(() => import('./components/HomePreviews').then((m) => 
 const Services = lazy(() => import('./components/Services').then((m) => ({ default: m.Services })));
 const CaseStudies = lazy(() => import('./components/CaseStudies').then((m) => ({ default: m.CaseStudies })));
 const Differential = lazy(() => import('./components/Differential').then((m) => ({ default: m.Differential })));
+const LabTabs = lazy(() => import('./components/lab/Laboratory').then((m) => ({ default: m.LabTabs })));
+const Laboratory = lazy(() => import('./components/lab/Laboratory').then((m) => ({ default: m.Laboratory })));
 const Contact = lazy(() => import('./components/Contact').then((m) => ({ default: m.Contact })));
 const NotFound = lazy(() => import('./components/NotFound').then((m) => ({ default: m.NotFound })));
 const Footer = lazy(() => import('./components/Footer').then((m) => ({ default: m.Footer })));
@@ -48,7 +50,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F6F7F8] text-[#2B3242]">
+    <div className="min-h-screen flex flex-col bg-near-white text-navy">
       {/* Barra de navegación (Bundle inicial) */}
       <Header onNavigate={navigate} onOpenConsultation={handleOpenConsultation} activePage={page} />
 
@@ -58,6 +60,9 @@ export default function App() {
           <>
             {/* Portada: hero + resumen de cada página, con enlace al detalle */}
             <Hero onConsultationClick={handleOpenConsultation} onExploreProjectsClick={() => navigate('proyectos')} />
+            <Suspense fallback={<SectionFallback minHeightClass="min-h-[700px]" />}>
+              <LabTabs onNavigate={navigate} />
+            </Suspense>
             <Suspense fallback={<SectionFallback minHeightClass="min-h-[900px]" />}>
               <HomePreviews onNavigate={navigate} />
             </Suspense>
@@ -73,6 +78,12 @@ export default function App() {
         {page === 'proyectos' && (
           <Suspense fallback={<SectionFallback minHeightClass="min-h-[700px]" />}>
             <CaseStudies onSelectProjectForDiscussion={handleSelectProjectForDiscussion} />
+          </Suspense>
+        )}
+
+        {page === 'laboratorio' && (
+          <Suspense fallback={<SectionFallback minHeightClass="min-h-[900px]" />}>
+            <Laboratory onNavigate={navigate} />
           </Suspense>
         )}
 

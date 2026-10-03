@@ -30,7 +30,7 @@ export function Services({ onSelectServiceForInquiry }: ServicesProps) {
           {SERVICE_LINES.map((service) => {
             const Icon = ICONS[service.id] ?? Layers;
             return (
-              <article key={service.id} className="bg-white rounded-xl p-7 shadow-xs ring-1 ring-steel/40 flex flex-col">
+              <article key={service.id} className="bg-card rounded-xl p-7 shadow-xs ring-1 ring-steel/40 flex flex-col">
                 <div className="w-11 h-11 rounded-lg bg-copper/10 text-copper flex items-center justify-center mb-5">
                   <Icon className="w-5 h-5" aria-hidden="true" />
                 </div>
@@ -46,7 +46,7 @@ export function Services({ onSelectServiceForInquiry }: ServicesProps) {
                 </ul>
                 <button
                   onClick={() => onSelectServiceForInquiry(service.inquiry)}
-                  className="mt-auto w-full bg-navy hover:bg-slate text-white text-sm font-medium px-5 py-3 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper cursor-pointer"
+                  className="mt-auto w-full bg-ink hover:bg-slate text-white text-sm font-medium px-5 py-3 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper cursor-pointer"
                   id={`service-cta-${service.id}`}
                 >
                   {service.cta}

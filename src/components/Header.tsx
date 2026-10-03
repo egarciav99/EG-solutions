@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Logo } from './Logo';
 import { PageLink } from './PageLink';
 import { Menu, X } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 import { BRAND_NAME, ACTIVE_REGIONS } from '../data/constants';
 import type { PageId } from '../router';
 
@@ -83,6 +84,18 @@ export function Header({ onNavigate, onOpenConsultation, activePage }: HeaderPro
             </li>
             <li>
               <PageLink
+                to="laboratorio"
+                onNavigate={handleNavClick}
+                aria-current={activePage === 'laboratorio' ? 'page' : undefined}
+                className={`text-sm font-medium ${activePage === 'laboratorio' ? 'text-navy underline underline-offset-8 decoration-copper decoration-2' : 'text-slate'} hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate px-1 py-1 rounded cursor-pointer inline-flex items-center gap-1.5`}
+                id="nav-link-laboratorio"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-copper animate-pulse" aria-hidden="true" />
+                Laboratorio
+              </PageLink>
+            </li>
+            <li>
+              <PageLink
                 to="diferencial"
                 onNavigate={handleNavClick}
                 aria-current={activePage === 'diferencial' ? 'page' : undefined}
@@ -107,16 +120,18 @@ export function Header({ onNavigate, onOpenConsultation, activePage }: HeaderPro
         </nav>
 
         {/* Right Action & Context */}
-        <div className="hidden lg:flex items-center gap-4">
-          <div className="flex items-center gap-2 text-xs text-mid-gray border-r border-steel/40 pr-4">
+        <div className="hidden md:flex items-center gap-4">
+          <div className="hidden xl:flex items-center gap-2 text-xs text-mid-gray border-r border-steel/40 pr-4">
             <span className="w-2 h-2 rounded-full bg-copper inline-block" title="Activo" />
             <span>{ACTIVE_REGIONS}</span>
           </div>
 
+          <ThemeToggle id="header-theme-toggle" />
+
           <PageLink
             to="contacto"
             onNavigate={() => onOpenConsultation()}
-            className="text-sm font-medium bg-copper hover:opacity-90 text-white px-4 py-2 rounded transition-opacity shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper cursor-pointer"
+            className="hidden lg:inline-block text-sm font-medium bg-copper hover:opacity-90 text-white px-4 py-2 rounded transition-opacity shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper cursor-pointer"
             id="header-consultation-btn"
           >
             Consultar proyecto
@@ -125,6 +140,7 @@ export function Header({ onNavigate, onOpenConsultation, activePage }: HeaderPro
 
         {/* Mobile menu trigger */}
         <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle id="mobile-theme-toggle" />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-slate hover:bg-steel/20 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
@@ -163,6 +179,16 @@ export function Header({ onNavigate, onOpenConsultation, activePage }: HeaderPro
                   id="mobile-nav-proyectos"
                 >
                   Proyectos
+                </PageLink>
+              </li>
+              <li>
+                <PageLink
+                  to="laboratorio"
+                  onNavigate={handleNavClick}
+                  className="block w-full text-left text-base font-medium text-slate hover:text-navy py-1.5 cursor-pointer"
+                  id="mobile-nav-laboratorio"
+                >
+                  Laboratorio
                 </PageLink>
               </li>
               <li>

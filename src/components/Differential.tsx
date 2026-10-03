@@ -54,7 +54,7 @@ export function Differential() {
 
         {/* Sobre mí + trayectoria */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-20" id="sobre-mi">
-          <div className="lg:col-span-7 bg-white rounded-xl p-7 sm:p-9 shadow-xs ring-1 ring-steel/40">
+          <div className="lg:col-span-7 bg-card rounded-xl p-7 sm:p-9 shadow-xs ring-1 ring-steel/40">
             <h2 className="card-title text-navy mb-5">Sobre mí</h2>
             <div className="space-y-4 card-text text-mid-gray">
               <p>
@@ -66,7 +66,7 @@ export function Differential() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 bg-navy text-white rounded-xl p-7 sm:p-9">
+          <div className="lg:col-span-5 bg-ink text-white rounded-xl p-7 sm:p-9">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-11 h-11 rounded-lg bg-slate flex items-center justify-center text-steel font-bold text-sm">EG</div>
               <div>
@@ -81,7 +81,7 @@ export function Differential() {
                   <div>
                     <span className="block text-xs text-steel">{item.when}</span>
                     <span className="block font-semibold text-white">{item.title}</span>
-                    <span className="block text-xs text-near-white/70 leading-relaxed">{item.detail}</span>
+                    <span className="block text-xs text-snow/70 leading-relaxed">{item.detail}</span>
                   </div>
                 </li>
               ))}
@@ -99,13 +99,13 @@ export function Differential() {
             {BLUEPRINT_STEPS.map((step) => (
               <li
                 key={step.id}
-                className={`rounded-xl p-6 ${step.isCritical ? 'bg-navy text-white' : 'bg-white shadow-xs ring-1 ring-steel/40'}`}
+                className={`rounded-xl p-6 ${step.isCritical ? 'bg-ink text-white' : 'bg-card shadow-xs ring-1 ring-steel/40'}`}
               >
                 <span className="w-8 h-8 rounded-full bg-copper/15 text-copper text-sm font-bold flex items-center justify-center mb-4">
                   {step.id + 1}
                 </span>
                 <h3 className={`card-title mb-2 ${step.isCritical ? 'text-white' : 'text-navy'}`}>{step.title}</h3>
-                <p className={`card-text ${step.isCritical ? 'text-near-white/80' : 'text-mid-gray'}`}>{step.desc}</p>
+                <p className={`card-text ${step.isCritical ? 'text-snow/80' : 'text-mid-gray'}`}>{step.desc}</p>
               </li>
             ))}
           </ol>
@@ -119,12 +119,12 @@ export function Differential() {
             {COMPARATIVA.map(({ title, points, fit, highlight }) => (
               <div
                 key={title}
-                className={`rounded-xl p-6 flex flex-col ${highlight ? 'bg-navy text-white ring-2 ring-copper' : 'bg-white shadow-xs ring-1 ring-steel/40'}`}
+                className={`rounded-xl p-6 flex flex-col ${highlight ? 'bg-ink text-white ring-2 ring-copper' : 'bg-card shadow-xs ring-1 ring-steel/40'}`}
               >
                 <h3 className={`card-title mb-4 ${highlight ? 'text-white' : 'text-navy'}`}>{title}</h3>
                 <ul className="space-y-2.5 mb-6 list-none p-0">
                   {points.map((point) => (
-                    <li key={point} className={`flex gap-2.5 card-text ${highlight ? 'text-near-white' : 'text-mid-gray'}`}>
+                    <li key={point} className={`flex gap-2.5 card-text ${highlight ? 'text-snow' : 'text-mid-gray'}`}>
                       <Check className={`w-4 h-4 mt-0.5 shrink-0 ${highlight ? 'text-copper' : 'text-steel'}`} aria-hidden="true" />
                       <span>{point}</span>
                     </li>

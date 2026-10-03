@@ -27,7 +27,7 @@ function StatusBadge({ label, strong = false }: { label: string; strong?: boolea
   return (
     <span
       className={`self-start text-xs font-semibold px-2.5 py-1 rounded-full ${
-        strong ? 'bg-navy text-white' : 'bg-copper/10 text-copper'
+        strong ? 'bg-ink text-white' : 'bg-copper/10 text-copper'
       }`}
     >
       {label}
@@ -86,7 +86,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
         </div>
 
         {/* Caso destacado */}
-        <article className="mb-8 bg-white rounded-xl shadow-xs ring-1 ring-steel/40 overflow-hidden">
+        <article className="mb-8 bg-card rounded-xl shadow-xs ring-1 ring-steel/40 overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12">
             <div className="lg:col-span-7 p-7 sm:p-10 flex flex-col">
               <StatusBadge label={featured.scaleLabel} strong />
@@ -104,7 +104,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
               </div>
             </div>
 
-            <div className="lg:col-span-5 bg-navy text-white p-7 sm:p-10">
+            <div className="lg:col-span-5 bg-ink text-white p-7 sm:p-10">
               <div className="text-xs font-semibold text-steel tracking-wide mb-5">
                 {featured.specPanel?.title ?? 'CÓMO FUNCIONA'}
               </div>
@@ -116,7 +116,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
                     </span>
                     <div className="card-text">
                       {item.title && <div className="font-semibold text-white">{item.title.replace(/:$/, '')}</div>}
-                      <div className="text-near-white/75">{item.text}</div>
+                      <div className="text-snow/75">{item.text}</div>
                     </div>
                   </li>
                 ))}
@@ -128,7 +128,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
         {/* Productos y clientes */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
           {mainCases.map((project) => (
-            <article key={project.id} className="bg-white rounded-xl p-7 shadow-xs ring-1 ring-steel/40 flex flex-col">
+            <article key={project.id} className="bg-card rounded-xl p-7 shadow-xs ring-1 ring-steel/40 flex flex-col">
               <StatusBadge label={project.scaleLabel} />
               <h2 className="card-title text-navy mt-4 mb-3">{project.name}</h2>
               <p className="card-text text-mid-gray mb-5">{project.summary}</p>
@@ -163,7 +163,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
                 <button
                   key={tool.id}
                   onClick={() => setSelectedCase(tool)}
-                  className="text-left bg-white/70 hover:bg-white rounded-xl p-5 ring-1 ring-steel/30 hover:ring-slate/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
+                  className="text-left bg-card/70 hover:bg-card rounded-xl p-5 ring-1 ring-steel/30 hover:ring-slate/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate cursor-pointer"
                   id={`inspect-case-${tool.id}`}
                 >
                   <span className="block card-title text-navy mb-1">{tool.name}</span>
@@ -178,7 +178,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
       {/* Modal accesible de inspección técnica */}
       {selectedCase && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy/70 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/70 backdrop-blur-sm"
           onClick={(e) => {
             if (e.target === e.currentTarget) setSelectedCase(null);
           }}
@@ -186,7 +186,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
           aria-modal="true"
           aria-labelledby="case-modal-title"
         >
-          <div className="bg-white rounded-lg border border-steel/60 max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-md relative">
+          <div className="bg-card rounded-lg border border-steel/60 max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-md relative">
             <div className="flex items-start justify-between gap-4 pb-4 mb-5 border-b border-steel/30">
               <div>
                 <span className="text-xs font-semibold px-2 py-0.5 rounded bg-near-white border border-steel/40 text-slate inline-block mb-1.5">
@@ -234,7 +234,7 @@ export function CaseStudies({ onSelectProjectForDiscussion }: CaseStudiesProps) 
                   {selectedCase.architecturePoints.map((point, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm">
                       <span className="mt-1 w-3 h-3 rounded-full bg-slate text-white flex items-center justify-center shrink-0">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-card" />
                       </span>
                       <span>{point}</span>
                     </li>

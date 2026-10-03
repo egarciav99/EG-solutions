@@ -39,7 +39,7 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-navy/70 backdrop-blur-xs"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-ink/70 backdrop-blur-xs"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -47,7 +47,7 @@ export function PrivacyPolicyModal({ isOpen, onClose }: PrivacyPolicyModalProps)
       aria-modal="true"
       aria-labelledby="privacy-modal-title"
     >
-      <div className="bg-white rounded-lg border border-steel/60 max-w-2xl w-full p-6 sm:p-8 shadow-md relative">
+      <div className="bg-card rounded-lg border border-steel/60 max-w-2xl w-full p-6 sm:p-8 shadow-md relative">
         <div className="flex items-start justify-between gap-4 pb-4 mb-5 border-b border-steel/30">
           <div>
             <h3 id="privacy-modal-title" className="text-xl sm:text-2xl font-bold text-navy">
