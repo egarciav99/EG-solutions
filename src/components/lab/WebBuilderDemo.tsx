@@ -178,7 +178,10 @@ export function WebBuilderDemo() {
               showCode ? 'bg-ink border-ink text-white' : 'border-steel/60 bg-card text-slate hover:border-slate'
             }`}
           >
-            <CodeXml className="w-4 h-4" aria-hidden="true" /> Código
+            <CodeXml className="w-4 h-4" aria-hidden="true" />
+            {/* En pantallas estrechas el código ocupa el sitio de la web, así que el botón sirve para volver */}
+            <span className="lg:hidden">{showCode ? 'Ver web' : 'Código'}</span>
+            <span className="hidden lg:inline">Código</span>
           </button>
         </div>
       </div>
@@ -186,7 +189,8 @@ export function WebBuilderDemo() {
       {/* Escenario: la web en su navegador */}
       <div className="rounded-xl ring-1 ring-steel/40 p-3 sm:p-5 bg-near-white bg-[radial-gradient(circle,rgba(169,183,196,0.45)_1px,transparent_1px)] bg-[size:18px_18px]">
         <div className={`grid gap-4 ${showCode ? 'lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]' : ''}`}>
-          <div className="mx-auto w-full transition-[max-width] duration-500 ease-out" style={{ maxWidth: width }}>
+          {/* Por debajo de lg no cabe al lado: el código sustituye a la web en el mismo sitio */}
+          <div className={`mx-auto w-full transition-[max-width] duration-500 ease-out ${showCode ? 'hidden lg:block' : ''}`} style={{ maxWidth: width }}>
             <BrowserFrame domain={sector.domain} compact={device === 'mobile'}>
               <Fragment key={sector.id}>
                 <MiniSite sector={sector} dark={dark} />
@@ -438,7 +442,7 @@ function CodePanel({ sector, dark }: { sector: Sector; dark: boolean }) {
   const s = 'text-[#9FC3A8]';
   const c = 'text-steel/70';
   return (
-    <div className="rounded-xl bg-ink ring-1 ring-slate overflow-hidden min-w-0 animate-[lab-fade-in_0.3s_ease-out]">
+    <div className="rounded-xl bg-ink ring-1 ring-slate overflow-hidden min-w-0 min-h-[32rem] lg:min-h-0 animate-[lab-fade-in_0.3s_ease-out]">
       <div className="px-4 py-2 border-b border-slate text-[11px] font-mono text-steel">src/site.config.ts</div>
       <pre className="p-4 text-[11.5px] leading-relaxed font-mono text-snow/90 overflow-x-auto h-full">
         <code>
