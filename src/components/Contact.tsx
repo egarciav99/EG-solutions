@@ -62,9 +62,9 @@ export function Contact({ initialService = '', initialProjectContext = '' }: Con
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         <div className="max-w-2xl mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-navy tracking-tight mb-4">
+          <h1 className="text-2xl sm:text-3xl font-bold text-navy tracking-tight mb-4">
             Iniciar conversación de proyecto
-          </h2>
+          </h1>
           <p className="text-base text-mid-gray leading-relaxed">
             Sin intermediarios ni llamadas comerciales. Describe el problema operativo y recibirás una respuesta técnica fundamentada en menos de 24 horas laborables.
           </p>
