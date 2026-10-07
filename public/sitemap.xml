@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://egsolutions.tech/</loc>
+    <loc>https://www.egsolutions.tech/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://egsolutions.tech/servicios</loc>
+    <loc>https://www.egsolutions.tech/servicios</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://egsolutions.tech/proyectos</loc>
+    <loc>https://www.egsolutions.tech/proyectos</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://egsolutions.tech/laboratorio</loc>
+    <loc>https://www.egsolutions.tech/laboratorio</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://egsolutions.tech/como-trabajo</loc>
+    <loc>https://www.egsolutions.tech/como-trabajo</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://egsolutions.tech/contacto</loc>
+    <loc>https://www.egsolutions.tech/contacto</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

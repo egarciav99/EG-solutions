@@ -3,7 +3,7 @@
  * Lo usan el router (en el navegador) y vite.config.ts (al compilar, para generar
  * un HTML propio por página), así que no puede importar nada de React.
  */
-export const SITE_URL = 'https://egsolutions.tech';
+export const SITE_URL = 'https://www.egsolutions.tech';
 
 export const PAGE_SEO = {
   top: {
