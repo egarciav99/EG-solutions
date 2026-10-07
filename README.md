@@ -1,6 +1,6 @@
 # EG Solutions · web y captación de leads
 
-Web de [EG Solutions](https://egsolutions.tech): plataformas web, automatizaciones y agentes de IA para negocios en España y México. Además de la web, incluye el backend que recibe los formularios, los clasifica con IA y hace el seguimiento.
+Web de [EG Solutions](https://www.egsolutions.tech): plataformas web, automatizaciones y agentes de IA para negocios en España y México. Además de la web, incluye el backend que recibe los formularios, los clasifica con IA y hace el seguimiento.
 
 ![Portada](docs/portada.png)
 
